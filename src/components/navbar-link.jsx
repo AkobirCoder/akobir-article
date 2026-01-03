@@ -1,12 +1,22 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
-const NavbarLink = ({title, path, index}) => {
+const NavbarLink = ({title, path, activeNavHandler}) => {
     return (
         <>
-            <Link to={path} className='text-dark text-decoration-none py-2 px-3 rounded-top custom-nav-link'>
+            <NavLink 
+                to={path}
+                className={({isActive}) => `
+                    text-dark 
+                    text-decoration-none 
+                    py-2 px-3 
+                    rounded-top 
+                    ${isActive ? 'custom-nav-link' : ''}
+                `}
+                onClick={() => activeNavHandler(title)}
+            >
                 {title}
-            </Link>
+            </NavLink>
         </>
     );
 }
