@@ -17,6 +17,12 @@ const Navbar = () => {
     const activeNavHandler = (title) => {
         setActiveNav(title);
     }
+
+    const handleClick = () => {
+        toggleNavigationHandler();
+
+        activeNavHandler();
+    }
     
     return (
         <div className='container'>
@@ -32,16 +38,30 @@ const Navbar = () => {
                             {
                                 navigationLinks.map((navLink, index) => {
                                     return (
-                                        <NavbarLink key={navLink.id} {...navLink} index={index} activeNav={activeNav} activeNavHandler={activeNavHandler} />
+                                        <NavbarLink 
+                                            key={navLink.id} 
+                                            {...navLink} 
+                                            index={index} 
+                                            activeNav={activeNav} 
+                                            handleClick={handleClick}
+                                         />
                                     );
                                 })
                             }
                         </div>
                         <div className='col-12 col-md-6 d-flex align-items-center justify-content-end'>
-                            <Link to={'/login'} className='me-3 px-2 text-dark text-decoration-none' onClick={() => activeNavHandler('')}>
+                            <Link 
+                                to={'/login'} 
+                                className='me-3 px-2 text-dark text-decoration-none' 
+                                onClick={() => activeNavHandler('')}
+                            >
                                 Login
                             </Link>
-                            <Link to={'/register'} className='px-2 text-dark text-decoration-none' onClick={() => activeNavHandler('')}>
+                            <Link 
+                                to={'/register'} 
+                                className='px-2 text-dark text-decoration-none' 
+                                onClick={() => activeNavHandler('')}
+                            >
                                 Register
                             </Link>
                         </div>
@@ -77,7 +97,7 @@ const Navbar = () => {
                                 return 'd-none'
                             }
                         })()
-                    } w-100 bg-body-secondary d-md-none d-block`}
+                    } d-md-none d-block w-100 bg-body-secondary`}
                     style={{minHeight: 'calc(100vh - 72px)', position: 'absolute', top: 72}}
                 >
                     <div className='mt-3'>
@@ -85,7 +105,13 @@ const Navbar = () => {
                             {
                                 navigationLinks.map((navLink, index) => {
                                     return (
-                                        <NavbarLink key={navLink.id} {...navLink} index={index} />
+                                        <NavbarLink 
+                                            key={navLink.id} 
+                                            {...navLink} 
+                                            index={index} 
+                                            activeNav={activeNav}
+                                            handleClick={handleClick}
+                                         />
                                     );
                                 })
                             }
