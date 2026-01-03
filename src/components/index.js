@@ -1,4 +1,9 @@
 export {default as Main} from './main';
+export {default as AboutUs} from './about-us';
+export {default as Articles} from './articles';
+export {default as Blogs} from './blogs';
+export {default as ContactUs} from './contact-us';
 export {default as Login} from './login';
 export {default as Register} from './register';
 export {default as Navbar} from './navbar';
+export {default as NavbarLink} from './navbar-link';
