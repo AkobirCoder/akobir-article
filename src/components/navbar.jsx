@@ -6,37 +6,42 @@ import NavbarLink from './navbar-link';
 
 const Navbar = () => {
     const [toggleNavigation, setToggleNavigation] = useState(false);
+    const [activeNav, setActiveNav] = useState('Home');
 
     const toggleNavigationHandler = () => {
         setToggleNavigation((prevState) => {
             return !prevState;
         });
     }
+
+    const activeNavHandler = (title) => {
+        setActiveNav(title);
+    }
     
     return (
         <div className='container'>
             <div className='row d-flex flex-md-row align-items-center py-3 py-md-2'>
-                <div className='d-flex col-6 col-md-4 justify-content-start'>
+                <div className='d-flex col-6 col-md-3 justify-content-start'>
                     <Link className='px-2' to={'/'}>
-                        <img src={Logo} className='w-75' alt="Logo" />
+                        <img src={Logo} className='w-75' alt="Logo" onClick={() => activeNavHandler('Home')} />
                     </Link>
                 </div>
-                <nav className='d-none d-md-block col-6 col-md-8 py-2'>
+                <nav className='d-none d-md-block col-6 col-md-9 py-2'>
                     <div className='row'>
-                        <div className='col-12 col-md-6 d-flex align-items-center justify-content-evenly'>
+                        <div className='col-12 col-md-6 d-flex align-items-center justify-content-between'>
                             {
                                 navigationLinks.map((navLink, index) => {
                                     return (
-                                        <NavbarLink key={navLink.id} {...navLink} index={index} />
+                                        <NavbarLink key={navLink.id} {...navLink} index={index} activeNav={activeNav} activeNavHandler={activeNavHandler} />
                                     );
                                 })
                             }
                         </div>
                         <div className='col-12 col-md-6 d-flex align-items-center justify-content-end'>
-                            <Link to={'/login'} className='me-3 px-2 text-dark text-decoration-none'>
+                            <Link to={'/login'} className='me-3 px-2 text-dark text-decoration-none' onClick={() => activeNavHandler('')}>
                                 Login
                             </Link>
-                            <Link to={'/register'} className='px-2 text-dark text-decoration-none'>
+                            <Link to={'/register'} className='px-2 text-dark text-decoration-none' onClick={() => activeNavHandler('')}>
                                 Register
                             </Link>
                         </div>
@@ -96,6 +101,7 @@ const Navbar = () => {
                                     rounded 
                                     bg-dark-subtle
                                 `}
+                                onClick={() => activeNavHandler('')}
                             >
                                 Login
                             </Link>
@@ -109,6 +115,7 @@ const Navbar = () => {
                                     rounded 
                                     bg-dark-subtle
                                 `}
+                                onClick={() => activeNavHandler('')}
                             >
                                 Register
                             </Link>
