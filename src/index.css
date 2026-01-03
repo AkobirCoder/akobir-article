@@ -16,12 +16,17 @@ html {
     scrollbar-width: none;
 }
 
-.custom-nav-link {
+.nav-link-item {
     border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.custom-nav-link:hover {
+.nav-link-item:hover {
+    background-color: var(--link);
+    border-bottom-color: var(--link-border);
+}
+
+.custom-nav-link {
     background-color: var(--link);
     border-bottom-color: var(--link-border);
 }
