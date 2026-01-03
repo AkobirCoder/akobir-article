@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-const NavbarLink = ({title, path, activeNavHandler}) => {
+const NavbarLink = ({title, path, handleClick}) => {
     return (
         <>
             <NavLink 
@@ -11,9 +11,10 @@ const NavbarLink = ({title, path, activeNavHandler}) => {
                     text-decoration-none 
                     py-2 px-3 
                     rounded-top 
+                    nav-link-item
                     ${isActive ? 'custom-nav-link' : ''}
                 `}
-                onClick={() => activeNavHandler(title)}
+                onClick={() => handleClick()}
             >
                 {title}
             </NavLink>
