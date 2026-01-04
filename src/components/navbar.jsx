@@ -55,14 +55,14 @@ const Navbar = () => {
                                 className='me-3 px-2 text-dark text-decoration-none' 
                                 onClick={() => activeNavHandler('')}
                             >
-                                Login
+                                Sign in
                             </Link>
                             <Link 
                                 to={'/register'} 
                                 className='px-2 text-dark text-decoration-none' 
                                 onClick={() => activeNavHandler('')}
                             >
-                                Register
+                                Sign up
                             </Link>
                         </div>
                     </div>
@@ -130,7 +130,7 @@ const Navbar = () => {
                                 // onClick={() => activeNavHandler('')}
                                 onClick={handleClick}
                             >
-                                Login
+                                Sign in
                             </Link>
                             <Link 
                                 to={'/register'} 
@@ -145,7 +145,7 @@ const Navbar = () => {
                                 // onClick={() => activeNavHandler('')}
                                 onClick={handleClick}
                             >
-                                Register
+                                Sign up
                             </Link>
                         </div>
                     </div>
