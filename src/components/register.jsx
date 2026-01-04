@@ -17,10 +17,19 @@ const Register = () => {
         });
     }
 
+    const resetForm = (event) => {
+        event.preventDefault();
+
+        setFormData({
+            email: '',
+            password: '',
+        });
+    }
+
     return (
         <div className='d-flex justify-content-center align-items-center h-100'>
             <main className='form-signin col-10 col-md-4'>
-                <form className='text-center'>
+                <form className='text-center mt-3 mt-md-0' onSubmit={resetForm}>
                     <img className='mb-4' src={FormLogo} alt="Form logo" />
                     <h1 className='h3 mb-3 fw-normal'>Please sign up</h1>
 
@@ -44,7 +53,7 @@ const Register = () => {
                     </div> */}
 
                     <button type='submit' className='w-100 btn btn-lg btn-primary'>Sign up</button>
-                    <p className='mt-5 mb-3 text-muted'>© 2025-2026</p>
+                    <p className='mt-3 mt-md-5 mb-3 text-muted'>© 2025-2026</p>
                 </form>
             </main>
         </div>
