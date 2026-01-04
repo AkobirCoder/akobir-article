@@ -25,7 +25,7 @@ const Navbar = () => {
     }
     
     return (
-        <div className='container'>
+        <div className='container-fluid container-md'>
             <div className='row d-flex flex-md-row align-items-center py-3 py-md-2'>
                 <div className='d-flex col-6 col-md-3 justify-content-start'>
                     <Link className='px-2' to={'/'}>
@@ -103,7 +103,7 @@ const Navbar = () => {
                             }
                         })()
                     } d-md-none d-block w-100 z-3 bg-body-secondary`}
-                    style={{minHeight: 'calc(100vh - 72px)', position: 'absolute', top: 72}}
+                    style={{minHeight: 'calc(100vh - 74px)', position: 'absolute', top: 72}}
                 >
                     <div className='mt-3'>
                         <div className='d-flex flex-column gap-2'>
@@ -121,7 +121,7 @@ const Navbar = () => {
                                 })
                             }
                         </div>
-                        <div className='d-flex justify-content-center gap-3' style={{marginTop: 200}}>
+                        <div className='d-flex justify-content-center gap-3 signin-signup-mobile-link'>
                             <Link 
                                 to={'/login'} 
                                 className={`
