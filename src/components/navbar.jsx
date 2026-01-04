@@ -116,7 +116,7 @@ const Navbar = () => {
                                 })
                             }
                         </div>
-                        <div className='d-flex justify-content-center mt-5 gap-3'>
+                        <div className='d-flex justify-content-center gap-3' style={{marginTop: 200}}>
                             <Link 
                                 to={'/login'} 
                                 className={`
@@ -127,7 +127,8 @@ const Navbar = () => {
                                     rounded 
                                     bg-dark-subtle
                                 `}
-                                onClick={() => activeNavHandler('')}
+                                // onClick={() => activeNavHandler('')}
+                                onClick={handleClick}
                             >
                                 Login
                             </Link>
@@ -141,7 +142,8 @@ const Navbar = () => {
                                     rounded 
                                     bg-dark-subtle
                                 `}
-                                onClick={() => activeNavHandler('')}
+                                // onClick={() => activeNavHandler('')}
+                                onClick={handleClick}
                             >
                                 Register
                             </Link>
