@@ -19,7 +19,7 @@ const Register = () => {
 
     return (
         <div className='d-flex justify-content-center align-items-center h-100'>
-            <main className='form-signin w-25'>
+            <main className='form-signin col-10 col-md-4'>
                 <form className='text-center'>
                     <img className='mb-4' src={FormLogo} alt="Form logo" />
                     <h1 className='h3 mb-3 fw-normal'>Please sign up</h1>
