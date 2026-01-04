@@ -1,4 +1,5 @@
 export {default as Main} from './main';
+export {default as Sidebar} from './sidebar';
 export {default as AboutUs} from './about-us';
 export {default as Articles} from './articles';
 export {default as Blogs} from './blogs';
