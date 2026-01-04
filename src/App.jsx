@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
-import { AboutUs, Articles, Blogs, ContactUs, Login, Main, Navbar, Register, Sidebar } from './components';
+import { AboutUs, Articles, Blogs, ContactUs, Login, Main, Navbar, Register } from './components';
 
 const App = () => {
     return (
@@ -12,7 +12,7 @@ const App = () => {
                 {/* <div style={{height: '89.7vh'}} className='d-none d-md-block col-md-2 bg-dark-subtle'>
                     <Sidebar />
                 </div> */}
-                <div style={{height: '89.7vh'}} className='col-12 col-md-10'>
+                <div style={{height: '89.7vh'}} className='container px-0 col-12 col-md-10'>
                     <Routes>
                         <Route path='/' element={<Main />} />
                         <Route path='/about-us' element={<AboutUs />} />
