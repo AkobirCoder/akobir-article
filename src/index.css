@@ -30,3 +30,15 @@ html {
     background-color: var(--link);
     border-bottom-color: var(--link-border);
 }
+
+@media only screen and (max-width: 400px) {
+    .signin-signup-mobile-link {
+        margin-top: 225px;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .signin-signup-mobile-link {
+        margin-top: 15px;
+    }
+} 
