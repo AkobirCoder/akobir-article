@@ -29,7 +29,12 @@ const Navbar = () => {
             <div className='row d-flex flex-md-row align-items-center py-3 py-md-2'>
                 <div className='d-flex col-6 col-md-3 justify-content-start'>
                     <Link className='px-2' to={'/'}>
-                        <img src={Logo} className='w-75' alt="Logo" onClick={() => activeNavHandler('Home')} />
+                        <img
+                            src={Logo} 
+                            className='w-75' 
+                            alt="Logo" 
+                            onClick={() => activeNavHandler('Home')} 
+                        />
                     </Link>
                 </div>
                 <nav className='d-none d-md-block col-6 col-md-9 py-2'>
@@ -97,7 +102,7 @@ const Navbar = () => {
                                 return 'd-none'
                             }
                         })()
-                    } d-md-none d-block w-100 bg-body-secondary`}
+                    } d-md-none d-block w-100 z-3 bg-body-secondary`}
                     style={{minHeight: 'calc(100vh - 72px)', position: 'absolute', top: 72}}
                 >
                     <div className='mt-3'>
