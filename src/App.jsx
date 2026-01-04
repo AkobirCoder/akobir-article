@@ -5,14 +5,14 @@ import { AboutUs, Articles, Blogs, ContactUs, Login, Main, Navbar, Register } fr
 const App = () => {
     return (
         <div>
-            <div className='border-bottom bg-body-tertiary'>
+            <div className='position-fixed top-0 start-0 end-0 border-bottom bg-body-tertiary'>
                 <Navbar />
             </div>
             <div className='row g-0'>
-                {/* <div style={{height: '89.7vh'}} className='d-none d-md-block col-md-2 bg-dark-subtle'>
+                {/* <div style={{height: '89.7vh', marginTop: 74}} className='d-none d-md-block col-md-2 bg-dark-subtle'>
                     <Sidebar />
                 </div> */}
-                <div style={{height: '89.7vh'}} className='container px-0 col-12 col-md-10'>
+                <div style={{height: '89.7vh', marginTop: 74}} className='col-12 col-md-10'>
                     <Routes>
                         <Route path='/' element={<Main />} />
                         <Route path='/about-us' element={<AboutUs />} />
