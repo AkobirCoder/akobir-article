@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FormLogo } from './assets';
 import { Input, registerInputProps } from '../ui';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUserStart } from '../slice/auth';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -17,10 +19,17 @@ const Register = () => {
         });
     }
 
-    const resetForm = (event) => {
+    const dispatch = useDispatch();
+
+    const {isLoading} = useSelector(state => state.auth);
+
+    const registerHandler = (event) => {
         event.preventDefault();
 
+        dispatch(loginUserStart());
+
         setFormData({
+            username: '',
             email: '',
             password: '',
         });
@@ -29,7 +38,7 @@ const Register = () => {
     return (
         <div className='d-flex justify-content-center align-items-center h-100'>
             <main className='form-signin col-10 col-md-4'>
-                <form className='text-center mt-3 mt-md-0' onSubmit={resetForm}>
+                <form className='text-center mt-3 mt-md-0' onSubmit={registerHandler}>
                     <img className='mb-4' src={FormLogo} alt="Form logo" />
                     <h1 className='h3 mb-3 fw-normal'>Please sign up</h1>
 
@@ -46,13 +55,21 @@ const Register = () => {
                         })
                     }
 
-                    {/* <div className='form-check mt-3 mb-3'>
-                        <label>
-                            <input type="checkbox" className='form-check-input' value={'remember-me'} /> Remember me
-                        </label>
-                    </div> */}
-
-                    <button type='submit' className='w-100 btn btn-lg btn-primary'>Sign up</button>
+                    <button 
+                        type='submit' 
+                        className='w-100 btn btn-lg btn-primary'
+                        disabled={isLoading}
+                    >
+                        {
+                            (() => {
+                                if (isLoading) {
+                                    return 'Loading...';
+                                } else {
+                                    return 'Sign up';
+                                }
+                            })()
+                        }
+                    </button>
                     <p className='mt-3 mt-md-5 mb-3 text-muted'>© 2025-2026</p>
                 </form>
             </main>
