@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
-import { AboutUs, Articles, Blogs, ContactUs, Login, Main, Navbar, Register } from './components';
+import { AboutUs, Articles, Blogs, ContactUs, Login, Main, Navbar, Register, Sidebar } from './components';
 
 const App = () => {
     return (
@@ -9,10 +9,10 @@ const App = () => {
                 <Navbar />
             </div>
             <div className='row g-0'>
-                {/* <div style={{height: '89.7vh', marginTop: 74}} className='d-none d-md-block col-md-2 bg-dark-subtle'>
+                <div style={{height: 'calc(100vh - 74px)', marginTop: 74}} className='position-fixed top-0 bottom-0 d-none d-md-block p-3 col-md-2 bg-dark-subtle'>
                     <Sidebar />
-                </div> */}
-                <div style={{height: '89.7vh', marginTop: 74}} className='container px-0 col-12 col-md-10'>
+                </div>
+                <div style={{height: 'calc(100vh - 74px)', marginTop: 74}} className='position-absolute end-0 p-3 col-12 col-md-10'>
                     <Routes>
                         <Route path='/' element={<Main />} />
                         <Route path='/about-us' element={<AboutUs />} />
