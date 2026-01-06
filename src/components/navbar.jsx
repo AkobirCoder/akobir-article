@@ -25,9 +25,9 @@ const Navbar = () => {
     }
     
     return (
-        <div className='container-fluid container-md'>
+        <div className='container-fluid'>
             <div className='row d-flex flex-md-row align-items-center py-3 py-md-2'>
-                <div className='d-flex col-6 col-md-3 justify-content-start'>
+                <div className='d-flex col-6 col-md-4 justify-content-start'>
                     <Link className='px-2' to={'/'}>
                         <img
                             src={Logo} 
@@ -37,7 +37,7 @@ const Navbar = () => {
                         />
                     </Link>
                 </div>
-                <nav className='d-none d-md-block col-6 col-md-9 py-2'>
+                <nav className='d-none d-md-block col-6 col-md-8 py-2'>
                     <div className='row'>
                         <div className='col-12 col-md-6 d-flex align-items-center justify-content-between'>
                             {
