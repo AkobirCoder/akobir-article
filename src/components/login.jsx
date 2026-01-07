@@ -34,9 +34,9 @@ const Login = () => {
     }
 
     return (
-        <div className='d-flex justify-content-center align-items-center h-100'>
+        <div className='row d-flex justify-content-center align-items-center h-100'>
             <main className='form-signin col-10 col-md-4'>
-                <form className='text-center mt-3 mt-md-0' onSubmit={loginHandler}>
+                <form className='text-center mt-md-0' onSubmit={loginHandler}>
                     <img className='mb-4' src={FormLogo} alt="Form logo" />
                     <h1 className='h3 mb-3 fw-normal'>Please sign in</h1>
                     
