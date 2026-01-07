@@ -31,14 +31,28 @@ html {
     border-bottom-color: var(--link-border);
 }
 
+.sidebar {
+    padding-left: 85px !important;
+}
+
 @media only screen and (max-width: 400px) {
     .signin-signup-mobile-link {
         margin-top: 225px;
+    }
+
+    .login,
+    .register {
+        margin-top: 0;
     }
 }
 
 @media only screen and (min-width: 700px) {
     .signin-signup-mobile-link {
         margin-top: 15px;
+    }
+
+    .login,
+    .register {
+        margin-top: 100px;
     }
 } 
