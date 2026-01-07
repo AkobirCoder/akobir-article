@@ -49,7 +49,7 @@ const Navbar = () => {
                                             index={index} 
                                             activeNav={activeNav} 
                                             handleClick={handleClick}
-                                         />
+                                        />
                                     );
                                 })
                             }
@@ -103,7 +103,7 @@ const Navbar = () => {
                             }
                         })()
                     } d-md-none d-block w-100 z-3 bg-body-secondary`}
-                    style={{minHeight: 'calc(100vh - 74px)', position: 'absolute', top: 72}}
+                    style={{height: 'calc(100vh - 72px)', position: 'absolute', top: 72}}
                 >
                     <div className='mt-3'>
                         <div className='d-flex flex-column gap-2'>
@@ -116,7 +116,7 @@ const Navbar = () => {
                                             index={index} 
                                             activeNav={activeNav}
                                             handleClick={handleClick}
-                                         />
+                                        />
                                     );
                                 })
                             }
