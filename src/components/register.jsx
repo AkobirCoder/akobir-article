@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FormLogo } from './assets';
 import { Input, registerInputProps } from '../ui';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUserStart } from '../slice/auth';
+import { registerUserStart } from '../slice/auth';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -26,7 +26,7 @@ const Register = () => {
     const registerHandler = (event) => {
         event.preventDefault();
 
-        dispatch(loginUserStart());
+        dispatch(registerUserStart());
 
         setFormData({
             username: '',
