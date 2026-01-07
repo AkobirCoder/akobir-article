@@ -36,9 +36,9 @@ const Register = () => {
     }
 
     return (
-        <div className='d-flex justify-content-center align-items-center h-100'>
+        <div className='row d-flex justify-content-center align-items-center h-100'>
             <main className='form-signin col-10 col-md-4'>
-                <form className='text-center mt-3 mt-md-0' onSubmit={registerHandler}>
+                <form className='text-center mt-md-0' onSubmit={registerHandler}>
                     <img className='mb-4' src={FormLogo} alt="Form logo" />
                     <h1 className='h3 mb-3 fw-normal'>Please sign up</h1>
 
