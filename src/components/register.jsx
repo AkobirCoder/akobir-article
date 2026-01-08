@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { FormLogo } from './assets';
 import { Input, registerInputProps } from '../ui';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUserStart } from '../slice/auth';
+import { signUserFailure, signUserStart, signUserSuccess } from '../slice/auth';
+import AuthService from '../service/auth';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -23,11 +24,27 @@ const Register = () => {
 
     const {isLoading} = useSelector(state => state.auth);
 
-    const registerHandler = (event) => {
+    const registerHandler = async (event) => {
         event.preventDefault();
 
-        dispatch(registerUserStart());
+        dispatch(signUserStart());
+        
+        const {username, email, password} = formData;
+        const user = {username, email, password}
 
+        try {
+            const response = await AuthService.userRegister(user);
+
+            // console.log(response);
+
+            // console.log(user);
+
+            dispatch(signUserSuccess(response.user));
+        } catch (error) {
+            // console.log(error.response.data.errors);
+            dispatch(signUserFailure(error.response.data.errors));
+        }
+        
         setFormData({
             username: '',
             email: '',
@@ -58,7 +75,7 @@ const Register = () => {
                     <button 
                         type='submit' 
                         className='w-100 btn btn-lg btn-primary'
-                        disabled={isLoading}
+                    disabled={isLoading}
                     >
                         {
                             (() => {
