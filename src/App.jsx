@@ -31,10 +31,10 @@ const App = () => {
                     className='position-fixed top-0 bottom-0 z-3 d-none d-md-block p-3 col-md-2 bg-light border-end'
                 >
                     <div className='row g-0 d-flex align-items-start'>
-                        <div className='col-9'>
+                        <div className={`${toggleSidebar ? 'col-9' : 'col-10'}`}>
                             <Sidebar />
                         </div>
-                        <div className='d-flex justify-content-end col-3'>
+                        <div className={`d-flex ${toggleSidebar ? 'justify-content-end col-3' : 'justify-content-center col-2'}`}>
                             <button
                                 type='button'
                                 className='btn bg-primary-subtle px-2 py-0 fs-5 border-primary text-primary pointer'
