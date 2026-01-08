@@ -15,7 +15,6 @@ const Sidebar = () => {
                     })
                 }
             </div>
-            <hr className='m-0' />
         </div>
     );
 }
