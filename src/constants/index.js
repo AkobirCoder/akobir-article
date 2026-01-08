@@ -83,4 +83,8 @@ export const sidebarItems = [
         id: 14,
         title: 'item14',
     },
+    {
+        id: 15,
+        title: 'item15',
+    },
 ]
