@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { FormLogo } from './assets';
 import { Input, loginInputProps } from '../ui';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUserStart } from '../slice/auth';
+import { signUserFailure, signUserStart, signUserSuccess } from '../slice/auth';
+import AuthService from '../service/auth';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -22,11 +23,22 @@ const Login = () => {
 
     const {isLoading} = useSelector((state) => state.auth);
 
-    const loginHandler = (event) => {
+    const loginHandler = async (event) => {
         event.preventDefault();
 
-        dispatch(loginUserStart());
+        dispatch(signUserStart());
 
+        const {email, password} = formData;
+        const user = {email, password}
+
+        try {
+            const response = await AuthService.userLogin(user);
+
+            dispatch(signUserSuccess(response.user));
+        } catch (error) {
+            dispatch(signUserFailure(error.response.data.errors));
+        }
+        
         setFormData({
             email: '',
             password: '',
