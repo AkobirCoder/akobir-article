@@ -4,6 +4,7 @@ import { Input, loginInputProps } from '../ui';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUserFailure, signUserStart, signUserSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
+import {ValidationError} from './index';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -18,6 +19,8 @@ const Login = () => {
             return {...prevState, [name]: value}
         });
     }
+
+    // const isFormValid = formData.email.trim() !== '' && formData.password.trim() !== '';
 
     const dispatch = useDispatch();
 
@@ -39,10 +42,10 @@ const Login = () => {
             dispatch(signUserFailure(error.response.data.errors));
         }
         
-        setFormData({
-            email: '',
-            password: '',
-        });
+        // setFormData({
+        //     email: '',
+        //     password: '',
+        // });
     }
 
     return (
@@ -52,6 +55,8 @@ const Login = () => {
                     <img className='mb-4' src={FormLogo} alt="Form logo" />
                     <h1 className='h3 mb-3 fw-normal'>Please sign in</h1>
                     
+                    <ValidationError /> {/* Validation to'g'irlanishi kerak */}
+
                     {
                         loginInputProps.map((inputProp) => {
                             return (
@@ -68,6 +73,7 @@ const Login = () => {
                     <button 
                         type='submit' 
                         className='w-100 btn btn-lg btn-primary' 
+                        // disabled={!isFormValid || isLoading}
                         disabled={isLoading}
                     >
                         {
