@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormLogo } from './assets';
 import { Input, registerInputProps } from '../ui';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUserFailure, signUserStart, signUserSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
 import {ValidationError} from './index';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -25,7 +26,9 @@ const Register = () => {
 
     const dispatch = useDispatch();
 
-    const {isLoading} = useSelector(state => state.auth);
+    const {isLoading, loggedIn} = useSelector(state => state.auth);
+
+    const navigate = useNavigate();
 
     const registerHandler = async (event) => {
         event.preventDefault();
@@ -42,18 +45,26 @@ const Register = () => {
 
             // console.log(user);
 
+            navigate('/');
+
             dispatch(signUserSuccess(response.user));
         } catch (error) {
             // console.log(error.response.data.errors);
             dispatch(signUserFailure(error.response.data.errors));
         }
         
-        // setFormData({
-        //     username: '',
-        //     email: '',
-        //     password: '',
-        // });
+        setFormData({
+            username: '',
+            email: '',
+            password: '',
+        });
     }
+
+    useEffect(() => {
+        if (loggedIn) {
+            navigate('/');
+        }
+    }, [loggedIn, navigate]); // protect route ni to'g'irlanishi kerak
 
     return (
         <div className='row d-flex justify-content-center align-items-center h-100'>
