@@ -11,11 +11,6 @@ const App = () => {
         });
     }
 
-    // const style = {
-    //     transform: 'translateX(-100%)',
-    //     transition: 'transform 0.3s ease',
-    // }
-
     return (
         <>
             <div className='position-fixed top-0 start-0 end-0 z-3 border-bottom bg-body-tertiary'>
