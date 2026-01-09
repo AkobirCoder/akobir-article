@@ -9,4 +9,5 @@ export {default as Blogs} from './blogs';
 export {default as ContactUs} from './contact-us';
 export {default as Login} from './login';
 export {default as Register} from './register';
+export {default as PublicRoute} from './public-route';
 export {default as ValidationError} from './validation-error';
