@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import { Logo } from './assets';
 import { navigationLinks } from '../constants';
 import NavbarLink from './navbar-link';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
     const [toggleNavigation, setToggleNavigation] = useState(false);
@@ -18,11 +19,13 @@ const Navbar = () => {
         setActiveNav(title);
     }
 
-    const handleClick = () => {
+    const handleClick = (title) => {
         toggleNavigationHandler();
 
-        activeNavHandler();
+        activeNavHandler(title);
     }
+
+    const {loggedIn, user} = useSelector((state) => state.auth);
     
     return (
         <div className='container-fluid'>
@@ -55,20 +58,37 @@ const Navbar = () => {
                             }
                         </div>
                         <div className='col-12 col-md-6 d-flex align-items-center justify-content-end'>
-                            <Link 
-                                to={'/login'} 
-                                className='me-3 px-2 text-dark text-decoration-none' 
-                                onClick={() => activeNavHandler('')}
-                            >
-                                Sign in
-                            </Link>
-                            <Link 
-                                to={'/register'} 
-                                className='px-2 text-dark text-decoration-none' 
-                                onClick={() => activeNavHandler('')}
-                            >
-                                Sign up
-                            </Link>
+                            {(
+                                () => {
+                                    if (loggedIn) {
+                                        return (
+                                            <>
+                                                <p className='m-0 me-3 px-2'>{user.username}</p>
+                                                <button className='btn btn-outline-danger'>Logout</button>
+                                            </>
+                                        );
+                                    } else {
+                                        return (
+                                            <>
+                                                <Link 
+                                                    to={'/login'} 
+                                                    className='me-3 px-2 text-dark text-decoration-none' 
+                                                    onClick={() => activeNavHandler('')}
+                                                >
+                                                    Sign in
+                                                </Link>
+                                                <Link 
+                                                    to={'/register'} 
+                                                    className='px-2 text-dark text-decoration-none' 
+                                                    onClick={() => activeNavHandler('')}
+                                                >
+                                                    Sign up
+                                                </Link>
+                                            </>
+                                        );
+                                    }
+                                }
+                            )()}
                         </div>
                     </div>
                 </nav>
