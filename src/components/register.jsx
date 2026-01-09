@@ -4,6 +4,7 @@ import { Input, registerInputProps } from '../ui';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUserFailure, signUserStart, signUserSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
+import {ValidationError} from './index';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -19,6 +20,8 @@ const Register = () => {
             return {...prevState, [name]: value}
         });
     }
+
+    // const isFormValid = formData.username.trim() !== '' && formData.email.trim() !== '' && formData.password.trim() !== '';
 
     const dispatch = useDispatch();
 
@@ -45,11 +48,11 @@ const Register = () => {
             dispatch(signUserFailure(error.response.data.errors));
         }
         
-        setFormData({
-            username: '',
-            email: '',
-            password: '',
-        });
+        // setFormData({
+        //     username: '',
+        //     email: '',
+        //     password: '',
+        // });
     }
 
     return (
@@ -58,6 +61,8 @@ const Register = () => {
                 <form className='text-center mt-md-0' onSubmit={registerHandler}>
                     <img className='mb-4' src={FormLogo} alt="Form logo" />
                     <h1 className='h3 mb-3 fw-normal'>Please sign up</h1>
+
+                    <ValidationError /> {/* Validation to'g'irlanishi kerak */}
 
                     {
                         registerInputProps.map((inputProp) => {
@@ -75,7 +80,8 @@ const Register = () => {
                     <button 
                         type='submit' 
                         className='w-100 btn btn-lg btn-primary'
-                    disabled={isLoading}
+                        // disabled={!isFormValid || isLoading}
+                        disabled={isLoading}
                     >
                         {
                             (() => {
