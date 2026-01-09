@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormLogo } from './assets';
 import { Input, loginInputProps } from '../ui';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUserFailure, signUserStart, signUserSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
 import {ValidationError} from './index';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -24,7 +25,9 @@ const Login = () => {
 
     const dispatch = useDispatch();
 
-    const {isLoading} = useSelector((state) => state.auth);
+    const {isLoading, loggedIn} = useSelector((state) => state.auth);
+
+    const navigate = useNavigate();
 
     const loginHandler = async (event) => {
         event.preventDefault();
@@ -38,15 +41,23 @@ const Login = () => {
             const response = await AuthService.userLogin(user);
 
             dispatch(signUserSuccess(response.user));
+
+            navigate('/');
         } catch (error) {
             dispatch(signUserFailure(error.response.data.errors));
         }
         
-        // setFormData({
-        //     email: '',
-        //     password: '',
-        // });
+        setFormData({
+            email: '',
+            password: '',
+        });
     }
+
+    useEffect(() => {
+        if (loggedIn) {
+            navigate('/');
+        }
+    }, [loggedIn, navigate]); // protect route ni to'g'irlanishi kerak
 
     return (
         <div className='row d-flex justify-content-center align-items-center h-100'>
