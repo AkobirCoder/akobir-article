@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 const ValidationError = () => {
-    const {error} = useSelector(state => state.auth);
+    const {error} = useSelector((state) => state.auth);
 
     // console.log(error);
 
@@ -23,7 +23,7 @@ const ValidationError = () => {
                     key={error} 
                     className={`
                         alert alert-danger p-1 
-                        ${index === errorMessage.length - 1 ? 'mb-3' : 'mb-1'}
+                        ${index === errorMessage.length + 2 ? 'mb-3' : 'mb-1'}
                     `} 
                     role="alert"
                 >
