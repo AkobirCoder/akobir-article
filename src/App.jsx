@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Routes, Route} from 'react-router-dom';
 import { AboutUs, Articles, Blogs, ContactUs, Login, Main, Navbar, Register, Sidebar } from './components';
+import AuthService from './service/auth';
+import { useDispatch } from 'react-redux';
+import { signUserFailure, signUserSuccess } from './slice/auth';
+import { getItem } from './helpers/persistance-storage';
 
 const App = () => {
     const [toggleSidebar, setTogglesidebar] = useState(false);
@@ -10,6 +14,28 @@ const App = () => {
             return !prevState;
         });
     }
+
+    const dispatch = useDispatch();
+
+    const getUser = async() => {
+        try {
+            const response = await AuthService.getUser();
+
+            dispatch(signUserSuccess(response.user));
+        } catch (error) {
+            // dispatch(signUserFailure());
+
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        const token = getItem('token');
+
+        if (token) {
+            getUser();
+        }
+    }, []);
 
     return (
         <>
