@@ -77,7 +77,20 @@ const Navbar = () => {
                                     if (loggedIn) {
                                         return (
                                             <>
-                                                <p className='m-0 me-3 px-2'>{user.username}</p>
+                                                <div 
+                                                    style={{width: 30, height: 30}} 
+                                                    className={`
+                                                        d-flex align-items-center justify-content-center 
+                                                        bg-primary-subtle rounded-5 border border-primary
+                                                    `}
+                                                >
+                                                    {
+                                                        user.username.split(' ').map((item) => {
+                                                            return item[0];
+                                                        }).join('').toUpperCase()
+                                                    }
+                                                </div>
+                                                <p className='m-0 me-3 ps-1 pe-2'>{user.username}</p>
                                                 <button 
                                                     className='btn btn-outline-danger' 
                                                     onClick={logoutHandler}
