@@ -23,9 +23,7 @@ const App = () => {
 
             dispatch(signUserSuccess(response.user));
         } catch (error) {
-            // dispatch(signUserFailure());
-
-            console.log(error);
+            dispatch(signUserFailure(error.response.data.errors));
         }
     }
 
