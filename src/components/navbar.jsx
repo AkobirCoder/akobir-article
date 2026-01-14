@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { Logo } from './assets';
 import { navigationLinks } from '../constants';
 import NavbarLink from './navbar-link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeItem } from '../helpers/persistance-storage';
+import { logoutUser } from '../slice/auth';
 
 const Navbar = () => {
     const [toggleNavigation, setToggleNavigation] = useState(false);
@@ -25,7 +27,19 @@ const Navbar = () => {
         activeNavHandler(title);
     }
 
+    const dispatch = useDispatch();
+
     const {loggedIn, user} = useSelector((state) => state.auth);
+
+    const navigate = useNavigate();
+
+    const logoutHandler = () => {
+        dispatch(logoutUser());
+
+        removeItem('token');
+
+        navigate('/login');
+    }
     
     return (
         <div className='container-fluid'>
@@ -64,7 +78,12 @@ const Navbar = () => {
                                         return (
                                             <>
                                                 <p className='m-0 me-3 px-2'>{user.username}</p>
-                                                <button className='btn btn-outline-danger'>Logout</button>
+                                                <button 
+                                                    className='btn btn-outline-danger' 
+                                                    onClick={logoutHandler}
+                                                >
+                                                    Logout
+                                                </button>
                                             </>
                                         );
                                     } else {
