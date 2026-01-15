@@ -45,7 +45,7 @@ const Register = () => {
 
             // console.log(user);
 
-            navigate('/');
+            navigate('/articles');
 
             dispatch(signUserSuccess(response.user));
         } catch (error) {
@@ -62,9 +62,9 @@ const Register = () => {
 
     useEffect(() => {
         if (loggedIn) {
-            navigate('/');
+            navigate('/articles');
         }
-    }, [loggedIn, navigate]); // protect route ni to'g'irlanishi kerak
+    }, [loggedIn, navigate]);
 
     return (
         <div className='row d-flex justify-content-center align-items-center h-100'>
