@@ -42,7 +42,7 @@ const Login = () => {
 
             dispatch(signUserSuccess(response.user));
 
-            navigate('/');
+            navigate('/articles');
         } catch (error) {
             dispatch(signUserFailure(error.response.data.errors));
         }
@@ -55,9 +55,9 @@ const Login = () => {
 
     useEffect(() => {
         if (loggedIn) {
-            navigate('/');
+            navigate('/articles');
         }
-    }, [loggedIn, navigate]); // protect route ni to'g'irlanishi kerak
+    }, [loggedIn, navigate]);
 
     return (
         <div className='row d-flex justify-content-center align-items-center h-100'>
