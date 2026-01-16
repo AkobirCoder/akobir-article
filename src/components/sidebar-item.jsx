@@ -11,7 +11,7 @@ const SidebarItem = ({title, index}) => {
                 rounded-0 
                 px-3 py-2 
                 ${index === sidebarItems.length - 1 ? 'mb-3' : 'mb-0'}
-            ]`}
+            `}
         >
             {title}
         </button>
