@@ -7,6 +7,7 @@ import { signUserFailure, signUserSuccess } from './slice/auth';
 import { getItem } from './helpers/persistance-storage';
 import ArticleService from './service/article';
 import { getArticlesStart, getArticleSuccess } from './slice/article';
+import ArticleDetail from './components/article-detail';
 
 const App = () => {
     const [toggleSidebar, setTogglesidebar] = useState(false);
@@ -19,7 +20,7 @@ const App = () => {
 
     const dispatch = useDispatch();
 
-    const getUser = async() => {
+    const getUser = async () => {
         try {
             const response = await AuthService.getUser();
 
@@ -29,7 +30,7 @@ const App = () => {
         }
     }
 
-    const getArticles = async() => {
+    const getArticles = async () => {
         dispatch(getArticlesStart());
 
         try {
@@ -98,6 +99,7 @@ const App = () => {
                     <Routes>
                         <Route path='/' element={<Main />} />
                         <Route path='/articles' element={<Articles />} />
+                        <Route path='/article/:slug' element={<ArticleDetail />} />
                         <Route path='/about-us' element={<AboutUs />} />
                         <Route path='/blogs' element={<Blogs />} />
                         <Route path='/contact-us' element={<ContactUs />} />
