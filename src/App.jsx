@@ -5,6 +5,8 @@ import AuthService from './service/auth';
 import { useDispatch } from 'react-redux';
 import { signUserFailure, signUserSuccess } from './slice/auth';
 import { getItem } from './helpers/persistance-storage';
+import ArticleService from './service/article';
+import { getArticlesStart, getArticleSuccess } from './slice/article';
 
 const App = () => {
     const [toggleSidebar, setTogglesidebar] = useState(false);
@@ -27,12 +29,26 @@ const App = () => {
         }
     }
 
+    const getArticles = async() => {
+        dispatch(getArticlesStart());
+
+        try {
+            const response = await ArticleService.getArticles();
+
+            dispatch(getArticleSuccess(response.articles));
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         const token = getItem('token');
 
         if (token) {
             getUser();
         }
+
+        getArticles();
     }, []);
 
     return (
@@ -45,7 +61,10 @@ const App = () => {
                     style={{
                         height: 'calc(100vh - 74px)', 
                         marginTop: 74,
-                        transform: toggleSidebar ? 'translateX(calc(-100% + 68px))' : 'translateX(0)', transition: 'transform 0.3s ease'
+                        transform: toggleSidebar 
+                        ? 'translateX(calc(-100% + 68px))' 
+                        : 'translateX(0)', 
+                        transition: 'transform 0.3s ease'
                     }} 
                     className='position-fixed top-0 bottom-0 z-3 d-none d-md-block p-3 col-md-2 bg-light border-end'
                 >
@@ -78,8 +97,8 @@ const App = () => {
                 >
                     <Routes>
                         <Route path='/' element={<Main />} />
-                        <Route path='/about-us' element={<AboutUs />} />
                         <Route path='/articles' element={<Articles />} />
+                        <Route path='/about-us' element={<AboutUs />} />
                         <Route path='/blogs' element={<Blogs />} />
                         <Route path='/contact-us' element={<ContactUs />} />
                         <Route path='/login' element={<Login />} />
