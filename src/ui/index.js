@@ -45,3 +45,5 @@ export const registerInputProps = [
         label: 'Password',
     }
 ];
+
+export {default as Loader} from './loader';
