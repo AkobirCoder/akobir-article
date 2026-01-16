@@ -7,7 +7,7 @@ const ArticleCard = ({title, description, author}) => {
                 <svg
                     className='bg-placeholder-img card-img-top'
                     width={'100%'}
-                    height={'151'}
+                    height={'200'}
                     xmlns='http://www.w3.org/2000/svg'
                     role='img'
                     aria-label='Placeholder: Thumbnail'
@@ -25,29 +25,25 @@ const ArticleCard = ({title, description, author}) => {
                         Thumbnail
                     </text>
                 </svg>
-                <div className='card-body d-flex flex-column'>
-                    {/* <div> */}
-                        <h5 className='card-title fs-5'>{title}</h5>
-                        <p className='card-text mb-3'>
-                            {description} {/* Descriptionni qisqartirish (...) qilib */}
-                        </p>
-                    {/* </div> */}
-                    <div className='mt-auto'>
-                        <div className='d-flex align-items-center justify-content-between'>
-                            <div className='btn-group'>
-                                <button type='button' className='btn btn-sm btn-outline-success'>
-                                    View
-                                </button>
-                                <button type='button' className='btn btn-sm btn-outline-secondary'>
-                                    Edit
-                                </button>
-                                <button type='button' className='btn btn-sm btn-outline-danger'>
-                                    Delete
-                                </button>
-                            </div>
-                            <small className='text-muted fw-semibold text-capitalize'>{author.username}</small>
-                        </div>
+                <div className='card-body'>
+                    <h5 className='card-title fs-5 m-0'>{title}</h5>
+                    <p className='card-text mb-3'>
+                        {description} {/* Descriptionni qisqartirish (...) qilib */}
+                    </p>
+                </div>
+                <div className='card-footer d-flex align-items-center justify-content-between'>
+                    <div className='btn-group'>
+                        <button type='button' className='btn btn-sm btn-outline-success'>
+                            View
+                        </button>
+                        <button type='button' className='btn btn-sm btn-outline-secondary'>
+                            Edit
+                        </button>
+                        <button type='button' className='btn btn-sm btn-outline-danger'>
+                            Delete
+                        </button>
                     </div>
+                    <small className='text-muted fw-semibold text-capitalize'>{author.username}</small>
                 </div>
             </div>
         </div>
