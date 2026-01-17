@@ -25,7 +25,7 @@ const Articles = () => {
                         );
                     } else {
                         return (
-                            <div className='album pb-3'>
+                            <div className='album'>
                                 <div className='row row-cols-1 row-cols-md-3 g-3'>
                                     {
                                         articles.map((item) => {
