@@ -13,23 +13,25 @@ const ArticleDetail = () => {
 
     const {articleDetail} = useSelector((state) => state.article);
 
-    const getArticleDetail = async () => {
-        dispatch(getArticleDetailStart());
-        
-        try {
-            const response = await ArticleService.getArticleDetail(slug);
-            
-            dispatch(getArticleDetailSuccess(response.article));
-
-            // console.log(response.article);
-        } catch (error) {
-            dispatch(getArticleDetailFailure());
-        }
-    }
+    
 
     useEffect(() => {
+        const getArticleDetail = async () => {
+            dispatch(getArticleDetailStart());
+            
+            try {
+                const response = await ArticleService.getArticleDetail(slug);
+                
+                dispatch(getArticleDetailSuccess(response.article));
+
+                // console.log(response.article);
+            } catch (error) {
+                dispatch(getArticleDetailFailure());
+            }
+        }
+
         getArticleDetail();
-    }, [slug]);
+    }, [slug, dispatch]);
 
     return (
         <>
@@ -43,11 +45,11 @@ const ArticleDetail = () => {
                         );
                     }  else {
                         return (
-                            <div className="p-5 bg-body-tertiary rounded-3"> 
-                                <div className="container-fluid py-4"> 
-                                    <h1 className="display-5 fw-semibold">{articleDetail.title}</h1> 
-                                    <p className="col-md-8 fs-5">{articleDetail.description}</p>
-                                    <div className='d-flex justify-content-start gap-5 mt-4'>
+                            <div className="p-3 p-md-5 bg-body-tertiary rounded-3"> 
+                                <div className="container-fluid py-3 py-md-4"> 
+                                    <h1 className="display-md-5 fw-semibold">{articleDetail.title}</h1> 
+                                    <p className="col-md-8 fs-md-5 mb-0 mb-mb-3">{articleDetail.description}</p>
+                                    <div className='d-flex justify-content-start gap-5 mt-3 mt-md-4'>
                                         <div>
                                             <p className='text-muted'>
                                                 <span className='fw-semibold'>Created date: </span>
@@ -64,7 +66,7 @@ const ArticleDetail = () => {
                                     </div>
                                     <div className='col col-md-6'>
                                         <div className='row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-lg h-md-250 position-relative'>
-                                            <div className='col p-4 d-flex flex-column position-static'>
+                                            <div className='col-12 col-sm-8 p-3 p-md-4 d-flex flex-column position-static'>
                                                 <strong className='d-inline-block mb-2 text-primary text-uppercase'>
                                                     {articleDetail.author.username}
                                                 </strong>
@@ -72,10 +74,10 @@ const ArticleDetail = () => {
                                                     {articleDetail.author.bio}
                                                 </p>
                                             </div>
-                                            <div className='col-auto d-none d-lg-block'>
+                                            <div className='col-12 col-sm-4'>
                                                 <svg
                                                     className='bg-placeholder-img'
-                                                    width={'200'}
+                                                    width={'100%'}
                                                     height={'100%'}
                                                     xmlns='http://www.w3.org/2000/svg'
                                                     role='img'
@@ -92,7 +94,7 @@ const ArticleDetail = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    {articleDetail.body}
+                                    <div>{articleDetail.body}</div>
                                 </div> 
                             </div>
                         );
