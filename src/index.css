@@ -35,6 +35,31 @@ html {
     padding-left: 85px !important;
 }
 
+.main-content {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.4) transparent;
+    scrollbar-gutter: stable overlay;
+}
+
+.main-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 0;
+}
+
+.main-content::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
 @media only screen and (max-width: 400px) {
     .signin-signup-mobile-link {
         margin-top: 225px;
