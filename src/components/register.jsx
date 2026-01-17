@@ -67,8 +67,8 @@ const Register = () => {
     }, [loggedIn, navigate]);
 
     return (
-        <div className='row d-flex justify-content-center align-items-center h-100'>
-            <main className='form-signin col-10 col-md-4'>
+        <div className='row d-flex justify-content-center align-items-center' style={{minHeight: '100%'}}>
+            <main className='form-signin col-11 col-md-4'>
                 <form className='text-center mt-md-0' onSubmit={registerHandler}>
                     <img className='mb-4' src={FormLogo} alt="Form logo" />
                     <h1 className='h3 mb-3 fw-normal'>Please sign up</h1>
