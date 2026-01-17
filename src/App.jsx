@@ -92,9 +92,15 @@ const App = () => {
                     style={{
                         height: 'calc(100vh - 74px)', 
                         marginTop: 74,
+                        overflowY: 'auto',
                         transition: 'all 0.3s ease',
                     }} 
-                    className={`position-absolute end-0 p-3 col-12 col-md-10 z-1 ${toggleSidebar ? 'col-md-12 sidebar' : 'col-md-10'}`}
+                    className={`
+                        position-absolute end-0 z-1 p-3 
+                        col-12 col-md-10 
+                        ${toggleSidebar ? 'col-md-12 sidebar' : 'col-md-10'}
+                        main-content
+                    `}
                 >
                     <Routes>
                         <Route path='/' element={<Main />} />
