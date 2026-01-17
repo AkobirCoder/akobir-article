@@ -43,7 +43,12 @@ const ArticleCard = ({title, description, author, slug, navigateHandler}) => {
                             Delete
                         </button>
                     </div>
-                    <small className='text-muted fw-semibold text-capitalize'>{author.username}</small>
+                    <div className='d-flex align-items-center gap-2'>
+                        <div style={{width: 25, height: 25}} className='border-0 rounded-5 bg-secondary'>
+                            {/* <img src={author.image} alt="Author" /> */}
+                        </div>
+                        <small className='text-muted fw-semibold text-capitalize'>{author.username}</small>
+                    </div>
                 </div>
             </div>
         </div>
