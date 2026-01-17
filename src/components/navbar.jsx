@@ -76,32 +76,36 @@ const Navbar = () => {
                                 () => {
                                     if (loggedIn) {
                                         return (
-                                            <>
-                                                <div 
-                                                    style={{width: 30, height: 30}} 
-                                                    className={`
-                                                        d-flex align-items-center justify-content-center 
-                                                        bg-primary-subtle rounded-5 border border-primary
-                                                    `}
-                                                >
-                                                    {
-                                                        user.username.split(' ').map((item) => {
-                                                            return item[0];
-                                                        }).join('').toUpperCase()
-                                                    }
+                                            <div className='d-flex align-items-center gap-3'>
+                                                <div className='d-flex align-items-center gap-1'>
+                                                    <div
+                                                        style={{width: 30, height: 30}}
+                                                        className={`
+                                                            d-flex align-items-center justify-content-center
+                                                            bg-primary-subtle rounded-5 border border-primary
+                                                        `}
+                                                    >
+                                                        {
+                                                            user.username.split(' ').map((item) => {
+                                                                return item[0];
+                                                            }).join('').toUpperCase()
+                                                        }
+                                                    </div>
+                                                    <p className='mb-0 ps-1 pe-2'>{user.username}</p>
                                                 </div>
-                                                <p className='m-0 me-3 ps-1 pe-2'>{user.username}</p>
+                                                <Link className='ps-1 pe-2 text-dark text-decoration-none' to={'/create-article'}>Create</Link>
                                                 <button 
                                                     className='btn btn-outline-danger' 
                                                     onClick={logoutHandler}
                                                 >
                                                     Logout
                                                 </button>
-                                            </>
+                                            </div>
                                         );
                                     } else {
                                         return (
                                             <>
+                                                <Link className='me-3 ps-1 pe-2 text-dark text-decoration-none' to={'/create-article'}>Create</Link>
                                                 <Link 
                                                     to={'/login'} 
                                                     className='me-3 px-2 text-dark text-decoration-none' 
