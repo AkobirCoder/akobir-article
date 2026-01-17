@@ -135,11 +135,11 @@ const Navbar = () => {
                                 if (toggleNavigation) {
                                     return (
                                         <i className="bi bi-x"></i>
-                                    )
+                                    );
                                 } else {
                                     return (
                                         <i className="bi bi-list"></i>
-                                    )
+                                    );
                                 }
                             }
                         )()}
