@@ -47,3 +47,4 @@ export const registerInputProps = [
 ];
 
 export {default as Loader} from './loader';
+export {default as Textarea} from './textarea';
