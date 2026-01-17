@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {Routes, Route} from 'react-router-dom';
-import { AboutUs, Articles, Blogs, ContactUs, Login, Main, Navbar, Register, Sidebar } from './components';
+import { AboutUs, ArticleDetail, Articles, Blogs, ContactUs, CreateArticle, Login, Main, Navbar, Register, Sidebar } from './components';
 import AuthService from './service/auth';
 import { useDispatch } from 'react-redux';
 import { signUserFailure, signUserSuccess } from './slice/auth';
 import { getItem } from './helpers/persistance-storage';
 import ArticleService from './service/article';
 import { getArticlesStart, getArticleSuccess } from './slice/article';
-import ArticleDetail from './components/article-detail';
 
 const App = () => {
     const [toggleSidebar, setTogglesidebar] = useState(false);
@@ -106,6 +105,7 @@ const App = () => {
                         <Route path='/' element={<Main />} />
                         <Route path='/articles' element={<Articles />} />
                         <Route path='/article/:slug' element={<ArticleDetail />} />
+                        <Route path='/create-article' element={<CreateArticle />} />
                         <Route path='/about-us' element={<AboutUs />} />
                         <Route path='/blogs' element={<Blogs />} />
                         <Route path='/contact-us' element={<ContactUs />} />
