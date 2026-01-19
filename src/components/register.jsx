@@ -53,10 +53,12 @@ const Register = () => {
             dispatch(signUserFailure(error.response.data.errors));
         }
         
-        setFormData({
-            username: '',
-            email: '',
-            password: '',
+        setFormData(() => {
+            return {
+                username: '',
+                email: '',
+                password: '',
+            }
         });
     }
 
