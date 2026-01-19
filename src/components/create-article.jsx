@@ -3,6 +3,7 @@ import { CreateArticleForm } from './index';
 import ArticleService from '../service/article';
 import { useDispatch } from 'react-redux';
 import { postArticleFailure, postArticleStart, postArticleSuccess } from '../slice/article';
+import { useNavigate } from 'react-router-dom';
 
 const CreateArticle = () => {
     const [formData, setFormData] = useState({
@@ -21,6 +22,8 @@ const CreateArticle = () => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const formSubmit = async (event) => {
         event.preventDefault();
 
@@ -36,9 +39,19 @@ const CreateArticle = () => {
             // console.log(response);
 
             dispatch(postArticleSuccess(response));
+
+            navigate('/articles');
         } catch (error) {
             dispatch(postArticleFailure());
         }
+
+        setFormData(() => {
+            return {
+                title: '',
+                description: '',
+                body: '',
+            }
+        });
     }
 
     return (
