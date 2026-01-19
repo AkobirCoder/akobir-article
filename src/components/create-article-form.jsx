@@ -1,9 +1,12 @@
 import React from 'react';
 import { Input, Textarea } from '../ui';
+import { useSelector } from 'react-redux';
 
-const CreateArticleForm = ({formData, changeHandlerInput}) => {
+const CreateArticleForm = ({formData, changeHandlerInput, formSubmit}) => {
+    const {isLoading} = useSelector((state) => state.article);
+
     return (
-        <form>
+        <form onSubmit={formSubmit}>
             <Input 
                 label={'Title'} 
                 placeholder={'Title'} 
@@ -26,7 +29,17 @@ const CreateArticleForm = ({formData, changeHandlerInput}) => {
                 changeHandlerInput={changeHandlerInput} 
                 height={'250px'} 
                 />
-            <button type='submit' className='w-100 btn btn-lg btn-primary'>Create</button>
+            <button type='submit' className='w-100 btn btn-lg btn-primary' disabled={isLoading}>
+                {(
+                    () => {
+                        if (isLoading) {
+                            return 'Loading...';
+                        } else {
+                            return 'Create';
+                        }
+                    }
+                )()}
+            </button>
         </form>
     );
 }
