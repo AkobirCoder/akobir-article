@@ -5,8 +5,6 @@ import AuthService from './service/auth';
 import { useDispatch } from 'react-redux';
 import { signUserFailure, signUserSuccess } from './slice/auth';
 import { getItem } from './helpers/persistance-storage';
-import ArticleService from './service/article';
-import { getArticlesStart, getArticleSuccess } from './slice/article';
 
 const App = () => {
     const [toggleSidebar, setTogglesidebar] = useState(false);
