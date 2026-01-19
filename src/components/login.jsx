@@ -47,9 +47,11 @@ const Login = () => {
             dispatch(signUserFailure(error.response.data.errors));
         }
         
-        setFormData({
-            email: '',
-            password: '',
+        setFormData(() => {
+            return {
+                email: '',
+                password: '',
+            }
         });
     }
 
