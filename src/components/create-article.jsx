@@ -44,14 +44,6 @@ const CreateArticle = () => {
         } catch (error) {
             dispatch(postArticleFailure());
         }
-
-        // setFormData(() => {
-        //     return {
-        //         title: '',
-        //         description: '',
-        //         body: '',
-        //     }
-        // });
     }
 
     return (
