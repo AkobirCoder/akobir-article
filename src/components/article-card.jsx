@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const ArticleCard = ({title, description, author, slug, navigateHandler}) => {
+const ArticleCard = ({title, description, author, slug, navigateHandler, deleteArticle}) => {
+    const {loggedIn, user} = useSelector((state) => state.auth);
+
     return (
         <div className='col'>
             <div className='card shadow-sm h-100'>
@@ -36,12 +39,24 @@ const ArticleCard = ({title, description, author, slug, navigateHandler}) => {
                         <button type='button' className='btn btn-sm btn-outline-success' onClick={() => navigateHandler(slug)}>
                             View
                         </button>
-                        <button type='button' className='btn btn-sm btn-outline-secondary'>
-                            Edit
-                        </button>
-                        <button type='button' className='btn btn-sm btn-outline-danger'>
-                            Delete
-                        </button>
+                        {(
+                            () => {
+                                if (loggedIn && user.username === author.username) {
+                                    return (
+                                        <>
+                                            <button type='button' className='btn btn-sm btn-outline-secondary'>
+                                                Edit
+                                            </button>
+                                            <button type='button' className='btn btn-sm btn-outline-danger' onClick={() => deleteArticle(slug)}>
+                                                Delete
+                                            </button>
+                                        </>
+                                    );
+                                } else {
+                                    return '';
+                                }
+                            }
+                        )()}
                     </div>
                     <div className='d-flex align-items-center gap-2'>
                         <div style={{width: 25, height: 25}} className='border-0 rounded-5 bg-secondary'>
