@@ -29,6 +29,16 @@ const Articles = () => {
         }
     }
 
+    const deleteArticle = async (slug) => {
+        try {
+            await ArticleService.deleteArticle(slug);
+
+            getArticles();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         getArticles();
     }, []);
@@ -50,7 +60,7 @@ const Articles = () => {
                                     {
                                         articles.map((item) => {
                                             return (
-                                                <ArticleCard key={item.id} {...item} navigateHandler={navigateHandler} />
+                                                <ArticleCard key={item.id} {...item} navigateHandler={navigateHandler} deleteArticle={deleteArticle} />
                                             );
                                         })
                                     }
