@@ -3,7 +3,7 @@ import ArticleCard from './article-card';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader } from '../ui';
 import { useNavigate } from 'react-router-dom';
-import { getArticlesStart, getArticleSuccess } from '../slice/article';
+import { deleteArticleFailure, deleteArticleStart, deleteArticleSuccess, getArticlesStart, getArticleSuccess } from '../slice/article';
 import ArticleService from '../service/article';
 
 const Articles = () => {
@@ -30,12 +30,18 @@ const Articles = () => {
     }
 
     const deleteArticle = async (slug) => {
+        dispatch(deleteArticleStart());
+
         try {
-            await ArticleService.deleteArticle(slug);
+            const response = await ArticleService.deleteArticle(slug);
+
+            dispatch(deleteArticleSuccess(response));
 
             getArticles();
         } catch (error) {
-            console.log(error);
+            dispatch(deleteArticleFailure());
+
+            // console.log(error);
         }
     }
 
