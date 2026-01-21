@@ -45,13 +45,13 @@ const CreateArticle = () => {
             dispatch(postArticleFailure());
         }
 
-        setFormData(() => {
-            return {
-                title: '',
-                description: '',
-                body: '',
-            }
-        });
+        // setFormData(() => {
+        //     return {
+        //         title: '',
+        //         description: '',
+        //         body: '',
+        //     }
+        // });
     }
 
     return (
