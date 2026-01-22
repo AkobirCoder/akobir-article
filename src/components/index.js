@@ -7,7 +7,6 @@ export {default as Articles} from './articles';
 export {default as ArticleCard} from './article-card';
 export {default as ArticleDetail} from './article-detail';
 export {default as CreateArticle} from './create-article';
-export {default as CreateArticleForm} from './create-article-form';
 export {default as EditArticle} from './edit-article';
 export {default as AboutUs} from './about-us';
 export {default as Blogs} from './blogs';
