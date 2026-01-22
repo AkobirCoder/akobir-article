@@ -13,8 +13,12 @@ const Articles = () => {
 
     const navigate = useNavigate();
 
-    const navigateHandler = (item) => {
-        navigate(`/article/${item}`);
+    const navigateArticleViewHandler = (item) => {
+        navigate(`/view-article/${item}`);
+    }
+
+    const navigateArticleEditHandler = (item) => {
+        navigate(`/edit-article/${item}`);
     }
 
     const getArticles = async () => {
@@ -66,7 +70,12 @@ const Articles = () => {
                                     {
                                         articles.map((item) => {
                                             return (
-                                                <ArticleCard key={item.id} {...item} navigateHandler={navigateHandler} deleteArticle={deleteArticle} />
+                                                <ArticleCard 
+                                                    key={item.id} 
+                                                    {...item} 
+                                                    navigateArticleViewHandler={navigateArticleViewHandler} 
+                                                    navigateArticleEditHandler={navigateArticleEditHandler}
+                                                    deleteArticle={deleteArticle} />
                                             );
                                         })
                                     }
