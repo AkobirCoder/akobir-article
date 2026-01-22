@@ -22,6 +22,7 @@ export const articleSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
+
         getArticleDetailStart: (state) => {
             state.isLoading = true;
         },
@@ -33,6 +34,7 @@ export const articleSlice = createSlice({
             state.isLoading = false;
             // state.error = action.payload;
         },
+
         postArticleStart: (state) => {
             state.isLoading = true;
         },
@@ -43,6 +45,7 @@ export const articleSlice = createSlice({
             state.isLoading = false;
             state.error = 'Posting error';
         },
+
         deleteArticleStart: (state) => {
             state.isLoading = true;
         },
@@ -52,7 +55,18 @@ export const articleSlice = createSlice({
         deleteArticleFailure: (state) => {
             state.isLoading = false;
             state.error = 'Deleting error'
-        }
+        },
+
+        putArticleStart: (state) => {
+            state.isLoading = true;
+        },
+        putArticleSuccess: (state) => {
+            state.isLoading = false;
+        },
+        putArticleFailure: (state) => {
+            state.isLoading = false;
+            state.error = 'Putting error';
+        },
     } 
 });
 
@@ -68,7 +82,10 @@ export const {
     postArticleFailure,
     deleteArticleStart,
     deleteArticleSuccess,
-    deleteArticleFailure
+    deleteArticleFailure,
+    putArticleStart,
+    putArticleSuccess,
+    putArticleFailure,
 } = articleSlice.actions;
 
 export default articleSlice.reducer
