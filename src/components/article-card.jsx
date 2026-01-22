@@ -44,10 +44,18 @@ const ArticleCard = ({title, description, author, slug, navigateArticleViewHandl
                                 if (loggedIn && user.username === author.username) {
                                     return (
                                         <>
-                                            <button type='button' className='btn btn-sm btn-outline-secondary' onClick={() => navigateArticleEditHandler(slug)}>
+                                            <button 
+                                                type='button' 
+                                                className='btn btn-sm btn-outline-secondary' 
+                                                onClick={() => navigateArticleEditHandler(slug)}
+                                            >
                                                 Edit
                                             </button>
-                                            <button type='button' className='btn btn-sm btn-outline-danger' onClick={() => deleteArticle(slug)}>
+                                            <button 
+                                                type='button' 
+                                                className='btn btn-sm btn-outline-danger' 
+                                                onClick={() => deleteArticle(slug)}
+                                            >
                                                 Delete
                                             </button>
                                         </>
