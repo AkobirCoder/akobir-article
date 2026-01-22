@@ -2,7 +2,7 @@ import React from 'react';
 import {Input, Textarea} from './index';
 import { useSelector } from 'react-redux';
 
-const ArticleForm = ({formData, changeHandlerInput, formSubmit}) => {
+const ArticleForm = ({formData, changeHandlerInput, formSubmit, btnName}) => {
     const {isLoading} = useSelector((state) => state.article);
 
     return (
@@ -35,7 +35,7 @@ const ArticleForm = ({formData, changeHandlerInput, formSubmit}) => {
                         if (isLoading) {
                             return 'Loading...';
                         } else {
-                            return 'Create';
+                            return btnName;
                         }
                     }
                 )()}
