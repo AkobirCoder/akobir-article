@@ -54,6 +54,8 @@ const CreateArticle = () => {
         });
     }
 
+    const btnName = 'Create';
+
     return (
         <div className='row d-flex align-items-center justify-content-center' style={{minHeight: '100%'}}>
             <div className='col-11 col-md-8'>
@@ -62,6 +64,7 @@ const CreateArticle = () => {
                     formData={formData} 
                     changeHandlerInput={changeHandlerInput} 
                     formSubmit={formSubmit} 
+                    btnName={btnName}
                 />
             </div>
         </div>
