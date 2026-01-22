@@ -23,7 +23,13 @@ const ArticleService = {
         const response = await axios.delete(`/articles/${slug}`);
 
         return response.data;
-    }
+    },
+
+    async editArticle(slug, article) {
+        const response = await axios.put(`/articles/${slug}`, {article});
+
+        return response.data;
+    } 
 }
 
 export default ArticleService;
