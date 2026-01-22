@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-const ArticleCard = ({title, description, author, slug, navigateHandler, deleteArticle}) => {
+const ArticleCard = ({title, description, author, slug, navigateArticleViewHandler, navigateArticleEditHandler, deleteArticle}) => {
     const {loggedIn, user} = useSelector((state) => state.auth);
 
     return (
@@ -36,7 +36,7 @@ const ArticleCard = ({title, description, author, slug, navigateHandler, deleteA
                 </div>
                 <div className='card-footer d-flex align-items-center justify-content-between'>
                     <div className='btn-group'>
-                        <button type='button' className='btn btn-sm btn-outline-success' onClick={() => navigateHandler(slug)}>
+                        <button type='button' className='btn btn-sm btn-outline-success' onClick={() => navigateArticleViewHandler(slug)}>
                             View
                         </button>
                         {(
@@ -44,7 +44,7 @@ const ArticleCard = ({title, description, author, slug, navigateHandler, deleteA
                                 if (loggedIn && user.username === author.username) {
                                     return (
                                         <>
-                                            <button type='button' className='btn btn-sm btn-outline-secondary'>
+                                            <button type='button' className='btn btn-sm btn-outline-secondary' onClick={() => navigateArticleEditHandler(slug)}>
                                                 Edit
                                             </button>
                                             <button type='button' className='btn btn-sm btn-outline-danger' onClick={() => deleteArticle(slug)}>
