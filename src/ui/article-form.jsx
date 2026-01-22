@@ -1,8 +1,46 @@
 import React from 'react';
+import {Input, Textarea} from './index';
+import { useSelector } from 'react-redux';
 
-const ArticleForm = () => {
+const ArticleForm = ({formData, changeHandlerInput, formSubmit}) => {
+    const {isLoading} = useSelector((state) => state.article);
+
     return (
-        <div>ArticleForm</div>
+        <form onSubmit={formSubmit}>
+            <Input 
+                label={'Title'} 
+                placeholder={'Title'} 
+                name={'title'} 
+                value={formData.title} 
+                changeHandlerInput={changeHandlerInput} 
+            />
+            <Textarea 
+                label={'Description'} 
+                placeholder={'Description'} 
+                name={'description'} 
+                value={formData.description} 
+                changeHandlerInput={changeHandlerInput} 
+            />
+            <Textarea 
+                label={'Body'} 
+                placeholder={'Body'} 
+                name={'body'} 
+                value={formData.body} 
+                changeHandlerInput={changeHandlerInput} 
+                height={'250px'} 
+                />
+            <button type='submit' className='w-100 btn btn-lg btn-primary' disabled={isLoading}>
+                {(
+                    () => {
+                        if (isLoading) {
+                            return 'Loading...';
+                        } else {
+                            return 'Create';
+                        }
+                    }
+                )()}
+            </button>
+        </form>
     );
 }
 
