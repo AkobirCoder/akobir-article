@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ArticleForm } from '../ui';
 import { useDispatch } from 'react-redux';
-import { getArticleDetailFailure, getArticleDetailStart, getArticleDetailSuccess } from '../slice/article';
+import { getArticleDetailFailure, getArticleDetailStart, getArticleDetailSuccess, putArticleFailure, putArticleStart, putArticleSuccess } from '../slice/article';
 import ArticleService from '../service/article';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const EditArticle = () => {
 
@@ -24,6 +24,8 @@ const EditArticle = () => {
     const {slug} = useParams();
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getArticleDetail = async () => {
@@ -47,10 +49,34 @@ const EditArticle = () => {
         }
 
         getArticleDetail();
-    }, [])
+    }, [slug, dispatch]);
 
-    const formSubmit = () => {
-        // edit service yozilishi kerak...
+    const formSubmit = async (event) => {
+        event.preventDefault();
+
+        dispatch(putArticleStart());
+
+        const {title, description, body} = formData;
+
+        const article = {title, description, body}
+
+        try {
+            const response = await ArticleService.editArticle(slug, article);
+
+            dispatch(putArticleSuccess(response));
+
+            navigate('/articles');
+        } catch (error) {
+            dispatch(putArticleFailure());
+        }
+
+        setFormData(() => {
+            return {
+                title: '',
+                description: '',
+                body: '',
+            }
+        });
     }
 
     const btnName = 'Edit';
