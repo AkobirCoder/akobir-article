@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { CreateArticleForm } from './index';
 import ArticleService from '../service/article';
 import { useDispatch } from 'react-redux';
 import { postArticleFailure, postArticleStart, postArticleSuccess } from '../slice/article';
 import { useNavigate } from 'react-router-dom';
+import { ArticleForm } from '../ui';
 
 const CreateArticle = () => {
     const [formData, setFormData] = useState({
@@ -44,13 +44,21 @@ const CreateArticle = () => {
         } catch (error) {
             dispatch(postArticleFailure());
         }
+
+        setFormData(() => {
+            return {
+                title: '',
+                description: '',
+                body: '',
+            }
+        });
     }
 
     return (
         <div className='row d-flex align-items-center justify-content-center' style={{minHeight: '100%'}}>
             <div className='col-11 col-md-8'>
                 <h1 className='fs-2 text-center'>Create article</h1>
-                <CreateArticleForm 
+                <ArticleForm
                     formData={formData} 
                     changeHandlerInput={changeHandlerInput} 
                     formSubmit={formSubmit} 
