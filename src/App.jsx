@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Routes, Route} from 'react-router-dom';
-import { AboutUs, ArticleDetail, Articles, Blogs, ContactUs, CreateArticle, Login, Main, Navbar, Register, Sidebar } from './components';
+import { AboutUs, ArticleDetail, Articles, Blogs, ContactUs, CreateArticle, EditArticle, Login, Main, Navbar, Register, Sidebar } from './components';
 import AuthService from './service/auth';
 import { useDispatch } from 'react-redux';
 import { signUserFailure, signUserSuccess } from './slice/auth';
@@ -88,8 +88,9 @@ const App = () => {
                     <Routes>
                         <Route path='/' element={<Main />} />
                         <Route path='/articles' element={<Articles />} />
-                        <Route path='/article/:slug' element={<ArticleDetail />} />
+                        <Route path='/view-article/:slug' element={<ArticleDetail />} />
                         <Route path='/create-article' element={<CreateArticle />} />
+                        <Route path='/edit-article/:slug' element={<EditArticle />} />
                         <Route path='/about-us' element={<AboutUs />} />
                         <Route path='/blogs' element={<Blogs />} />
                         <Route path='/contact-us' element={<ContactUs />} />
