@@ -13,8 +13,6 @@ const ArticleDetail = () => {
 
     const {articleDetail} = useSelector((state) => state.article);
 
-    
-
     useEffect(() => {
         const getArticleDetail = async () => {
             dispatch(getArticleDetailStart());
