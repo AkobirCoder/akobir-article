@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { ArticleForm } from '../ui';
 import { useDispatch } from 'react-redux';
-import { getArticleDetailFailure, getArticleDetailStart, getArticleDetailSuccess, putArticleFailure, putArticleStart, putArticleSuccess } from '../slice/article';
-import ArticleService from '../service/article';
 import { useNavigate, useParams } from 'react-router-dom';
+import { 
+    getArticleDetailFailure, 
+    getArticleDetailStart, 
+    getArticleDetailSuccess, 
+    putArticleFailure, 
+    putArticleStart, 
+    putArticleSuccess 
+} from '../slice/article';
+import ArticleService from '../service/article';
+import { ArticleForm } from '../ui';
 
 const EditArticle = () => {
 
