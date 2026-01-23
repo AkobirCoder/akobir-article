@@ -36,7 +36,11 @@ const ArticleCard = ({title, description, author, slug, navigateArticleViewHandl
                 </div>
                 <div className='card-footer d-flex align-items-center justify-content-between'>
                     <div className='btn-group'>
-                        <button type='button' className='btn btn-sm btn-outline-success' onClick={() => navigateArticleViewHandler(slug)}>
+                        <button 
+                            type='button' 
+                            className='btn btn-sm btn-outline-success' 
+                            onClick={() => navigateArticleViewHandler(slug)}
+                        >
                             View
                         </button>
                         {(
