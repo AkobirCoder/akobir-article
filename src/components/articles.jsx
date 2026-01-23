@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react';
-import ArticleCard from './article-card';
 import { useDispatch, useSelector } from 'react-redux';
-import { Loader } from '../ui';
 import { useNavigate } from 'react-router-dom';
-import { deleteArticleFailure, deleteArticleStart, deleteArticleSuccess, getArticlesStart, getArticleSuccess } from '../slice/article';
+import ArticleCard from './article-card';
+import { Loader } from '../ui';
+import { 
+    deleteArticleFailure, 
+    deleteArticleStart, 
+    deleteArticleSuccess, 
+    getArticlesStart, 
+    getArticleSuccess 
+} from '../slice/article';
 import ArticleService from '../service/article';
 
 const Articles = () => {
