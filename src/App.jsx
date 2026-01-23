@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import {Routes, Route} from 'react-router-dom';
-import { AboutUs, ArticleDetail, Articles, Blogs, ContactUs, CreateArticle, EditArticle, Login, Main, Navbar, Register, Sidebar } from './components';
-import AuthService from './service/auth';
 import { useDispatch } from 'react-redux';
+import { 
+    AboutUs, 
+    ArticleDetail, 
+    Articles, 
+    Blogs, 
+    ContactUs, 
+    CreateArticle, 
+    EditArticle, 
+    Login, 
+    Main, 
+    Navbar, 
+    Register, 
+    Sidebar 
+} from './components';
+import AuthService from './service/auth';
 import { signUserFailure, signUserSuccess } from './slice/auth';
 import { getItem } from './helpers/persistance-storage';
 
@@ -56,7 +69,10 @@ const App = () => {
                         <div className={`${toggleSidebar ? 'col-9' : 'col-10'}`}>
                             <Sidebar />
                         </div>
-                        <div className={`d-flex ${toggleSidebar ? 'justify-content-end col-3' : 'justify-content-center col-2'}`}>
+                        <div className={`
+                            d-flex 
+                            ${toggleSidebar ? 'justify-content-end col-3' : 'justify-content-center col-2'}
+                        `}>
                             <button
                                 type='button'
                                 className='btn bg-primary-subtle px-2 py-0 fs-5 border-primary text-primary pointer'
