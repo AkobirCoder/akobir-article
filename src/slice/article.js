@@ -32,7 +32,7 @@ export const articleSlice = createSlice({
         },
         getArticleDetailFailure: (state, action) => {
             state.isLoading = false;
-            // state.error = action.payload;
+            state.error = action.payload;
         },
 
         postArticleStart: (state) => {
