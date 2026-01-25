@@ -13,7 +13,8 @@ import {
     Main, 
     Navbar, 
     Register, 
-    Sidebar 
+    Sidebar,
+    User, 
 } from './components';
 import AuthService from './service/auth';
 import { signUserFailure, signUserSuccess } from './slice/auth';
@@ -112,6 +113,7 @@ const App = () => {
                         <Route path='/contact-us' element={<ContactUs />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
+                        <Route path='/user' element={<User />} />
                     </Routes>
                 </div>
             </div>
