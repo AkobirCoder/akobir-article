@@ -85,7 +85,12 @@ const ArticleDetail = () => {
                                                 >
                                                     <title>Placeholder</title>
                                                     <rect width={'100%'} height={'100%'} fill='#55595c'></rect>
-                                                    <text x={'45%'} y={'53%'} fill='#fff' className='fs-2 text-uppercase p-0 m-0'>
+                                                    <text 
+                                                        x={'50%'} y={'50%'} 
+                                                        fill='#fff' 
+                                                        className='fs-2 text-uppercase p-0 m-0'
+                                                        textAnchor="middle" dominantBaseline="middle"
+                                                    >
                                                         {articleDetail.author.username[0]}
                                                     </text>
                                                 </svg>
