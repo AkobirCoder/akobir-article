@@ -81,7 +81,8 @@ const Articles = () => {
                                                     {...item} 
                                                     navigateArticleViewHandler={navigateArticleViewHandler} 
                                                     navigateArticleEditHandler={navigateArticleEditHandler}
-                                                    deleteArticle={deleteArticle} />
+                                                    deleteArticle={deleteArticle} 
+                                                />
                                             );
                                         })
                                     }
