@@ -14,5 +14,4 @@ export {default as ContactUs} from './contact-us';
 export {default as Login} from './login';
 export {default as Register} from './register';
 export {default as User} from './user';
-export {default as UserForm} from './user-form';
 export {default as ValidationError} from './validation-error';
