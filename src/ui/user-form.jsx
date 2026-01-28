@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 import { Input, Textarea, userFormInputProps, userFormInputSocilasProps } from '.';
 
 const UserForm = ({formData, changeHandlerInput, formSubmit}) => {
@@ -56,12 +55,6 @@ const UserForm = ({formData, changeHandlerInput, formSubmit}) => {
             </div>
             <button type='submit' className='btn btn-success w-100 px-2 mt-3'>Save</button>
         </form>
-=======
-
-const UserForm = () => {
-    return (
-        <div></div>
->>>>>>> 13a2f5abc137d40a58da1d9d239256ea19bcebfe
     );
 }
 
