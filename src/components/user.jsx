@@ -9,7 +9,11 @@ import { useNavigate } from 'react-router-dom';
 const User = () => {
     const [formData, setFormData] = useState({
         image: '',
+<<<<<<< HEAD
         birthDate: '',
+=======
+        birthYear: '',
+>>>>>>> 13a2f5abc137d40a58da1d9d239256ea19bcebfe
         phone: '',
         field: '',
         description: '',
@@ -18,7 +22,10 @@ const User = () => {
             telegram: '',
             instagram: '',
             linkedin: '',
+<<<<<<< HEAD
             github: '',
+=======
+>>>>>>> 13a2f5abc137d40a58da1d9d239256ea19bcebfe
         }
     });
 
@@ -43,10 +50,13 @@ const User = () => {
         }
     }
 
+<<<<<<< HEAD
     const formSubmit = () => {
 
     }
 
+=======
+>>>>>>> 13a2f5abc137d40a58da1d9d239256ea19bcebfe
     const dispatch = useDispatch();
 
     const {isLoading, user} = useSelector((state) => state.auth);
@@ -152,7 +162,10 @@ const User = () => {
                                                 <UserForm 
                                                     formData={formData}
                                                     changeHandlerInput={changeHandlerInput} 
+<<<<<<< HEAD
                                                     formSubmit={formSubmit}
+=======
+>>>>>>> 13a2f5abc137d40a58da1d9d239256ea19bcebfe
                                                     isLoading={isLoading}
                                                     articles={articles}
                                                 />
