@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
     profileExtra: {
+        image: '',
         birthYear: '',
         phone: '',
         field: '',
