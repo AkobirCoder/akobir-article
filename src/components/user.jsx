@@ -1,12 +1,52 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Loader } from '../ui';
+import { Loader, UserForm } from '../ui';
 import { userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
 import { getItem } from '../helpers/persistance-storage';
 import { useNavigate } from 'react-router-dom';
 
 const User = () => {
+    const [formData, setFormData] = useState({
+        image: '',
+        birthDate: '',
+        phone: '',
+        field: '',
+        description: '',
+        study: '',
+        socials: {
+            telegram: '',
+            instagram: '',
+            linkedin: '',
+            github: '',
+        }
+    });
+
+    const changeHandlerInput = (event) => {
+        const {name, value} = event.target;
+
+        if (name.startsWith('socials.')) {
+            const key = name.split('.')[1];
+
+            setFormData((prevState) => {
+                return {
+                    ...prevState, 
+                    socials: {
+                        ...prevState.socials, [key]: value,
+                    }
+                }
+            });
+        } else {
+            setFormData((prevState) => {
+                return {...prevState, [name]: value}
+            });
+        }
+    }
+
+    const formSubmit = () => {
+
+    }
+
     const dispatch = useDispatch();
 
     const {isLoading, user} = useSelector((state) => state.auth);
@@ -109,7 +149,13 @@ const User = () => {
                                         </div>
                                         <div className='col-12 col-md-8 p-2 p-md-3'>
                                             <div className='d-flex flex-column pt-3 pt-md-5'>
-                                                
+                                                <UserForm 
+                                                    formData={formData}
+                                                    changeHandlerInput={changeHandlerInput} 
+                                                    formSubmit={formSubmit}
+                                                    isLoading={isLoading}
+                                                    articles={articles}
+                                                />
                                             </div>
                                         </div>
                                     </div>
