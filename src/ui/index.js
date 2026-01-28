@@ -46,6 +46,74 @@ export const registerInputProps = [
     }
 ];
 
+// image: '',
+// birthYear: '',
+// phone: '',
+// field: '',
+
+export const userFormInputProps = [
+    {
+        id: 'floatingImage',
+        type: 'file',
+        name: 'image',
+        completeName: 'image',
+        placeholder: 'Upload image',
+        label: 'Upload image',
+    },
+    {
+        id: 'floatingDate',
+        type: 'date',
+        name: 'birthDate',
+        completeName: 'date',
+        placeholder: 'Birth date',
+        label: 'Birth date',
+    },
+    {
+        id: 'floatingPhone',
+        type: 'number',
+        name: 'phoneNumber',
+        completeName: 'phoneNumber',
+        placeholder: 'Phone number',
+        label: 'Phone number',
+    },
+    {
+        id: 'floatingField',
+        type: 'text',
+        name: 'field',
+        completeName: 'field',
+        placeholder: 'Field',
+        label: 'Field',
+    },
+];
+
+export const userFormInputSocilasProps = [
+    {
+        id: 'telegram',
+        name: 'telegram',
+        label: 'Telegram',
+        placeholder: 'Telegram',
+    },
+    {
+        id: 'instagram',
+        name: 'instagram',
+        label: 'Instagram',
+        placeholder: 'Instagram',
+    },
+    {
+        id: 'linkedin',
+        name: 'linkedin',
+        label: 'Linkedin',
+        placeholder: 'Linkedin',
+    },
+    {
+        id: 'github',
+        name: 'github',
+        label: 'Github',
+        placeholder: 'Github',
+    },
+];
+
 export {default as Loader} from './loader';
 export {default as Textarea} from './textarea';
 export {default as ArticleForm} from './article-form';
+export {default as UserForm} from './user-form';
