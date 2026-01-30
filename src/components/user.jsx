@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Loader, UserForm } from '../ui';
 import { userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
-import { getItem } from '../helpers/persistance-storage';
+import { getItem, setItem } from '../helpers/persistance-storage';
 import { useNavigate } from 'react-router-dom';
+import { clearProfileExtra, saveProfileExtraFailure, saveProfileExtraStart, saveProfileExtraSuccess } from '../slice/profileExtra';
 
 const User = () => {
     const [formData, setFormData] = useState({
         image: '',
         birthDate: '',
-        birthYear: '',
         phone: '',
         field: '',
-        description: '',
+        bio: '',
         study: '',
         socials: {
             telegram: '',
@@ -43,14 +43,12 @@ const User = () => {
             });
         }
     }
-    const formSubmit = () => {
-
-    }
 
     const dispatch = useDispatch();
 
     const {isLoading, user} = useSelector((state) => state.auth);
-    const {articles} = useSelector((state) => state.article);
+
+    const { profileExtra } = useSelector(state => state.profileExtra);
 
     const navigate = useNavigate();
 
@@ -76,6 +74,178 @@ const User = () => {
         getUserProfile();
     }, [dispatch, navigate]);
 
+    // const formSubmit = async (event) => {
+    //     event.preventDefault();
+
+    //     dispatch(saveProfileExtraStart());
+
+    //     const {birthDate, phone, field, study,
+    //         socials: {
+    //             telegram,
+    //             instagram,
+    //             linkedin,
+    //             github,
+    //         }
+    //     } = formData;
+
+    //     const profileExtraInfo = {birthDate, phone, field, study,
+    //         socials: {
+    //             telegram,
+    //             instagram,
+    //             linkedin,
+    //             github,
+    //         }
+    //     };
+
+    //     try {
+    //         dispatch(saveProfileExtraSuccess(profileExtraInfo));
+            
+    //         setItem(`profileExtraInfo_${user.username}`, JSON.stringify(profileExtraInfo));
+    //     } catch (error) {
+    //         dispatch(saveProfileExtraFailure('Local save error'));
+    //     }
+
+    //     const {image, bio} = formData;
+
+    //     const userInfo = {image, bio};
+
+    //     dispatch(userDetailStart());
+
+    //     try {
+    //         await AuthService.updateUser(userInfo);
+
+    //         const response = await AuthService.getUser();
+
+    //         dispatch(userDetailSuccess(response.user));
+    //     } catch (error) {
+    //         dispatch(userDetailFailure(error.response.data.errors));
+    //     }
+
+    //     setFormData(() => {
+    //         return {
+    //             image: '',
+    //             birthDate: '',
+    //             phone: '',
+    //             field: '',
+    //             bio: '',
+    //             study: '',
+    //             socials: {
+    //                 telegram: '',
+    //                 instagram: '',
+    //                 linkedin: '',
+    //                 github: '',
+    //             }
+    //         }
+    //     });
+    // }
+
+    // useEffect(() => {
+    //     if(!user) return;
+
+    //     const savedProfileExtraInfo = getItem(`profileExtraInfo_${user.username}`);
+
+    //     if (savedProfileExtraInfo) {
+    //         dispatch(saveProfileExtraSuccess(JSON.parse(savedProfileExtraInfo)));
+    //     }
+    // }, [user, dispatch]);
+
+    useEffect(() => {
+        if (!user) return;
+
+        const saved = getItem(`profile_extra_${user.username}`);
+
+        if (saved) {
+            dispatch(saveProfileExtraSuccess(JSON.parse(saved)));
+        } else {
+            dispatch(clearProfileExtra());
+        }
+    }, [user, dispatch]);
+
+    useEffect(() => {
+        if (!profileExtra) return;
+
+        setFormData(prev => ({
+            ...prev,
+            ...profileExtra,
+            socials: {
+            ...prev.socials,
+            ...profileExtra.socials,
+            }
+        }));
+    }, [profileExtra]);
+
+    const formSubmit = async (event) => {
+        event.preventDefault();
+
+        dispatch(saveProfileExtraStart());
+
+        try {
+            dispatch(saveProfileExtraSuccess({
+                ...profileExtra,
+                birthDate: formData.birthDate,
+                phone: formData.phone,
+                field: formData.field,
+                study: formData.study,
+                socials: {
+                    ...profileExtra.socials,
+                    ...formData.socials,
+                }
+            }));
+
+
+            setItem(
+                `profile_extra_${user.username}`,
+                JSON.stringify({
+                    ...profileExtra,
+                    birthDate: formData.birthDate,
+                    phone: formData.phone,
+                    field: formData.field,
+                    study: formData.study,
+                    socials: {
+                        ...profileExtra.socials,
+                        ...formData.socials,
+                    }
+                })
+            );
+
+        } catch (error) {
+            dispatch(saveProfileExtraFailure('Local save error'));
+        }
+
+        try {
+            await AuthService.updateUser({
+                image: formData.image,
+                bio: formData.bio,
+            });
+
+            // dispatch(userDetailStart());
+
+            const res = await AuthService.getUser();
+
+            dispatch(userDetailSuccess(res.user));
+
+        } catch (error) {
+            dispatch(userDetailFailure(error.response?.data?.errors));
+        }
+
+        setFormData(() => {
+            return {
+                image: '',
+                birthDate: '',
+                phone: '',
+                field: '',
+                bio: '',
+                study: '',
+                socials: {
+                    telegram: '',
+                    instagram: '',
+                    linkedin: '',
+                    github: '',
+                }
+            }
+        });
+    }
+
     return (
         <>
             {(
@@ -97,7 +267,7 @@ const User = () => {
                                         >
                                             <h1 className='text-white fw-normal fs-4 fs-md-1'>Profile header background</h1>
                                         </div>
-                                        <div className='col-12 col-md-4 p-2 p-md-3 border-end'>
+                                        <div className='col-12 col-md-5 p-2 p-md-3 border-end'>
                                             <div className='d-flex flex-column pt-3 pt-md-5'>
                                                 <div className='d-flex align-items-center justify-content-center'>
                                                     {(
@@ -139,22 +309,22 @@ const User = () => {
                                                     <h4 className='fs-3 fw-normal text-capitalize px-3'>{user.username}</h4>
                                                     <ul className='list-group list-group-flush'>
                                                         <li className='list-group-item'>Email: {user.email}</li>
-                                                        <li className='list-group-item'>Field:</li>
-                                                        <li className='list-group-item'>Age:</li>
-                                                        <li className='list-group-item'>Phone number:</li>
+                                                        <li className='list-group-item'>Field: {profileExtra.field}</li>
+                                                        <li className='list-group-item'>Bio: {user.bio}</li>
+                                                        <li className='list-group-item'>Age: {profileExtra.birthDate}</li>
+                                                        <li className='list-group-item'>Phone number: {profileExtra.phone}</li>
                                                         <li className='list-group-item'>Social link:</li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='col-12 col-md-8 p-2 p-md-3'>
-                                            <div className='d-flex flex-column pt-3 pt-md-5'>
+                                        <div className='col-12 col-md-7 p-2 p-md-3'>
+                                            <div className='d-flex flex-column'>
                                                 <UserForm 
                                                     formData={formData}
                                                     changeHandlerInput={changeHandlerInput} 
                                                     formSubmit={formSubmit}
                                                     isLoading={isLoading}
-                                                    articles={articles}
                                                 />
                                             </div>
                                         </div>
