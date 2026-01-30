@@ -76,14 +76,6 @@ const EditArticle = () => {
         } catch (error) {
             dispatch(putArticleFailure());
         }
-
-        setFormData(() => {
-            return {
-                title: '',
-                description: '',
-                body: '',
-            }
-        });
     }
 
     const btnName = 'Edit';
