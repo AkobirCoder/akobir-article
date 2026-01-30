@@ -16,6 +16,10 @@ const AuthService = {
 
         return response.data;
     },
+    async updateUser(user) {
+        const response = await axios.put('/user', {user});
+        return response.data;
+    },
 }
 
 export default AuthService;
