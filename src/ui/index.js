@@ -71,7 +71,7 @@ export const userFormInputProps = [
     {
         id: 'floatingPhone',
         type: 'number',
-        name: 'phoneNumber',
+        name: 'phone',
         completeName: 'phoneNumber',
         placeholder: 'Phone number',
         label: 'Phone number',
