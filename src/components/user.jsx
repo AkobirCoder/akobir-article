@@ -162,17 +162,19 @@ const User = () => {
     }, [user, dispatch]);
 
     useEffect(() => {
-        if (!profileExtra) return;
+        if (!user || !profileExtra) return;
 
         setFormData(prev => ({
             ...prev,
             ...profileExtra,
-            socials: {
-            ...prev.socials,
-            ...profileExtra.socials,
+            image: user.image || '',
+            bio: user.bio || '',
+                socials: {
+                ...prev.socials,
+                ...profileExtra.socials,
             }
         }));
-    }, [profileExtra]);
+    }, [user, profileExtra]);
 
     const formSubmit = async (event) => {
         event.preventDefault();
@@ -191,7 +193,6 @@ const User = () => {
                     ...formData.socials,
                 }
             }));
-
 
             setItem(
                 `profile_extra_${user.username}`,
@@ -218,7 +219,7 @@ const User = () => {
                 bio: formData.bio,
             });
 
-            // dispatch(userDetailStart());
+            dispatch(userDetailStart());
 
             const res = await AuthService.getUser();
 
