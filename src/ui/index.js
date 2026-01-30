@@ -46,11 +46,6 @@ export const registerInputProps = [
     }
 ];
 
-// image: '',
-// birthYear: '',
-// phone: '',
-// field: '',
-
 export const userFormInputProps = [
     {
         id: 'floatingImage',
