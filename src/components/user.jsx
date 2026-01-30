@@ -81,7 +81,7 @@ const User = () => {
 
         try {
             dispatch(saveProfileExtraSuccess({
-                ...profileExtra,
+                // ...profileExtra,
                 birthDate: formData.birthDate,
                 phone: formData.phone,
                 field: formData.field,
@@ -95,7 +95,7 @@ const User = () => {
             setItem(
                 `profile_extra_${user.username}`,
                 JSON.stringify({
-                    ...profileExtra,
+                    // ...profileExtra,
                     birthDate: formData.birthDate,
                     phone: formData.phone,
                     field: formData.field,
@@ -126,23 +126,6 @@ const User = () => {
         } catch (error) {
             dispatch(userDetailFailure(error.response?.data?.errors));
         }
-
-        setFormData(() => {
-            return {
-                image: '',
-                birthDate: '',
-                phone: '',
-                field: '',
-                bio: '',
-                study: '',
-                socials: {
-                    telegram: '',
-                    instagram: '',
-                    linkedin: '',
-                    github: '',
-                }
-            }
-        });
     }
 
     useEffect(() => {
