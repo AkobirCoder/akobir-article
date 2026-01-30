@@ -149,32 +149,7 @@ const User = () => {
     //     }
     // }, [user, dispatch]);
 
-    useEffect(() => {
-        if (!user) return;
-
-        const saved = getItem(`profile_extra_${user.username}`);
-
-        if (saved) {
-            dispatch(saveProfileExtraSuccess(JSON.parse(saved)));
-        } else {
-            dispatch(clearProfileExtra());
-        }
-    }, [user, dispatch]);
-
-    useEffect(() => {
-        if (!user || !profileExtra) return;
-
-        setFormData(prev => ({
-            ...prev,
-            ...profileExtra,
-            image: user.image || '',
-            bio: user.bio || '',
-                socials: {
-                ...prev.socials,
-                ...profileExtra.socials,
-            }
-        }));
-    }, [user, profileExtra]);
+    
 
     const formSubmit = async (event) => {
         event.preventDefault();
@@ -246,6 +221,33 @@ const User = () => {
             }
         });
     }
+
+    useEffect(() => {
+        if (!user) return;
+
+        const saved = getItem(`profile_extra_${user.username}`);
+
+        if (saved) {
+            dispatch(saveProfileExtraSuccess(JSON.parse(saved)));
+        } else {
+            dispatch(clearProfileExtra());
+        }
+    }, [user, dispatch]);
+
+    useEffect(() => {
+        if (!user || !profileExtra) return;
+
+        setFormData(prev => ({
+            ...prev,
+            ...profileExtra,
+            image: user.image || '',
+            bio: user.bio || '',
+                socials: {
+                ...prev.socials,
+                ...profileExtra.socials,
+            }
+        }));
+    }, [user, profileExtra]);
 
     return (
         <>
