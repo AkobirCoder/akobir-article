@@ -3,15 +3,16 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
     profileExtra: {
         image: '',
-        birthYear: '',
+        birthDate: '',
         phone: '',
         field: '',
-        description: '',
+        bio: '',
         study: '',
         socials: {
             telegram: '',
             instagram: '',
             linkedin: '',
+            github: '',
         }
     },
     isSaving: false,
@@ -25,7 +26,7 @@ export const profileExtraSlice = createSlice({
         saveProfileExtraStart: (state) => {
             state.isSaving = true;
         },
-        saveprofileExtraSuccess: (state, action) => {
+        saveProfileExtraSuccess: (state, action) => {
             state.isSaving = false;
             state.profileExtra = {
                 ...state.profileExtra,
@@ -39,10 +40,32 @@ export const profileExtraSlice = createSlice({
         saveProfileExtraFailure: (state, action) => {
             state.isSaving = false;
             state.error = action.payload;
+        },
+
+        clearProfileExtra: (state) => {
+            state.profileExtra = {
+                image: '',
+                birthDate: '',
+                phone: '',
+                field: '',
+                bio: '',
+                study: '',
+                socials: {
+                    telegram: '',
+                    instagram: '',
+                    linkedin: '',
+                    github: '',
+                }
+            }
         }
     }
 });
 
-export const {saveProfileExtraStart, saveprofileExtraSuccess, saveProfileExtraFailure} = profileExtraSlice.actions;
+export const {
+    saveProfileExtraStart, 
+    saveProfileExtraSuccess, 
+    saveProfileExtraFailure,
+    clearProfileExtra
+} = profileExtraSlice.actions;
 
 export default profileExtraSlice.reducer;
