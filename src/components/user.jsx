@@ -153,7 +153,7 @@ const User = () => {
                 ...profileExtra.socials,
             }
         }));
-    }, [user, profileExtra]);
+    }, [user, profileExtra]);  // edit page qilish kerak
 
     return (
         <>
