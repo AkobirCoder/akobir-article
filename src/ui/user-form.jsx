@@ -4,7 +4,7 @@ import { Input, Textarea, userFormInputProps, userFormInputSocilasProps } from '
 const UserForm = ({formData, changeHandlerInput, formSubmit}) => {
     return (
         <form onSubmit={formSubmit}>
-            <>
+            <div className='pb-3'>
                 {
                     userFormInputProps.map((inputProp) => {
                         return (
@@ -17,7 +17,7 @@ const UserForm = ({formData, changeHandlerInput, formSubmit}) => {
                         );
                     })
                 }
-            </>
+            </div>
             <Input
                 label={'Study'}
                 placeholder={'Study'}
@@ -28,8 +28,8 @@ const UserForm = ({formData, changeHandlerInput, formSubmit}) => {
             <Textarea
                 label={'Description'} 
                 placeholder={'Description'} 
-                name={'description'} 
-                value={formData.description} 
+                name={'bio'} 
+                value={formData.bio} 
                 changeHandlerInput={changeHandlerInput}
                 height={'140px'}
             />
