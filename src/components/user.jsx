@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader, UserForm } from '../ui';
-import { userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
+import { putUserFailure, putUserStart, putUserSuccess, userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
 import { getItem, setItem } from '../helpers/persistance-storage';
 import { useNavigate } from 'react-router-dom';
-import { clearProfileExtra, saveProfileExtraFailure, saveProfileExtraStart, saveProfileExtraSuccess } from '../slice/profileExtra';
+import { clearProfileExtra, putProfileExtraFailure, putProfileExtraStart, putProfileExtraSuccess } from '../slice/profileExtra';
 
 const User = () => {
     const [formData, setFormData] = useState({
@@ -74,67 +74,13 @@ const User = () => {
         getUserProfile();
     }, [dispatch, navigate]);
 
-    const formSubmit = async (event) => {
-        event.preventDefault();
-
-        dispatch(saveProfileExtraStart());
-
-        try {
-            dispatch(saveProfileExtraSuccess({
-                // ...profileExtra,
-                birthDate: formData.birthDate,
-                phone: formData.phone,
-                field: formData.field,
-                study: formData.study,
-                socials: {
-                    ...profileExtra.socials,
-                    ...formData.socials,
-                }
-            }));
-
-            setItem(
-                `profile_extra_${user.username}`,
-                JSON.stringify({
-                    // ...profileExtra,
-                    birthDate: formData.birthDate,
-                    phone: formData.phone,
-                    field: formData.field,
-                    study: formData.study,
-                    socials: {
-                        ...profileExtra.socials,
-                        ...formData.socials,
-                    }
-                })
-            );
-
-        } catch (error) {
-            dispatch(saveProfileExtraFailure('Local save error'));
-        }
-
-        try {
-            await AuthService.updateUser({
-                image: formData.image,
-                bio: formData.bio,
-            });
-
-            dispatch(userDetailStart());
-
-            const res = await AuthService.getUser();
-
-            dispatch(userDetailSuccess(res.user));
-
-        } catch (error) {
-            dispatch(userDetailFailure(error.response?.data?.errors));
-        }
-    }
-
     useEffect(() => {
         if (!user) return;
 
-        const saved = getItem(`profile_extra_${user.username}`);
+        const putedProfileExtraInfo = getItem(`profile_extra_info_${user.id}`);
 
-        if (saved) {
-            dispatch(saveProfileExtraSuccess(JSON.parse(saved)));
+        if (putedProfileExtraInfo) {
+            dispatch(putProfileExtraSuccess(JSON.parse(putedProfileExtraInfo)));
         } else {
             dispatch(clearProfileExtra());
         }
@@ -142,18 +88,142 @@ const User = () => {
 
     useEffect(() => {
         if (!user || !profileExtra) return;
-
-        setFormData(prev => ({
-            ...prev,
-            ...profileExtra,
-            image: user.image || '',
-            bio: user.bio || '',
+        
+        setFormData((prevState) => {
+            return {
+                ...prevState,
+                ...profileExtra,
+                image: user.image || '',
+                bio: user.bio || '',
                 socials: {
-                ...prev.socials,
-                ...profileExtra.socials,
+                    ...prevState.socials,
+                    ...profileExtra.socials,
+                }
             }
-        }));
-    }, [user, profileExtra]);  // edit page qilish kerak
+        });
+    }, [user, profileExtra]);
+
+    const formSubmit = async (event) => {
+        event.preventDefault();
+
+        dispatch(putProfileExtraStart());
+
+        const {birthDate, phone, field, study, 
+            socials: {
+                telegram, instagram, linkedin, github,
+            }
+        } = formData;
+
+        const profileExtraInfo = {birthDate, phone, field, study, 
+            socials: {
+                telegram, instagram, linkedin, github,
+            }
+        };
+
+        try {
+            dispatch(putProfileExtraSuccess(profileExtraInfo));
+
+            setItem(
+                `profile_extra_info_${user.id}`,
+                JSON.stringify(profileExtraInfo),
+            );
+        } catch (error) {
+            dispatch(putProfileExtraFailure('Local putting error'));
+        }
+
+        dispatch(putUserStart());
+
+        const {image, bio} = formData;
+
+        const userInfo = {image, bio};
+
+        try {
+            const response = await AuthService.putUser(userInfo);
+
+            dispatch(putUserSuccess(response.user));
+        } catch (error) {   
+            dispatch(putUserFailure(error.response.data.errors));
+        }
+    }
+
+    // const formSubmit = async (event) => {
+    //     event.preventDefault();
+
+    //     dispatch(saveProfileExtraStart());
+
+    //     try {
+    //         dispatch(saveProfileExtraSuccess({
+    //             birthDate: formData.birthDate,
+    //             phone: formData.phone,
+    //             field: formData.field,
+    //             study: formData.study,
+    //             socials: {
+    //                 ...profileExtra.socials,
+    //                 ...formData.socials,
+    //             }
+    //         }));
+
+    //         setItem(
+    //             `profile_extra_${user.username}`,
+    //             JSON.stringify({
+    //                 birthDate: formData.birthDate,
+    //                 phone: formData.phone,
+    //                 field: formData.field,
+    //                 study: formData.study,
+    //                 socials: {
+    //                     ...profileExtra.socials,
+    //                     ...formData.socials,
+    //                 }
+    //             })
+    //         );
+
+    //     } catch (error) {
+    //         dispatch(saveProfileExtraFailure('Local save error'));
+    //     }
+
+    //     try {
+    //         await AuthService.updateUser({
+    //             image: formData.image,
+    //             bio: formData.bio,
+    //         });
+
+    //         dispatch(userDetailStart());
+
+    //         const res = await AuthService.getUser();
+
+    //         dispatch(userDetailSuccess(res.user));
+
+    //     } catch (error) {
+    //         dispatch(userDetailFailure(error.response?.data?.errors));
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     if (!user) return;
+
+    //     const saved = getItem(`profile_extra_${user.username}`);
+
+    //     if (saved) {
+    //         dispatch(saveProfileExtraSuccess(JSON.parse(saved)));
+    //     } else {
+    //         dispatch(clearProfileExtra());
+    //     }
+    // }, [user, dispatch]);
+
+    // useEffect(() => {
+    //     if (!user || !profileExtra) return;
+
+    //     setFormData(prev => ({
+    //         ...prev,
+    //         ...profileExtra,
+    //         image: user.image || '',
+    //         bio: user.bio || '',
+    //             socials: {
+    //             ...prev.socials,
+    //             ...profileExtra.socials,
+    //         }
+    //     }));
+    // }, [user, profileExtra]);  // edit page qilish kerak
 
     return (
         <>
