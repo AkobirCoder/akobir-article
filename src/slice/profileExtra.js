@@ -23,10 +23,10 @@ export const profileExtraSlice = createSlice({
     name: 'profileExtra',
     initialState: initialState,
     reducers: {
-        saveProfileExtraStart: (state) => {
+        putProfileExtraStart: (state) => {
             state.isSaving = true;
         },
-        saveProfileExtraSuccess: (state, action) => {
+        putProfileExtraSuccess: (state, action) => {
             state.isSaving = false;
             state.profileExtra = {
                 ...state.profileExtra,
@@ -37,7 +37,7 @@ export const profileExtraSlice = createSlice({
                 },
             };
         },
-        saveProfileExtraFailure: (state, action) => {
+        putProfileExtraFailure: (state, action) => {
             state.isSaving = false;
             state.error = action.payload;
         },
@@ -62,9 +62,9 @@ export const profileExtraSlice = createSlice({
 });
 
 export const {
-    saveProfileExtraStart, 
-    saveProfileExtraSuccess, 
-    saveProfileExtraFailure,
+    putProfileExtraStart, 
+    putProfileExtraSuccess, 
+    putProfileExtraFailure,
     clearProfileExtra
 } = profileExtraSlice.actions;
 
