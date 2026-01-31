@@ -112,3 +112,4 @@ export {default as Loader} from './loader';
 export {default as Textarea} from './textarea';
 export {default as ArticleForm} from './article-form';
 export {default as UserForm} from './user-form';
+export {default as Dropdown} from './dropdown';
