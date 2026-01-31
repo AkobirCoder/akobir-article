@@ -41,10 +41,33 @@ export const authSlice = createSlice({
         logoutUser: (state) => {
             state.user = null;
             state.loggedIn = false;
+        },
+
+        putUserStart: (state) => {
+            state.isLoading = true;
+        },
+        putUserSuccess: (state, action) => {
+            state.isLoading = false;
+            state.user = action.payload;
+        },
+        putUserFailure: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
         }
     }
 });
 
-export const {signUserStart, signUserSuccess, signUserFailure, logoutUser, userDetailStart, userDetailSuccess, userDetailFailure} = authSlice.actions;
+export const {
+    signUserStart, 
+    signUserSuccess, 
+    signUserFailure, 
+    logoutUser, 
+    userDetailStart, 
+    userDetailSuccess, 
+    userDetailFailure,
+    putUserStart,
+    putUserSuccess,
+    putUserFailure,
+} = authSlice.actions;
 
 export default authSlice.reducer;
