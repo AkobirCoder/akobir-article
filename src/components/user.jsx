@@ -1,52 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Loader, UserForm } from '../ui';
-import { putUserFailure, putUserStart, putUserSuccess, userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
-import AuthService from '../service/auth';
-import { getItem, setItem } from '../helpers/persistance-storage';
 import { useNavigate } from 'react-router-dom';
-import { clearProfileExtra, putProfileExtraFailure, putProfileExtraStart, putProfileExtraSuccess } from '../slice/profileExtra';
+import { Loader } from '../ui';
+import { userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
+import AuthService from '../service/auth';
+import { getItem } from '../helpers/persistance-storage';
 
 const User = () => {
-    const [formData, setFormData] = useState({
-        image: '',
-        birthDate: '',
-        phone: '',
-        field: '',
-        bio: '',
-        study: '',
-        socials: {
-            telegram: '',
-            instagram: '',
-            linkedin: '',
-            github: '',
-        }
-    });
-
-    const changeHandlerInput = (event) => {
-        const {name, value} = event.target;
-
-        if (name.startsWith('socials.')) {
-            const key = name.split('.')[1];
-
-            setFormData((prevState) => {
-                return {
-                    ...prevState, 
-                    socials: {
-                        ...prevState.socials, [key]: value,
-                    }
-                }
-            });
-        } else {
-            setFormData((prevState) => {
-                return {...prevState, [name]: value}
-            });
-        }
-    }
-
     const dispatch = useDispatch();
 
-    const {isLoading, user} = useSelector((state) => state.auth);
+    const {user} = useSelector((state) => state.auth);
 
     const { profileExtra } = useSelector(state => state.profileExtra);
 
@@ -73,157 +36,6 @@ const User = () => {
 
         getUserProfile();
     }, [dispatch, navigate]);
-
-    useEffect(() => {
-        if (!user) return;
-
-        const putedProfileExtraInfo = getItem(`profile_extra_info_${user.id}`);
-
-        if (putedProfileExtraInfo) {
-            dispatch(putProfileExtraSuccess(JSON.parse(putedProfileExtraInfo)));
-        } else {
-            dispatch(clearProfileExtra());
-        }
-    }, [user, dispatch]);
-
-    useEffect(() => {
-        if (!user || !profileExtra) return;
-        
-        setFormData((prevState) => {
-            return {
-                ...prevState,
-                ...profileExtra,
-                image: user.image || '',
-                bio: user.bio || '',
-                socials: {
-                    ...prevState.socials,
-                    ...profileExtra.socials,
-                }
-            }
-        });
-    }, [user, profileExtra]);
-
-    const formSubmit = async (event) => {
-        event.preventDefault();
-
-        dispatch(putProfileExtraStart());
-
-        const {birthDate, phone, field, study, 
-            socials: {
-                telegram, instagram, linkedin, github,
-            }
-        } = formData;
-
-        const profileExtraInfo = {birthDate, phone, field, study, 
-            socials: {
-                telegram, instagram, linkedin, github,
-            }
-        };
-
-        try {
-            dispatch(putProfileExtraSuccess(profileExtraInfo));
-
-            setItem(
-                `profile_extra_info_${user.id}`,
-                JSON.stringify(profileExtraInfo),
-            );
-        } catch (error) {
-            dispatch(putProfileExtraFailure('Local putting error'));
-        }
-
-        dispatch(putUserStart());
-
-        const {image, bio} = formData;
-
-        const userInfo = {image, bio};
-
-        try {
-            const response = await AuthService.putUser(userInfo);
-
-            dispatch(putUserSuccess(response.user));
-        } catch (error) {   
-            dispatch(putUserFailure(error.response.data.errors));
-        }
-    }
-
-    // const formSubmit = async (event) => {
-    //     event.preventDefault();
-
-    //     dispatch(saveProfileExtraStart());
-
-    //     try {
-    //         dispatch(saveProfileExtraSuccess({
-    //             birthDate: formData.birthDate,
-    //             phone: formData.phone,
-    //             field: formData.field,
-    //             study: formData.study,
-    //             socials: {
-    //                 ...profileExtra.socials,
-    //                 ...formData.socials,
-    //             }
-    //         }));
-
-    //         setItem(
-    //             `profile_extra_${user.username}`,
-    //             JSON.stringify({
-    //                 birthDate: formData.birthDate,
-    //                 phone: formData.phone,
-    //                 field: formData.field,
-    //                 study: formData.study,
-    //                 socials: {
-    //                     ...profileExtra.socials,
-    //                     ...formData.socials,
-    //                 }
-    //             })
-    //         );
-
-    //     } catch (error) {
-    //         dispatch(saveProfileExtraFailure('Local save error'));
-    //     }
-
-    //     try {
-    //         await AuthService.updateUser({
-    //             image: formData.image,
-    //             bio: formData.bio,
-    //         });
-
-    //         dispatch(userDetailStart());
-
-    //         const res = await AuthService.getUser();
-
-    //         dispatch(userDetailSuccess(res.user));
-
-    //     } catch (error) {
-    //         dispatch(userDetailFailure(error.response?.data?.errors));
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     if (!user) return;
-
-    //     const saved = getItem(`profile_extra_${user.username}`);
-
-    //     if (saved) {
-    //         dispatch(saveProfileExtraSuccess(JSON.parse(saved)));
-    //     } else {
-    //         dispatch(clearProfileExtra());
-    //     }
-    // }, [user, dispatch]);
-
-    // useEffect(() => {
-    //     if (!user || !profileExtra) return;
-
-    //     setFormData(prev => ({
-    //         ...prev,
-    //         ...profileExtra,
-    //         image: user.image || '',
-    //         bio: user.bio || '',
-    //             socials: {
-    //             ...prev.socials,
-    //             ...profileExtra.socials,
-    //         }
-    //     }));
-    // }, [user, profileExtra]);  // edit page qilish kerak
 
     return (
         <>
@@ -299,12 +111,12 @@ const User = () => {
                                         </div>
                                         <div className='col-12 col-md-7 p-2 p-md-3'>
                                             <div className='d-flex flex-column'>
-                                                <UserForm 
+                                                {/* <UserForm 
                                                     formData={formData}
                                                     changeHandlerInput={changeHandlerInput} 
                                                     formSubmit={formSubmit}
                                                     isLoading={isLoading}
-                                                />
+                                                /> */}
                                             </div>
                                         </div>
                                     </div>
