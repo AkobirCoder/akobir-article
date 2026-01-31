@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Routes, Route} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { 
     AboutUs, 
     ArticleDetail, 
@@ -14,14 +14,18 @@ import {
     Navbar, 
     Register, 
     Sidebar,
-    User, 
+    User,
+    UserEdit, 
 } from './components';
 import AuthService from './service/auth';
 import { signUserFailure, signUserSuccess } from './slice/auth';
 import { getItem } from './helpers/persistance-storage';
+import { clearProfileExtra, putProfileExtraSuccess } from './slice/profileExtra';
 
 const App = () => {
     const [toggleSidebar, setTogglesidebar] = useState(false);
+
+    const {user} = useSelector((state) => state.auth);
 
     const sidebarHandler = () => {
         setTogglesidebar((prevState) => {
@@ -48,6 +52,18 @@ const App = () => {
             getUser();
         }
     }, []);
+
+    useEffect(() => {
+        if (!user) return;
+
+        const putedProfileExtraInfo = getItem(`profile_extra_info_${user.id}`);
+
+        if (putedProfileExtraInfo) {
+            dispatch(putProfileExtraSuccess(JSON.parse(putedProfileExtraInfo)));
+        } else {
+            dispatch(clearProfileExtra());
+        }
+    }, [user, dispatch]);
 
     return (
         <>
@@ -114,6 +130,7 @@ const App = () => {
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/user' element={<User />} />
+                        <Route path='/user-edit' element={<UserEdit />} />
                     </Routes>
                 </div>
             </div>
