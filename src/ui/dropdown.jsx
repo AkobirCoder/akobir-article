@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { dropdownItems } from '.';
 
 const Dropdown = ({user, logoutHandler}) => {
     return (
@@ -21,7 +22,7 @@ const Dropdown = ({user, logoutHandler}) => {
                 </div>
             </button>
             <ul 
-                className="dropdown-menu dropdown-menu-start custom-dropdown-menu"
+                className="dropdown-menu dropdown-menu-start custom-dropdown-menu bg-light shadow-lg"
                 style={{width: 250}}
             >
                 <li className='px-3 py-2'>
@@ -46,11 +47,29 @@ const Dropdown = ({user, logoutHandler}) => {
                         <p className='mb-0 ps-1 pe-2 text-dark'>{user.username}</p>
                     </Link>
                 </li>
+                <li><hr className="dropdown-divider" /></li>
                 <li className='px-3 py-2'>
-                    <Link className='ps-1 pe-2 text-dark text-decoration-none' to={'/create-article'}>
+                    <Link className='d-block text-dark text-decoration-none' to={'/user-edit'}>
+                        Edit profile
+                    </Link>
+                </li>
+                <li className='px-3 py-2'>
+                    <Link className='d-block text-dark text-decoration-none' to={'/create-article'}>
                         Create article
                     </Link>
                 </li>
+                <li><hr className="dropdown-divider" /></li>
+                {
+                    dropdownItems.map((dropdownItem, index) => {
+                        return (
+                            <li key={dropdownItem.id} className='px-3 py-2'>
+                                <Link className='d-block text-dark text-decoration-none' to={'/'}>
+                                    {dropdownItem.name}
+                                </Link>
+                            </li>
+                        );
+                    })
+                }
                 <li><hr className="dropdown-divider" /></li>
                 <li className='px-3 py-2'>
                     <button 
