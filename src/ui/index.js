@@ -81,7 +81,7 @@ export const userFormInputProps = [
     },
 ];
 
-export const userFormInputSocilasProps = [
+export const userFormInputSocialsProps = [
     {
         id: 'telegram',
         name: 'telegram',
