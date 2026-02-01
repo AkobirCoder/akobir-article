@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { dropdownItems } from '.';
+import { useSelector } from 'react-redux';
 
 const Dropdown = ({user, logoutHandler}) => {
     const dropdownItemStyle = 'd-block text-dark text-decoration-none';
@@ -16,6 +17,8 @@ const Dropdown = ({user, logoutHandler}) => {
     const activeItemHandler = () => {
         setActiveItem();
     }
+
+    const {profileExtra} = useSelector((state) => state.profileExtra);
 
     return (
         <div className="dropdown dropstart">
@@ -74,7 +77,10 @@ const Dropdown = ({user, logoutHandler}) => {
                                 }).join('').toUpperCase()
                             }
                         </div>
-                        <p className='mb-0 ps-1 pe-2 text-dark'>{user.username}</p>
+                        <div>
+                            <p className='mb-0 ps-1 pe-2 text-dark'>{user.username}</p>
+                            <p>{profileExtra.fullname}</p>
+                        </div>
                     </Link>
                 </li>
                 <li><hr className="dropdown-divider" /></li>
