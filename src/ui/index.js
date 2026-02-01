@@ -108,6 +108,25 @@ export const userFormInputSocilasProps = [
     },
 ];
 
+export const dropdownItems = [
+    {
+        id: '1',
+        name: 'dropdown item',
+    },
+    {
+        id: '2',
+        name: 'dropdown item',
+    },
+    {
+        id: '3',
+        name: 'dropdown item',
+    },
+    {
+        id: '4',
+        name: 'dropdown item',
+    },
+];
+
 export {default as Loader} from './loader';
 export {default as Textarea} from './textarea';
 export {default as ArticleForm} from './article-form';
