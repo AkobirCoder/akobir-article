@@ -30,7 +30,7 @@ const Dropdown = ({user, logoutHandler}) => {
                 aria-expanded="false"
             >
                 <div
-                    style={{width: 30, height: 30}}
+                    style={{width: 40, height: 40}}
                     className={`
                         d-flex align-items-center justify-content-center
                         bg-primary rounded-5
@@ -61,14 +61,14 @@ const Dropdown = ({user, logoutHandler}) => {
                 >
                     <Link
                         to={'/user'}
-                        className={`d-flex gap-2 align-items-center text-decoration-none`}
+                        className={`d-flex gap-3 align-items-center text-decoration-none`}
                     >
                         <div
-                            style={{width: 30, height: 30}}
+                            style={{width: 35, height: 35}}
                             className={`
                                 d-flex align-items-center justify-content-center
-                                bg-primary-subtle rounded-5 border border-primary
-                                text-decoration-none text-dark
+                                bg-primary rounded-5
+                                text-decoration-none text-white
                             `} 
                         >
                             {
@@ -79,7 +79,8 @@ const Dropdown = ({user, logoutHandler}) => {
                         </div>
                         <div>
                             <p className='mb-0 text-dark'>{user.username}</p>
-                            <p className='mb-0'>{profileExtra.fullname}</p>
+                            <hr className='m-0 text-dark' />
+                            <p className='mb-0 text-dark'>{profileExtra.fullname}</p>
                         </div>
                     </Link>
                 </li>
