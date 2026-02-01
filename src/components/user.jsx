@@ -111,12 +111,7 @@ const User = () => {
                                         </div>
                                         <div className='col-12 col-md-7 p-2 p-md-3'>
                                             <div className='d-flex flex-column'>
-                                                {/* <UserForm 
-                                                    formData={formData}
-                                                    changeHandlerInput={changeHandlerInput} 
-                                                    formSubmit={formSubmit}
-                                                    isLoading={isLoading}
-                                                /> */}
+                                                {/* Boshqa ma'lumot */}
                                             </div>
                                         </div>
                                     </div>
