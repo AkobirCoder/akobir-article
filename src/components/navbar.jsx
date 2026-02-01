@@ -77,12 +77,8 @@ const Navbar = () => {
                                 () => {
                                     if (loggedIn) {
                                         return (
-                                            <div className='d-flex align-items-center gap-3'>
-                                                <div className='d-flex align-items-center'>
-                                                    <div className='position-relative'>
-                                                        <Dropdown user={user} logoutHandler={logoutHandler} />
-                                                    </div>
-                                                </div>
+                                            <div className='d-flex align-items-center me-3'>
+                                                <Dropdown user={user} logoutHandler={logoutHandler} />
                                             </div>
                                         );
                                     } else {
