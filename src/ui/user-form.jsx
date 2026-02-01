@@ -1,30 +1,40 @@
 import React from 'react';
-import { Input, Textarea, userFormInputProps, userFormInputSocilasProps } from '.';
+import { Input, Textarea, userFormInputProps, userFormInputSocialsProps } from '.';
 
 const UserForm = ({formData, changeHandlerInput, formSubmit}) => {
     return (
         <form onSubmit={formSubmit}>
-            <div className='pb-3'>
+            <Input 
+                label={'Fullname'}
+                placeholder={'Fullname'}
+                name={'fullname'}
+                value={formData.fullname}
+                changeHandlerInput={changeHandlerInput}
+            />
+            <div className='row g-0 g-md-3 pt-0 pt-md-2 pb-0 pb-md-2'>
                 {
                     userFormInputProps.map((inputProp) => {
                         return (
-                            <Input 
-                                key={inputProp.id} 
-                                {...inputProp} 
-                                value={formData[inputProp.name]} 
-                                changeHandlerInput={changeHandlerInput}
-                            />
+                            <div className='col-12 col-md-6' key={inputProp.id}>
+                                <Input
+                                    {...inputProp}
+                                    value={formData[inputProp.name]}
+                                    changeHandlerInput={changeHandlerInput}
+                                />
+                            </div>
                         );
                     })
                 }
             </div>
-            <Input
-                label={'Study'}
-                placeholder={'Study'}
-                name={'study'}
-                value={formData.study}
-                changeHandlerInput={changeHandlerInput}
-            />
+            <div className='pb-0 pb-md-3'>
+                <Input
+                    label={'Study'}
+                    placeholder={'Study'}
+                    name={'study'}
+                    value={formData.study}
+                    changeHandlerInput={changeHandlerInput}
+                />
+            </div>
             <Textarea
                 label={'Description'} 
                 placeholder={'Description'} 
@@ -35,7 +45,7 @@ const UserForm = ({formData, changeHandlerInput, formSubmit}) => {
             />
             <div className='row g-0 g-md-3 pt-0 pt-md-3'>
                 {
-                    userFormInputSocilasProps.map((inputProp) => {
+                    userFormInputSocialsProps.map((inputProp) => {
                         return (
                             <div className='col-12 col-md-6' key={inputProp.id}>
                                 <Input
