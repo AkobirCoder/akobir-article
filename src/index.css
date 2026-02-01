@@ -31,6 +31,11 @@ html {
     border-bottom-color: var(--link-border);
 }
 
+.custom-dropdown-menu {
+    margin-top: 35px !important;
+    margin-right: -35px !important;
+}
+
 .sidebar {
     padding-left: 85px !important;
 }
