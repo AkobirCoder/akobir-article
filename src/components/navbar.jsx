@@ -10,6 +10,7 @@ import {Dropdown} from '../ui/';
 
 const Navbar = () => {
     const [toggleNavigation, setToggleNavigation] = useState(false);
+    
     const [activeNav, setActiveNav] = useState('Home');
 
     const toggleNavigationHandler = () => {
