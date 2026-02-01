@@ -10,6 +10,8 @@ import AuthService from '../service/auth';
 const UserEdit = () => {
     const [formData, setFormData] = useState({
         image: '',
+        username: '',
+        fullname: '',
         birthDate: '',
         phone: '',
         field: '',
@@ -81,6 +83,7 @@ const UserEdit = () => {
             return {
                 ...prevState,
                 ...profileExtra,
+                username: user.username || '',
                 image: user.image || '',
                 bio: user.bio || '',
                 socials: {
@@ -96,13 +99,13 @@ const UserEdit = () => {
 
         dispatch(putProfileExtraStart());
 
-        const {birthDate, phone, field, study, 
+        const {fullname, birthDate, phone, field, study, 
             socials: {
                 telegram, instagram, linkedin, github,
             },
         } = formData;
 
-        const profileExtraInfo = {birthDate, phone, field, study, 
+        const profileExtraInfo = {fullname, birthDate, phone, field, study, 
             socials: {
                 telegram, instagram, linkedin, github,
             },
@@ -121,9 +124,9 @@ const UserEdit = () => {
 
         dispatch(putUserStart());
 
-        const {image, bio} = formData;
+        const {image, username, bio} = formData;
 
-        const userInfo = {image, bio};
+        const userInfo = {image, username, bio};
 
         try {
             const response = await AuthService.putUser(userInfo);
