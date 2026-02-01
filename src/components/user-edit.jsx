@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Loader, UserForm } from '../ui';
 import { getItem, setItem } from '../helpers/persistance-storage';
 import { putProfileExtraFailure, putProfileExtraStart, putProfileExtraSuccess } from '../slice/profileExtra';
-import { putUserFailure, putUserStart, putUserSuccess } from '../slice/auth';
+import { putUserFailure, putUserStart, putUserSuccess, userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
 
 const UserEdit = () => {
@@ -58,7 +58,21 @@ const UserEdit = () => {
         if (!token) {
             navigate('/login');
         }
-    }, [navigate]);
+
+        const getUserProfile = async () => {
+            dispatch(userDetailStart());
+
+            try {
+                const response = await AuthService.getUser();
+
+                dispatch(userDetailSuccess(response.user));
+            } catch (error) {
+                dispatch(userDetailFailure(error.response.data.errors));
+            }
+        }
+
+        getUserProfile();
+    }, [navigate, dispatch]);
 
     useEffect(() => {
         if (!user || !profileExtra) return;
