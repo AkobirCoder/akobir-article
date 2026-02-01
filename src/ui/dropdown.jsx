@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { dropdownItems } from '.';
 
 const Dropdown = ({user, logoutHandler}) => {
+    const dropdownItemStyle = 'd-block text-dark text-decoration-none';
+
+    const [activeItem, setActiveItem] = useState('1');
+
+    const activeItemHandler = (id) => {
+        setActiveItem(id);
+    }
+
     return (
         <div className="dropdown dropstart">
-            <button className="btn p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button 
+                className="btn p-0" 
+                type="button" 
+                data-bs-toggle="dropdown" 
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+            >
                 <div
                     style={{width: 30, height: 30}}
                     className={`
@@ -22,8 +36,8 @@ const Dropdown = ({user, logoutHandler}) => {
                 </div>
             </button>
             <ul 
-                className="dropdown-menu dropdown-menu-start custom-dropdown-menu bg-light shadow-lg"
-                style={{width: 250}}
+                className="dropdown-menu dropdown-menu-start p-3 bg-light shadow-lg custom-dropdown-menu"
+                style={{width: 300}}
             >
                 <li className='px-3 py-2'>
                     <Link
@@ -49,12 +63,12 @@ const Dropdown = ({user, logoutHandler}) => {
                 </li>
                 <li><hr className="dropdown-divider" /></li>
                 <li className='px-3 py-2'>
-                    <Link className='d-block text-dark text-decoration-none' to={'/user-edit'}>
+                    <Link className={`${dropdownItemStyle}`} to={'/user-edit'}>
                         Edit profile
                     </Link>
                 </li>
                 <li className='px-3 py-2'>
-                    <Link className='d-block text-dark text-decoration-none' to={'/create-article'}>
+                    <Link className={`${dropdownItemStyle}`} to={'/create-article'}>
                         Create article
                     </Link>
                 </li>
@@ -62,8 +76,17 @@ const Dropdown = ({user, logoutHandler}) => {
                 {
                     dropdownItems.map((dropdownItem, index) => {
                         return (
-                            <li key={dropdownItem.id} className='px-3 py-2'>
-                                <Link className='d-block text-dark text-decoration-none' to={'/'}>
+                            <li 
+                                key={dropdownItem.id} 
+                                className={`
+                                    px-3 py-2 rounded-top custom-dropdown-item
+                                    ${dropdownItemStyle}
+                                    ${index === dropdownItems.length - 1 ? 'mb-0' : 'mb-2'}
+                                    ${activeItem === dropdownItem.id ? 'custom-dropdown-link' : ''}
+                                `}
+                                onClick={() => activeItemHandler(dropdownItem.id)}
+                            >
+                                <Link className={`${dropdownItemStyle}`} to={'/'}>
                                     {dropdownItem.name}
                                 </Link>
                             </li>
@@ -71,7 +94,7 @@ const Dropdown = ({user, logoutHandler}) => {
                     })
                 }
                 <li><hr className="dropdown-divider" /></li>
-                <li className='px-3 py-2'>
+                <li className=''>
                     <button 
                         className='btn btn-outline-danger w-100' 
                         onClick={logoutHandler}
