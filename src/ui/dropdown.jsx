@@ -5,10 +5,16 @@ import { dropdownItems } from '.';
 const Dropdown = ({user, logoutHandler}) => {
     const dropdownItemStyle = 'd-block text-dark text-decoration-none';
 
-    const [activeItem, setActiveItem] = useState('1');
+    const [activeDropdowmItem, setActiveDropdownItem] = useState('');
 
-    const activeItemHandler = (id) => {
-        setActiveItem(id);
+    const [activeItem, setActiveItem] = useState(null);
+
+    const activeDropdownItemHandler = () => {
+        setActiveDropdownItem();
+    }
+
+    const activeItemHandler = () => {
+        setActiveItem();
     }
 
     return (
@@ -36,13 +42,23 @@ const Dropdown = ({user, logoutHandler}) => {
                 </div>
             </button>
             <ul 
-                className="dropdown-menu dropdown-menu-start p-3 bg-light shadow-lg custom-dropdown-menu"
+                className={`
+                    dropdown-menu dropdown-menu-start 
+                    p-3 bg-light shadow-lg 
+                    custom-dropdown-menu
+                `}
                 style={{width: 300}}
             >
-                <li className='px-3 py-2'>
+                <li 
+                    className={`
+                        px-3 py-2 custom-dropdown-item rounded-top
+                        ${activeItem === 'profile' ? 'custom-dropdown-link' : ''}
+                    `}
+                    onClick={() => activeItemHandler('profile')}  
+                >
                     <Link
                         to={'/user'}
-                        className='d-flex gap-2 align-items-center text-decoration-none'
+                        className={`d-flex gap-2 align-items-center text-decoration-none`}
                     >
                         <div
                             style={{width: 30, height: 30}}
@@ -62,12 +78,24 @@ const Dropdown = ({user, logoutHandler}) => {
                     </Link>
                 </li>
                 <li><hr className="dropdown-divider" /></li>
-                <li className='px-3 py-2'>
+                <li 
+                    className={`
+                        px-3 py-2 custom-dropdown-item 
+                        ${activeItem === 'edit' ? 'custom-dropdown-link' : ''}
+                    `}
+                    onClick={() => activeItemHandler('edit')}
+                >
                     <Link className={`${dropdownItemStyle}`} to={'/user-edit'}>
                         Edit profile
                     </Link>
                 </li>
-                <li className='px-3 py-2'>
+                <li 
+                    className={`
+                        px-3 py-2 custom-dropdown-item 
+                        ${activeItem === 'create' ? 'custom-dropdown-link' : ''}
+                    `}
+                    onClick={() => activeItemHandler('create')}
+                >
                     <Link className={`${dropdownItemStyle}`} to={'/create-article'}>
                         Create article
                     </Link>
@@ -79,12 +107,12 @@ const Dropdown = ({user, logoutHandler}) => {
                             <li 
                                 key={dropdownItem.id} 
                                 className={`
-                                    px-3 py-2 rounded-top custom-dropdown-item
+                                    px-3 py-2 custom-dropdown-item
                                     ${dropdownItemStyle}
                                     ${index === dropdownItems.length - 1 ? 'mb-0' : 'mb-2'}
-                                    ${activeItem === dropdownItem.id ? 'custom-dropdown-link' : ''}
+                                    ${activeDropdowmItem === dropdownItem.id ? 'custom-dropdown-link' : ''}
                                 `}
-                                onClick={() => activeItemHandler(dropdownItem.id)}
+                                onClick={() => activeDropdownItemHandler(dropdownItem.id)}
                             >
                                 <Link className={`${dropdownItemStyle}`} to={'/'}>
                                     {dropdownItem.name}
