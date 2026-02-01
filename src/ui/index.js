@@ -132,3 +132,4 @@ export {default as Textarea} from './textarea';
 export {default as ArticleForm} from './article-form';
 export {default as UserForm} from './user-form';
 export {default as Dropdown} from './dropdown';
+export {default as Modal} from './modal';
