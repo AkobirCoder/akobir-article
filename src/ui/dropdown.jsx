@@ -78,8 +78,8 @@ const Dropdown = ({user, logoutHandler}) => {
                             }
                         </div>
                         <div>
-                            <p className='mb-0 ps-1 pe-2 text-dark'>{user.username}</p>
-                            <p>{profileExtra.fullname}</p>
+                            <p className='mb-0 text-dark'>{user.username}</p>
+                            <p className='mb-0'>{profileExtra.fullname}</p>
                         </div>
                     </Link>
                 </li>
