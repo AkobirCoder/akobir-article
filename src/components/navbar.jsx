@@ -6,6 +6,7 @@ import NavbarLink from './navbar-link';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../helpers/persistance-storage';
 import { logoutUser } from '../slice/auth';
+import {Dropdown} from '../ui/';
 
 const Navbar = () => {
     const [toggleNavigation, setToggleNavigation] = useState(false);
@@ -77,31 +78,11 @@ const Navbar = () => {
                                     if (loggedIn) {
                                         return (
                                             <div className='d-flex align-items-center gap-3'>
-                                                <div className='d-flex align-items-center gap-1'>
-                                                    <Link
-                                                        to={'/user'}
-                                                        style={{width: 30, height: 30}}
-                                                        className={`
-                                                            d-flex align-items-center justify-content-center
-                                                            bg-primary-subtle rounded-5 border border-primary
-                                                            text-decoration-none text-dark
-                                                        `}
-                                                    >
-                                                        {
-                                                            user.username.split(' ').map((item) => {
-                                                                return item[0];
-                                                            }).join('').toUpperCase()
-                                                        }
-                                                    </Link>
-                                                    <p className='mb-0 ps-1 pe-2'>{user.username}</p>
+                                                <div className='d-flex align-items-center'>
+                                                    <div className='position-relative'>
+                                                        <Dropdown user={user} logoutHandler={logoutHandler} />
+                                                    </div>
                                                 </div>
-                                                <Link className='ps-1 pe-2 text-dark text-decoration-none' to={'/create-article'}>Create</Link>
-                                                <button 
-                                                    className='btn btn-outline-danger' 
-                                                    onClick={logoutHandler}
-                                                >
-                                                    Logout
-                                                </button>
                                             </div>
                                         );
                                     } else {
