@@ -1,6 +1,8 @@
 :root {
     --link: #f1f5ff;
+    --dropdown: #ececec;
     --link-border: #946aff;
+    --dropdown-border: #6a80ff;
 }
 
 * {
@@ -34,6 +36,22 @@ html {
 .custom-dropdown-menu {
     margin-top: 35px !important;
     margin-right: -35px !important;
+    backdrop-filter: blur(5px) !important;
+}
+
+.custom-dropdown-item {
+    border-bottom: 2px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-dropdown-item:hover {
+    background-color: var(--dropdown);
+    border-bottom-color: var(--dropdown-border);
+}
+
+.custom-dropdown-link {
+    background-color: var(--dropdown);
+    border-bottom-color: var(--dropdown-border);
 }
 
 .sidebar {
