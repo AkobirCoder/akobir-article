@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ArticleService from '../service/article';
 import { postArticleFailure, postArticleStart, postArticleSuccess } from '../slice/article';
-import { ArticleForm } from '../ui';
+import { ArticleForm, Loader } from '../ui';
 
 const CreateArticle = () => {
     const [formData, setFormData] = useState({
@@ -21,6 +21,8 @@ const CreateArticle = () => {
     }
 
     const dispatch = useDispatch();
+
+    const {isLoading, loggedIn} = useSelector((state) => state.auth);
 
     const navigate = useNavigate();
 
@@ -57,17 +59,33 @@ const CreateArticle = () => {
     const btnName = 'Create';
 
     return (
-        <div className='row d-flex align-items-center justify-content-center' style={{minHeight: '100%'}}>
-            <div className='col-11 col-md-8'>
-                <h1 className='fs-2 text-center'>Create article</h1>
-                <ArticleForm
-                    formData={formData} 
-                    changeHandlerInput={changeHandlerInput} 
-                    formSubmit={formSubmit} 
-                    btnName={btnName}
-                />
-            </div>
-        </div>
+        <>
+            {(
+                () => {
+                    if (!isLoading && !loggedIn) {
+                        return (
+                            <div className='d-flex align-items-center justify-content-center h-100'>
+                                <Loader />
+                            </div>
+                        ); 
+                    } else {
+                        return (
+                            <div className='row d-flex align-items-center justify-content-center' style={{minHeight: '100%'}}>
+                                <div className='col-11 col-md-8'>
+                                    <h1 className='fs-2 text-center'>Create article</h1>
+                                    <ArticleForm
+                                        formData={formData} 
+                                        changeHandlerInput={changeHandlerInput} 
+                                        formSubmit={formSubmit} 
+                                        btnName={btnName}
+                                    />
+                                </div>
+                            </div>
+                        );
+                    }
+                }
+            )()}
+        </>
     );
 }
 
