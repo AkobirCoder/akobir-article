@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { dropdownItems } from '.';
 import { useSelector } from 'react-redux';
 
-const Dropdown = ({user, logoutHandler}) => {
+const Dropdown = ({user, onLogoutClick}) => {
     const dropdownItemStyle = 'd-block text-dark text-decoration-none';
 
     const [activeDropdowmItem, setActiveDropdownItem] = useState('');
@@ -131,8 +131,10 @@ const Dropdown = ({user, logoutHandler}) => {
                 <li><hr className="dropdown-divider" /></li>
                 <li className=''>
                     <button 
-                        className='btn btn-outline-danger w-100' 
-                        onClick={logoutHandler}
+                        type='button'
+                        className='btn btn-outline-danger w-100'
+                        onClick={onLogoutClick}
+                        data-bs-dismiss='dropdown'
                     >
                         Logout
                     </button>
