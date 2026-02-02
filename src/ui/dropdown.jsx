@@ -54,8 +54,8 @@ const Dropdown = ({user, onLogoutClick}) => {
             >
                 <li 
                     className={`
-                        px-3 py-2 custom-dropdown-item rounded-top
-                        ${activeItem === 'profile' ? 'custom-dropdown-link' : ''}
+                        px-3 py-2 rounded-top
+                        custom-dropdown-item custom-dropdown-link  
                     `}
                     onClick={() => activeItemHandler('profile')}  
                 >
@@ -78,9 +78,20 @@ const Dropdown = ({user, onLogoutClick}) => {
                             }
                         </div>
                         <div>
-                            <p className='mb-0 text-dark'>{user.username}</p>
-                            <hr className='m-0 text-dark' />
-                            <p className='mb-0 text-dark'>{profileExtra.fullname}</p>
+                            <p style={{fontWeight: 600}} className='mb-0 text-dark'>{user.username}</p>
+                            {
+                                profileExtra.fullname
+                                ? (
+                                    <>
+                                        <hr className='m-0 text-dark' />
+                                        <p style={{fontSize: 13}} className='mb-0 text-dark'>
+                                            {profileExtra.fullname}
+                                        </p>
+                                    </>
+                                )
+                                : ('')
+                            }
+                            
                         </div>
                     </Link>
                 </li>
