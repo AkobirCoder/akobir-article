@@ -107,7 +107,7 @@ const Register = () => {
                         }
                     </button>
                     <p className='mt-3 mb-3 text-muted'>
-                        If you haven't an account, You must register by one click
+                        If you have an account, You must login by one click
                         <span className='ms-2'> 
                             <Link to={'/login'}>Sign in</Link>
                         </span>
