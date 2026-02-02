@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../helpers/persistance-storage';
 import { logoutUser } from '../slice/auth';
 import {Dropdown} from '../ui/';
+import UserLogout from './user-logout';
 
 const Navbar = () => {
     const [toggleNavigation, setToggleNavigation] = useState(false);
@@ -29,6 +30,8 @@ const Navbar = () => {
         activeNavHandler(title);
     }
 
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
+
     const dispatch = useDispatch();
 
     const {loggedIn, user} = useSelector((state) => state.auth);
@@ -36,6 +39,8 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const logoutHandler = () => {
+        setShowLogoutModal(false);
+
         dispatch(logoutUser());
 
         removeItem('token');
@@ -79,7 +84,15 @@ const Navbar = () => {
                                     if (loggedIn) {
                                         return (
                                             <div className='d-flex align-items-center me-3'>
-                                                <Dropdown user={user} logoutHandler={logoutHandler} />
+                                                <Dropdown 
+                                                    user={user}
+                                                    onLogoutClick={() => setShowLogoutModal(true)}
+                                                />
+                                                <UserLogout 
+                                                    open={showLogoutModal}
+                                                    onClose={() => setShowLogoutModal(false)}
+                                                    logoutHandler={logoutHandler} 
+                                                />
                                             </div>
                                         );
                                     } else {
