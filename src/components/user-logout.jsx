@@ -1,8 +1,13 @@
 import React from 'react';
+import {Modal} from '../ui';
 
-const UserLogout = () => {
+const UserLogout = ({open, onClose, logoutHandler}) => {
+    const btnName = 'Logout';
+
+    if (!open) return null;
+
     return (
-        <div>UserLogout</div>
+        <Modal btnName={btnName} onClose={onClose} logoutHandler={logoutHandler} />
     );
 }
 
