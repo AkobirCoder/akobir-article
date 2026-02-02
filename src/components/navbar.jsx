@@ -14,6 +14,8 @@ const Navbar = () => {
     
     const [activeNav, setActiveNav] = useState('Home');
 
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
+
     const toggleNavigationHandler = () => {
         setToggleNavigation((prevState) => {
             return !prevState;
@@ -30,7 +32,11 @@ const Navbar = () => {
         activeNavHandler(title);
     }
 
-    const [showLogoutModal, setShowLogoutModal] = useState(false);
+    const showLogoutModalHandler = () => {
+        setShowLogoutModal((prevState) => {
+            return !prevState;
+        });
+    }
 
     const dispatch = useDispatch();
 
@@ -86,11 +92,11 @@ const Navbar = () => {
                                             <div className='d-flex align-items-center me-3'>
                                                 <Dropdown 
                                                     user={user}
-                                                    onLogoutClick={() => setShowLogoutModal(true)}
+                                                    onLogoutClick={showLogoutModalHandler}
                                                 />
                                                 <UserLogout 
                                                     open={showLogoutModal}
-                                                    onClose={() => setShowLogoutModal(false)}
+                                                    onClose={showLogoutModalHandler}
                                                     logoutHandler={logoutHandler} 
                                                 />
                                             </div>
@@ -98,7 +104,12 @@ const Navbar = () => {
                                     } else {
                                         return (
                                             <>
-                                                <Link className='me-3 ps-1 pe-2 text-dark text-decoration-none' to={'/create-article'}>Create</Link>
+                                                <Link 
+                                                    to={'/create-article'}
+                                                    className='me-3 ps-1 pe-2 text-dark text-decoration-none' 
+                                                >
+                                                    Create
+                                                </Link>
                                                 <Link 
                                                     to={'/login'} 
                                                     className='me-3 px-2 text-dark text-decoration-none' 
