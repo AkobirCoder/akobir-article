@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormLogo } from './assets';
 import { Input, loginInputProps } from '../ui';
@@ -99,6 +99,12 @@ const Login = () => {
                             })()
                         }    
                     </button>
+                    <p className='mt-3 mb-3 text-muted'>
+                        If you haven't an account, You must register by one click
+                        <span className='ms-2'> 
+                            <Link to={'/register'}>Sign up</Link>
+                        </span>
+                    </p>
                     <p className='mt-3 mt-md-5 mb-3 text-muted'>© 2025-2026</p>
                 </form>
             </main>
