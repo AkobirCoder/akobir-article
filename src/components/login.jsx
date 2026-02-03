@@ -73,12 +73,14 @@ const Login = () => {
                     {
                         loginInputProps.map((inputProp) => {
                             return (
-                                <Input 
-                                    key={inputProp.id} 
-                                    {...inputProp}
-                                    value={formData[inputProp.name]}
-                                    changeHandlerInput={changeHandlerInput}
-                                />
+                                <div key={inputProp.id} className='mb-2'>
+                                    <Input
+                                        key={inputProp.id}
+                                        {...inputProp}
+                                        value={formData[inputProp.name]}
+                                        changeHandlerInput={changeHandlerInput}
+                                    />
+                                </div>
                             );
                         })
                     }
