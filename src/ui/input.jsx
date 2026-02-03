@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Input = ({id, type, name, completeName, placeholder, label, value, changeHandlerInput}) => {
+const Input = ({id, type, name, completeName, placeholder, margin, label, value, changeHandlerInput}) => {
     return (
         <div className='form-floating'>
             <input 
                 type={type} 
                 name={name}
                 autoComplete={`current-${completeName}`} 
-                className='form-control' 
+                className={`form-control ${margin}`} 
                 id={id}
                 placeholder={placeholder}
                 value={value}
