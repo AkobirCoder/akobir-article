@@ -2,7 +2,7 @@ import React from 'react';
 
 const Input = ({id, type, name, completeName, placeholder, label, value, changeHandlerInput}) => {
     return (
-        <div className='form-floating mb-2'>
+        <div className='form-floating'>
             <input 
                 type={type} 
                 name={name}
