@@ -130,6 +130,6 @@ export const dropdownItems = [
 export {default as Loader} from './loader';
 export {default as Textarea} from './textarea';
 export {default as ArticleForm} from './article-form';
-export {default as UserForm} from './user-form';
 export {default as Dropdown} from './dropdown';
 export {default as Modal} from './modal';
+export {default as Select} from './select';
