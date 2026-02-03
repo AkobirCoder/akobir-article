@@ -5,7 +5,7 @@ import SidebarItem from './sidebar-item';
 const Sidebar = () => {
     return (
         <div>
-            <h2 className='h4 mb-3'>Sidebar</h2>
+            <h2 className='h4 mb-3'>Catigories</h2>
             <div className='btn-group-vertical col-12'>
                 {
                     sidebarItems.map((item, index) => {
