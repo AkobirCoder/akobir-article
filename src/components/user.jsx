@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Loader } from '../ui';
 import { userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
@@ -37,6 +37,10 @@ const User = () => {
         getUserProfile();
     }, [dispatch, navigate]);
 
+    const navigateHandler = () => {
+        navigate('/user-edit');
+    }
+
     return (
         <>
             {(
@@ -56,9 +60,11 @@ const User = () => {
                                             className='col-12 bg-primary rounded-top border-bottom-0 p-4 p-md-5' 
                                             style={{backgroundImage: 'var(--bs-gradient)'}}
                                         >
-                                            <h1 className='text-white fw-normal fs-4 fs-md-1'>Profile header background</h1>
+                                            <h1 className='text-white fw-normal fs-4 fs-md-1'>
+                                                Profile header background
+                                            </h1>
                                         </div>
-                                        <div className='col-12 col-md-5 p-2 p-md-3 border-end'>
+                                        <div className='col-12 col-md-4 p-2 p-md-3 border-end'>
                                             <div className='d-flex flex-column pt-3 pt-md-5'>
                                                 <div className='d-flex align-items-center justify-content-center'>
                                                     {(
@@ -97,7 +103,16 @@ const User = () => {
                                                     )()}
                                                 </div>
                                                 <div className='pt-2 pt-md-3 px-md-3'>
-                                                    <h4 className='fs-3 fw-normal text-capitalize px-3'>{user.username}</h4>
+                                                    <h4 className='fs-3 fw-semibold m-0'>{profileExtra.fullname}</h4>
+                                                    <div className='d-flex text-muted fw-normal'>
+                                                        <p className='fs-4 m-0'>{user.username}</p>
+                                                        <p style={{width: 20, height: 20}} className='d-flex align-items-center justify-content-center fs-4 mx-1 my-0'>.</p>
+                                                        <p className='fs-4 m-0'>{profileExtra.pronoun}</p>
+                                                    </div>
+                                                    <p className='my-3'>{profileExtra.description}</p>
+                                                    <button type='button' className='btn btn-secondary w-100' onClick={navigateHandler}>
+                                                        Edit profile
+                                                    </button>
                                                     <ul className='list-group list-group-flush'>
                                                         <li className='list-group-item'>Email: {user.email}</li>
                                                         <li className='list-group-item'>Field: {profileExtra.field}</li>
@@ -109,7 +124,7 @@ const User = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='col-12 col-md-7 p-2 p-md-3'>
+                                        <div className='col-12 col-md-8 p-2 p-md-3'>
                                             <div className='d-flex flex-column'>
                                                 {/* Boshqa ma'lumot */}
                                             </div>
