@@ -3,9 +3,13 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
     profileExtra: {
         image: '',
+        username: '',
+        fullname: '',
+        pronoun: '',
         birthDate: '',
         phone: '',
         field: '',
+        description: '',
         bio: '',
         study: '',
         socials: {
