@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ArticleService from '../service/article';
@@ -25,6 +25,12 @@ const CreateArticle = () => {
     const {isLoading, loggedIn} = useSelector((state) => state.auth);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/login');
+        }
+    },[loggedIn, navigate]);
 
     const formSubmit = async (event) => {
         event.preventDefault();
