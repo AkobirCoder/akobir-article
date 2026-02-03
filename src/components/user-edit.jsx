@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Loader, UserForm } from '../ui';
+import { Loader } from '../ui';
+import {UserForm} from './index';
 import { getItem, setItem } from '../helpers/persistance-storage';
-import { putProfileExtraFailure, putProfileExtraStart, putProfileExtraSuccess } from '../slice/profileExtra';
-import { putUserFailure, putUserStart, putUserSuccess, userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
+import { 
+    putProfileExtraFailure, 
+    putProfileExtraStart, 
+    putProfileExtraSuccess 
+} from '../slice/profileExtra';
+import { 
+    putUserFailure, 
+    putUserStart, 
+    putUserSuccess, 
+    userDetailFailure, 
+    userDetailStart, 
+    userDetailSuccess 
+} from '../slice/auth';
 import AuthService from '../service/auth';
 
 const UserEdit = () => {
@@ -12,9 +24,11 @@ const UserEdit = () => {
         image: '',
         username: '',
         fullname: '',
+        pronoun: '',
         birthDate: '',
         phone: '',
         field: '',
+        description: '',
         bio: '',
         study: '',
         socials: {
@@ -99,13 +113,13 @@ const UserEdit = () => {
 
         dispatch(putProfileExtraStart());
 
-        const {fullname, birthDate, phone, field, study, 
+        const {fullname, pronoun, birthDate, phone, field, description, study, 
             socials: {
                 telegram, instagram, linkedin, github,
             },
         } = formData;
 
-        const profileExtraInfo = {fullname, birthDate, phone, field, study, 
+        const profileExtraInfo = {fullname, pronoun, birthDate, phone, field, description, study, 
             socials: {
                 telegram, instagram, linkedin, github,
             },
