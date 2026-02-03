@@ -15,5 +15,6 @@ export {default as Login} from './login';
 export {default as Register} from './register';
 export {default as User} from './user';
 export {default as UserEdit} from './user-edit';
+export {default as UserForm} from './user-form';
 export {default as UserLogout} from './user-logout';
 export {default as ValidationError} from './validation-error';
