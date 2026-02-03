@@ -30,7 +30,7 @@ const Dropdown = ({user, onLogoutClick}) => {
                 aria-expanded="false"
             >
                 <div
-                    style={{width: 40, height: 40}}
+                    style={{width: 40, height: 40, backgroundImage: 'var(--bs-gradient)'}}
                     className={`
                         d-flex align-items-center justify-content-center
                         bg-primary rounded-5
@@ -47,7 +47,7 @@ const Dropdown = ({user, onLogoutClick}) => {
             <ul 
                 className={`
                     dropdown-menu dropdown-menu-start 
-                    p-3 bg-light shadow-lg 
+                    p-3 bg-body-tertiary shadow-lg 
                     custom-dropdown-menu
                 `}
                 style={{width: 300}}
@@ -64,7 +64,7 @@ const Dropdown = ({user, onLogoutClick}) => {
                         className={`d-flex gap-3 align-items-center text-decoration-none`}
                     >
                         <div
-                            style={{width: 35, height: 35}}
+                            style={{width: 35, height: 35, backgroundImage: 'var(--bs-gradient)'}}
                             className={`
                                 d-flex align-items-center justify-content-center
                                 bg-primary rounded-5
@@ -83,7 +83,6 @@ const Dropdown = ({user, onLogoutClick}) => {
                                 profileExtra.fullname
                                 ? (
                                     <>
-                                        <hr className='m-0 text-dark' />
                                         <p style={{fontSize: 13}} className='mb-0 text-dark'>
                                             {profileExtra.fullname}
                                         </p>
@@ -139,7 +138,7 @@ const Dropdown = ({user, onLogoutClick}) => {
                         );
                     })
                 }
-                <li><hr className="dropdown-divider" /></li>
+                <li><hr className="dropdown-divider mb-3" /></li>
                 <li className=''>
                     <button 
                         type='button'
