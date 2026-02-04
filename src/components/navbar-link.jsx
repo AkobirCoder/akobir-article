@@ -1,23 +1,23 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const NavbarLink = ({activeNav, title, path, handleClick}) => {
     return (
         <>
-            <Link 
+            <NavLink
                 to={path}
-                className={ `
+                className={({isActive}) => `
                     text-dark 
                     text-decoration-none 
                     py-2 px-3 
                     rounded-top 
                     nav-link-item
-                    ${activeNav === title ? 'custom-nav-link' : ''}
+                    ${isActive ? 'custom-nav-link' : ''}
                 `}
                 onClick={() => handleClick(title)}
             >
                 {title}
-            </Link>
+            </NavLink>
         </>
     );
 }
