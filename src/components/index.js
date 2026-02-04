@@ -17,4 +17,7 @@ export {default as User} from './user';
 export {default as UserEdit} from './user-edit';
 export {default as UserForm} from './user-form';
 export {default as UserLogout} from './user-logout';
+export {default as MyArticles} from './my-articles';
+export {default as MyStars} from './my-stars';
+export {default as Appearance} from './appearance';
 export {default as ValidationError} from './validation-error';
