@@ -1,3 +1,4 @@
+import { Article, Brush, Star, User } from '@boxicons/react';
 export {default as Input} from './input';
 
 export const loginInputProps = [
@@ -113,21 +114,25 @@ export const dropdownItems = [
         id: '1',
         path: '/user',
         name: 'Profile',
+        icon: <User />,
     },
     {
         id: '2',
         path: '/my-articles',
         name: 'My articles',
+        icon: <Article />,
     },
     {
         id: '3',
         path: '/my-stars',
         name: 'Starts',
+        icon: <Star />,
     },
     {
         id: '4',
         path: '/appearance',
         name: 'Appearance',
+        icon: <Brush />,
     },
 ];
 
