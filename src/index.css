@@ -40,13 +40,13 @@ html {
 }
 
 .custom-dropdown-item {
-    border-bottom: 2px solid transparent;
+    /* border-bottom: 2px solid transparent; */
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .custom-dropdown-item:hover {
     background-color: var(--dropdown);
-    border-bottom-color: var(--dropdown-border);
+    /* border-bottom-color: var(--dropdown-border); */
 }
 
 .custom-dropdown-link {
