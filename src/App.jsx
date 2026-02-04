@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
     AboutUs, 
+    Appearance, 
     ArticleDetail, 
     Articles, 
     Blogs, 
@@ -11,6 +12,8 @@ import {
     EditArticle, 
     Login, 
     Main, 
+    MyArticles, 
+    MyStars, 
     Navbar, 
     Register, 
     Sidebar,
@@ -141,6 +144,9 @@ const App = () => {
                         <Route path='/register' element={<Register />} />
                         <Route path='/user' element={<User />} />
                         <Route path='/user-edit' element={<UserEdit />} />
+                        <Route path='/my-articles' element={<MyArticles />} />
+                        <Route path='/my-stars' element={<MyStars />} />
+                        <Route path='/appearance' element={<Appearance />} />
                     </Routes>
                 </div>
             </div>
