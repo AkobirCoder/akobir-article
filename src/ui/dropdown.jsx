@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { dropdownItems } from '.';
 import { useSelector } from 'react-redux';
 
@@ -10,8 +10,8 @@ const Dropdown = ({user, onLogoutClick}) => {
 
     const [activeItem, setActiveItem] = useState(null);
 
-    const activeDropdownItemHandler = () => {
-        setActiveDropdownItem();
+    const activeDropdownItemHandler = (id) => {
+        setActiveDropdownItem(id);
     }
 
     const activeItemHandler = () => {
@@ -57,11 +57,9 @@ const Dropdown = ({user, onLogoutClick}) => {
                         px-3 py-2 rounded-top
                         custom-dropdown-item custom-dropdown-link  
                     `}
-                    onClick={() => activeItemHandler('profile')}  
                 >
-                    <Link
-                        to={'/user'}
-                        className={`d-flex gap-3 align-items-center text-decoration-none`}
+                    <div
+                        className={`d-flex gap-3 align-items-center`}
                     >
                         <div
                             style={{width: 35, height: 35, backgroundImage: 'var(--bs-gradient)'}}
@@ -92,7 +90,7 @@ const Dropdown = ({user, onLogoutClick}) => {
                             }
                             
                         </div>
-                    </Link>
+                    </div>
                 </li>
                 <li><hr className="dropdown-divider" /></li>
                 <li 
@@ -121,20 +119,19 @@ const Dropdown = ({user, onLogoutClick}) => {
                 {
                     dropdownItems.map((dropdownItem, index) => {
                         return (
-                            <li 
+                            <NavLink 
+                                to={dropdownItem.path}
                                 key={dropdownItem.id} 
-                                className={`
+                                className={({isActive}) => `
                                     px-3 py-2 custom-dropdown-item
                                     ${dropdownItemStyle}
                                     ${index === dropdownItems.length - 1 ? 'mb-0' : 'mb-2'}
-                                    ${activeDropdowmItem === dropdownItem.id ? 'custom-dropdown-link' : ''}
+                                    ${isActive ? 'custom-dropdown-link' : ''}
                                 `}
                                 onClick={() => activeDropdownItemHandler(dropdownItem.id)}
                             >
-                                <Link className={`${dropdownItemStyle}`} to={'/'}>
-                                    {dropdownItem.name}
-                                </Link>
-                            </li>
+                                {dropdownItem.name}
+                            </NavLink>
                         );
                     })
                 }
