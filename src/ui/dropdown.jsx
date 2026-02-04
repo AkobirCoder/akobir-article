@@ -1,22 +1,11 @@
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import {ArrowOutRightSquareHalf, ClipboardPlus, Edit} from '@boxicons/react';
 import { dropdownItems } from '.';
 import { useSelector } from 'react-redux';
 
 const Dropdown = ({user, onLogoutClick}) => {
-    const dropdownItemStyle = 'd-block text-dark text-decoration-none';
-
-    const [activeDropdowmItem, setActiveDropdownItem] = useState('');
-
-    const [activeItem, setActiveItem] = useState(null);
-
-    const activeDropdownItemHandler = (id) => {
-        setActiveDropdownItem(id);
-    }
-
-    const activeItemHandler = () => {
-        setActiveItem();
-    }
+    const dropdownItemStyle = 'd-block text-muted text-decoration-none rounded';
 
     const {profileExtra} = useSelector((state) => state.profileExtra);
 
@@ -93,28 +82,30 @@ const Dropdown = ({user, onLogoutClick}) => {
                     </div>
                 </li>
                 <li><hr className="dropdown-divider" /></li>
-                <li 
-                    className={`
-                        px-3 py-2 custom-dropdown-item 
-                        ${activeItem === 'edit' ? 'custom-dropdown-link' : ''}
+                <NavLink 
+                    to={'/user-edit'}
+                    className={({isActive}) => `
+                        d-flex align-items-center
+                        px-2 py-1 mb-1 custom-dropdown-item
+                        ${dropdownItemStyle}
+                        ${isActive ? 'custom-dropdown-link' : ''}
                     `}
-                    onClick={() => activeItemHandler('edit')}
                 >
-                    <Link className={`${dropdownItemStyle}`} to={'/user-edit'}>
-                        Edit profile
-                    </Link>
-                </li>
-                <li 
-                    className={`
-                        px-3 py-2 custom-dropdown-item 
-                        ${activeItem === 'create' ? 'custom-dropdown-link' : ''}
-                    `}
-                    onClick={() => activeItemHandler('create')}
+                    <Edit />
+                    <span className='ms-2'>Edit profile</span>
+                </NavLink>
+                <NavLink 
+                    to={'/create-article'}
+                    className={({isActive}) => `
+                        d-flex align-items-center
+                        px-2 py-1 custom-dropdown-item
+                        ${dropdownItemStyle}
+                        ${isActive ? 'custom-dropdown-link' : ''}
+                    `} 
                 >
-                    <Link className={`${dropdownItemStyle}`} to={'/create-article'}>
-                        Create article
-                    </Link>
-                </li>
+                    <ClipboardPlus />
+                    <span className='ms-2'>Create article</span>
+                </NavLink>
                 <li><hr className="dropdown-divider" /></li>
                 {
                     dropdownItems.map((dropdownItem, index) => {
@@ -123,14 +114,15 @@ const Dropdown = ({user, onLogoutClick}) => {
                                 to={dropdownItem.path}
                                 key={dropdownItem.id} 
                                 className={({isActive}) => `
-                                    px-3 py-2 custom-dropdown-item
+                                    d-flex align-items-center
+                                    px-2 py-1 custom-dropdown-item
                                     ${dropdownItemStyle}
-                                    ${index === dropdownItems.length - 1 ? 'mb-0' : 'mb-2'}
+                                    ${index === dropdownItems.length - 1 ? 'mb-0' : 'mb-1'}
                                     ${isActive ? 'custom-dropdown-link' : ''}
                                 `}
-                                onClick={() => activeDropdownItemHandler(dropdownItem.id)}
-                            >
-                                {dropdownItem.name}
+                            >  
+                                {dropdownItem.icon}
+                                <span className='ms-2'>{dropdownItem.name}</span>
                             </NavLink>
                         );
                     })
@@ -139,11 +131,12 @@ const Dropdown = ({user, onLogoutClick}) => {
                 <li className=''>
                     <button 
                         type='button'
-                        className='btn btn-outline-danger w-100'
+                        className='d-flex align-items-center btn btn-outline-danger px-2 text-start border-0 w-100'
                         onClick={onLogoutClick}
                         data-bs-dismiss='dropdown'
                     >
-                        Logout
+                        <ArrowOutRightSquareHalf />
+                        <span className='ms-2'>Sign out</span>
                     </button>
                 </li>
             </ul>
