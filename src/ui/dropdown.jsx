@@ -43,7 +43,7 @@ const Dropdown = ({user, onLogoutClick}) => {
             >
                 <li 
                     className={`
-                        px-3 py-2 rounded-top
+                        px-3 py-2 rounded
                         custom-dropdown-item custom-dropdown-link  
                     `}
                 >
@@ -77,10 +77,30 @@ const Dropdown = ({user, onLogoutClick}) => {
                                 )
                                 : ('')
                             }
-                            
                         </div>
                     </div>
                 </li>
+                <li><hr className="dropdown-divider" /></li>
+                {
+                    dropdownItems.map((dropdownItem, index) => {
+                        return (
+                            <NavLink 
+                                to={dropdownItem.path}
+                                key={dropdownItem.id} 
+                                className={({isActive}) => `
+                                    d-flex align-items-center
+                                    px-2 py-1 custom-dropdown-item
+                                    ${dropdownItemStyle}
+                                    ${index === dropdownItems.length - 1 ? 'mb-0' : 'mb-1'}
+                                    ${isActive ? 'custom-dropdown-link' : ''}
+                                `}
+                            >  
+                                {dropdownItem.icon}
+                                <span className='ms-2'>{dropdownItem.name}</span>
+                            </NavLink>
+                        );
+                    })
+                }
                 <li><hr className="dropdown-divider" /></li>
                 <NavLink 
                     to={'/user-edit'}
@@ -106,27 +126,6 @@ const Dropdown = ({user, onLogoutClick}) => {
                     <ClipboardPlus />
                     <span className='ms-2'>Create article</span>
                 </NavLink>
-                <li><hr className="dropdown-divider" /></li>
-                {
-                    dropdownItems.map((dropdownItem, index) => {
-                        return (
-                            <NavLink 
-                                to={dropdownItem.path}
-                                key={dropdownItem.id} 
-                                className={({isActive}) => `
-                                    d-flex align-items-center
-                                    px-2 py-1 custom-dropdown-item
-                                    ${dropdownItemStyle}
-                                    ${index === dropdownItems.length - 1 ? 'mb-0' : 'mb-1'}
-                                    ${isActive ? 'custom-dropdown-link' : ''}
-                                `}
-                            >  
-                                {dropdownItem.icon}
-                                <span className='ms-2'>{dropdownItem.name}</span>
-                            </NavLink>
-                        );
-                    })
-                }
                 <li><hr className="dropdown-divider mb-3" /></li>
                 <li className=''>
                     <button 
