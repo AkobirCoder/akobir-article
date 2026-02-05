@@ -87,4 +87,27 @@ export const sidebarItems = [
         id: 15,
         title: 'item15',
     },
-]
+];
+
+export const userShortInfoItems = [
+    {
+        name: 'Field',
+        icon: 'Field',
+        content: 'field',
+    },
+    {
+        name: 'Organization',
+        icon: 'Organization',
+        content: 'organization',
+    },
+    {
+        name: 'Study',
+        icon: 'Study',
+        content: 'study',
+    },
+    {
+        name: 'Location',
+        icon: 'Location',
+        content: 'location',
+    },
+];
