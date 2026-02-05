@@ -1,3 +1,4 @@
+import { ArrowOutRightSquareHalf } from '@boxicons/react';
 import React from 'react';
 import {createPortal} from 'react-dom';
 
@@ -29,10 +30,11 @@ const Modal = ({btnName, onClose, logoutHandler}) => {
                             </button>
                             <button
                                 type="button"
-                                className="btn btn-outline-danger"
+                                className="btn btn-outline-danger px-3"
                                 onClick={logoutHandler}
                             >
-                                {btnName}
+                                <ArrowOutRightSquareHalf />
+                                <span className='ms-2'>{btnName}</span>
                             </button>
                         </div>
                     </div>
