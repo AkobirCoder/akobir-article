@@ -1,10 +1,21 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { Loader } from '../ui';
+import { Link, useNavigate } from 'react-router-dom';
+import { 
+    Buildings, 
+    Education, 
+    Github, 
+    Instagram, 
+    Linkedin, 
+    Location, 
+    Telegram, 
+    WorkflowAlt 
+} from '@boxicons/react';
+import { Loader, userFormInputSocialsProps } from '../ui';
 import { userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
 import { getItem } from '../helpers/persistance-storage';
+import { userShortInfoItems } from '../constants';
 
 const User = () => {
     const dispatch = useDispatch();
@@ -39,6 +50,17 @@ const User = () => {
 
     const navigateHandler = () => {
         navigate('/user-edit');
+    }
+
+    const iconsMap = {
+        Field: WorkflowAlt,
+        Organization: Buildings,
+        Study: Education,
+        Location: Location,
+        Telegram: Telegram,
+        Instagram: Instagram,
+        Linkedin: Linkedin,
+        Github: Github,
     }
 
     return (
@@ -109,18 +131,56 @@ const User = () => {
                                                         <p style={{width: 20, height: 20}} className='d-flex align-items-center justify-content-center fs-4 mx-1 my-0'>.</p>
                                                         <p className='fs-4 m-0'>{profileExtra.pronoun}</p>
                                                     </div>
-                                                    <p className='my-3'>{profileExtra.description}</p>
+                                                    <p className='my-2'>{profileExtra.description}</p>
                                                     <button type='button' className='btn btn-secondary w-100' onClick={navigateHandler}>
                                                         Edit profile
                                                     </button>
-                                                    <ul className='list-group list-group-flush'>
-                                                        <li className='list-group-item'>Email: {user.email}</li>
-                                                        <li className='list-group-item'>Field: {profileExtra.field}</li>
-                                                        <li className='list-group-item'>Bio: {user.bio}</li>
-                                                        <li className='list-group-item'>Age: {profileExtra.birthDate}</li>
-                                                        <li className='list-group-item'>Phone number: {profileExtra.phone}</li>
-                                                        <li className='list-group-item'>Social link:</li>
-                                                    </ul>
+                                                    <div className='mt-2'>
+                                                        <ul className='list-unstyled'>
+                                                            {
+                                                                userShortInfoItems.map((userShortInfoItem, index) => {
+                                                                    const Icon = iconsMap[userShortInfoItem.icon];
+
+                                                                    return (
+                                                                        <li 
+                                                                            key={userShortInfoItem.name}
+                                                                            style={{fontSize: 15}}
+                                                                            className={`
+                                                                                d-flex align-items-start
+                                                                                ${index === userShortInfoItems.length ? 'mb-0' : 'mb-2'}
+                                                                            `}
+                                                                        >
+                                                                            <Icon />
+                                                                            <span className='ms-2'>{profileExtra?.[userShortInfoItem.content]}</span>
+                                                                        </li>
+                                                                    );
+                                                                })
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                    <hr className='m-0' />
+                                                    <div className='mt-2'>
+                                                        <ul className='list-unstyled'>
+                                                            {
+                                                                userFormInputSocialsProps.map((socialLink, index) => {
+                                                                    const Icon = iconsMap[socialLink.icon];
+
+                                                                    return (
+                                                                        <li className={`d-flex align-items-center mb-2`}>
+                                                                            <Icon />
+                                                                            <Link 
+                                                                                to={profileExtra.socials?.[socialLink.name]} 
+                                                                                style={{fontSize: 14.5}}
+                                                                                className='ms-2 text-decoration-none text-muted'
+                                                                            >
+                                                                                {profileExtra.socials?.[socialLink.name]}
+                                                                            </Link>
+                                                                        </li>
+                                                                    );
+                                                                })
+                                                            }
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
