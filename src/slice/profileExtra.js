@@ -12,6 +12,8 @@ const initialState = {
         description: '',
         bio: '',
         study: '',
+        organization: '',
+        location: '',
         socials: {
             telegram: '',
             instagram: '',
