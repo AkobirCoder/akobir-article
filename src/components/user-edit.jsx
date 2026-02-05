@@ -31,6 +31,8 @@ const UserEdit = () => {
         description: '',
         bio: '',
         study: '',
+        organization: '',
+        location: '',
         socials: {
             telegram: '',
             instagram: '',
@@ -113,13 +115,31 @@ const UserEdit = () => {
 
         dispatch(putProfileExtraStart());
 
-        const {fullname, pronoun, birthDate, phone, field, description, study, 
+        const {
+            fullname, 
+            pronoun, 
+            birthDate, 
+            phone, 
+            field, 
+            description, 
+            study, 
+            organization, 
+            location,
             socials: {
                 telegram, instagram, linkedin, github,
             },
         } = formData;
 
-        const profileExtraInfo = {fullname, pronoun, birthDate, phone, field, description, study, 
+        const profileExtraInfo = {
+            fullname, 
+            pronoun, 
+            birthDate, 
+            phone, 
+            field, 
+            description, 
+            study, 
+            organization, 
+            location,
             socials: {
                 telegram, instagram, linkedin, github,
             },
