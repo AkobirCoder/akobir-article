@@ -88,24 +88,28 @@ export const userFormInputSocialsProps = [
         name: 'telegram',
         label: 'Telegram',
         placeholder: 'Telegram',
+        icon: 'Telegram',
     },
     {
         id: 'instagram',
         name: 'instagram',
         label: 'Instagram',
         placeholder: 'Instagram',
+        icon: 'Instagram',
     },
     {
         id: 'linkedin',
         name: 'linkedin',
         label: 'Linkedin',
         placeholder: 'Linkedin',
+        icon: 'Linkedin',
     },
     {
         id: 'github',
         name: 'github',
         label: 'Github',
         placeholder: 'Github',
+        icon: 'Github',
     },
 ];
 
