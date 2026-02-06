@@ -1,20 +1,22 @@
 import React from 'react';
 import {createPortal} from 'react-dom';
 
-const Modal = ({title, description, btnName, btnIcon, onClose, logoutHandler, signInHandler}) => {
+const Modal = ({title, description, btnName, btnIcon, onClose, onConfirm}) => {
     const modalClickHandler = () => {
         onClose();
 
-        if (btnName === 'Logout') {
-            logoutHandler();
-        } else {
-            signInHandler();
-        }
+        onConfirm();
     }
     
     return createPortal(
         <>
-            <div className="modal-backdrop fade show"></div>
+            <div 
+                style={{
+                    backdropFilter: 'blur(3px)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.25)'
+                }}
+                className="modal-backdrop fade show"
+            ></div>
             <div className="modal fade show d-block" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
