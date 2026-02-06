@@ -158,7 +158,9 @@ const User = () => {
                                                                                     ${index === userShortInfoItems.length - 1 ? 'mb-0' : 'mb-2'}
                                                                                 `}
                                                                             >
-                                                                                <Icon />
+                                                                                <div className='me-1'>
+                                                                                    <Icon />
+                                                                                </div>
                                                                                 <span className='ms-2'>{profileExtra?.[userShortInfoItem.content]}</span>
                                                                             </li>
                                                                         );
@@ -175,7 +177,9 @@ const User = () => {
 
                                                                         return (
                                                                             <li key={socialLink.id} className={`d-flex align-items-center mb-2`}>
-                                                                                <Icon />
+                                                                                <div className='me-1'>
+                                                                                    <Icon />
+                                                                                </div>
                                                                                 <Link 
                                                                                     to={profileExtra.socials?.[socialLink.name]} 
                                                                                     style={{fontSize: 14.5}}
@@ -194,7 +198,7 @@ const User = () => {
                                             </div>
                                         </div>
                                         <div className='col-12 col-md-8 p-2 p-md-3'>
-                                            <div className='d-flex flex-column p-3 bg-light rounded border'>
+                                            <div className='d-flex flex-column p-3 mb-3 bg-light rounded border'>
                                                 {
                                                     userprivateInfoItems.map((privateInfo) => {
                                                         const Icon = iconsMap[privateInfo.icon];
@@ -217,6 +221,18 @@ const User = () => {
                                                         <Captions />
                                                     </div>
                                                     <p className='ms-1 mb-0'>{user?.bio}</p>
+                                                </div>
+                                            </div>
+                                            <div className='row g-3'>
+                                                <div className='col-12 col-md-6'>
+                                                    <div className='bg-light border rounded p-3'>
+                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus earum dignissimos inventore tenetur a libero quo illo voluptate officia assumenda incidunt dolores repellendus blanditiis explicabo ut numquam voluptatibus, corrupti odit?
+                                                    </div>
+                                                </div>
+                                                <div className='col-12 col-md-6'>
+                                                    <div className='bg-light border rounded p-3'>
+                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus earum dignissimos inventore tenetur a libero quo illo voluptate officia assumenda incidunt dolores repellendus blanditiis explicabo ut numquam voluptatibus, corrupti odit?
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
