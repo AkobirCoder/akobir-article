@@ -8,6 +8,7 @@ import { removeItem } from '../helpers/persistance-storage';
 import { logoutUser } from '../slice/auth';
 import {Dropdown} from '../ui/';
 import UserLogout from './user-logout';
+import {CreateArticleModal} from './index';
 
 const Navbar = () => {
     const [toggleNavigation, setToggleNavigation] = useState(false);
@@ -15,6 +16,8 @@ const Navbar = () => {
     const [activeNav, setActiveNav] = useState('Home');
 
     const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+    const [showCreateArticleModal, setShowCreateArticleModal] = useState(false);
 
     const toggleNavigationHandler = () => {
         setToggleNavigation((prevState) => {
@@ -38,6 +41,12 @@ const Navbar = () => {
         });
     }
 
+    const showCreateArticleModalHandler = () => {
+        setShowCreateArticleModal((prevState) => {
+            return !prevState;
+        });
+    }
+
     const dispatch = useDispatch();
 
     const {loggedIn, user} = useSelector((state) => state.auth);
@@ -51,6 +60,10 @@ const Navbar = () => {
 
         removeItem('token');
 
+        navigate('/login');
+    }
+
+    const signInHandler = () => {
         navigate('/login');
     }
     
@@ -104,12 +117,18 @@ const Navbar = () => {
                                     } else {
                                         return (
                                             <>
-                                                <Link 
-                                                    to={'/create-article'}
-                                                    className='me-3 ps-1 pe-2 text-dark text-decoration-none' 
+                                                <button 
+                                                    type='button'
+                                                    className='me-3 ps-1 pe-2 text-dark text-decoration-none border-0 bg-transparent' 
+                                                    onClick={showCreateArticleModalHandler}
                                                 >
                                                     Create
-                                                </Link>
+                                                </button>
+                                                <CreateArticleModal
+                                                    open={showCreateArticleModal} 
+                                                    onClose={showCreateArticleModalHandler} 
+                                                    signInHandler={signInHandler}
+                                                />
                                                 <Link 
                                                     to={'/login'} 
                                                     className='me-3 px-2 text-dark text-decoration-none' 
