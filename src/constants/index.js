@@ -111,3 +111,16 @@ export const userShortInfoItems = [
         content: 'location',
     },
 ];
+
+export const userprivateInfoItems = [
+    {
+        id: 1,
+        content: 'phone',
+        icon: 'Phone',
+    },
+    {
+        id: 2,
+        content: 'birthDate',
+        icon: 'BirthdayCake',
+    },
+];
