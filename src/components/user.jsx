@@ -130,70 +130,73 @@ const User = () => {
                                                         }
                                                     )()}
                                                 </div>
-                                                <div className='pt-2 pt-md-3 px-md-3'>
-                                                    <h4 className='fs-3 fw-semibold m-0'>{profileExtra.fullname}</h4>
-                                                    <div className='d-flex text-muted fw-normal'>
-                                                        <p className='fs-4 m-0'>{user.username}</p>
-                                                        <p style={{width: 20, height: 20}} className='d-flex align-items-center justify-content-center fs-4 mx-1 my-0'>.</p>
-                                                        <p className='fs-4 m-0'>{profileExtra.pronoun}</p>
-                                                    </div>
-                                                    <p className='my-2'>{profileExtra.description}</p>
-                                                    <button type='button' className='btn btn-secondary w-100' onClick={navigateHandler}>
-                                                        Edit profile
-                                                    </button>
-                                                    <div className='mt-2'>
-                                                        <ul className='list-unstyled'>
-                                                            {
-                                                                userShortInfoItems.map((userShortInfoItem, index) => {
-                                                                    const Icon = iconsMap[userShortInfoItem.icon];
+                                                {(profileExtra && user) && (
+                                                    <div className='pt-2 pt-md-3 px-md-3'>
+                                                        <h4 className='fs-3 fw-semibold m-0'>{profileExtra.fullname}</h4>
+                                                        <div className='d-flex text-muted fw-normal'>
+                                                            <p className='fs-4 m-0'>{user.username}</p>
+                                                            <p style={{width: 20, height: 20}} className='d-flex align-items-center justify-content-center fs-4 mx-1 my-0'>.</p>
+                                                            <p className='fs-4 m-0'>{profileExtra.pronoun}</p>
+                                                        </div>
+                                                        <p className='my-2'>{profileExtra.description}</p>
+                                                        <button type='button' className='btn btn-secondary w-100 my-3' onClick={navigateHandler}>
+                                                            Edit profile
+                                                        </button>
+                                                        <hr className='m-0' />
+                                                        <div className='mt-2'>
+                                                            <ul className='list-unstyled'>
+                                                                {
+                                                                    userShortInfoItems.map((userShortInfoItem, index) => {
+                                                                        const Icon = iconsMap[userShortInfoItem.icon];
 
-                                                                    return (
-                                                                        <li 
-                                                                            key={userShortInfoItem.name}
-                                                                            style={{fontSize: 15}}
-                                                                            className={`
-                                                                                d-flex align-items-start
-                                                                                ${index === userShortInfoItems.length ? 'mb-0' : 'mb-2'}
-                                                                            `}
-                                                                        >
-                                                                            <Icon />
-                                                                            <span className='ms-2'>{profileExtra?.[userShortInfoItem.content]}</span>
-                                                                        </li>
-                                                                    );
-                                                                })
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                    <hr className='m-0' />
-                                                    <div className='mt-2'>
-                                                        <ul className='list-unstyled'>
-                                                            {
-                                                                userFormInputSocialsProps.map((socialLink) => {
-                                                                    const Icon = iconsMap[socialLink.icon];
-
-                                                                    return (
-                                                                        <li key={socialLink.id} className={`d-flex align-items-center mb-2`}>
-                                                                            <Icon />
-                                                                            <Link 
-                                                                                to={profileExtra.socials?.[socialLink.name]} 
-                                                                                style={{fontSize: 14.5}}
-                                                                                className='ms-2 text-decoration-none text-muted'
+                                                                        return (
+                                                                            <li 
+                                                                                key={userShortInfoItem.name}
+                                                                                style={{fontSize: 15}}
+                                                                                className={`
+                                                                                    d-flex align-items-start
+                                                                                    ${index === userShortInfoItems.length - 1 ? 'mb-0' : 'mb-2'}
+                                                                                `}
                                                                             >
-                                                                                {profileExtra.socials?.[socialLink.name]}
-                                                                            </Link>
-                                                                        </li>
-                                                                    );
-                                                                })
-                                                            }
-                                                        </ul>
+                                                                                <Icon />
+                                                                                <span className='ms-2'>{profileExtra?.[userShortInfoItem.content]}</span>
+                                                                            </li>
+                                                                        );
+                                                                    })
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                        <hr className='m-0' />
+                                                        <div className='mt-2'>
+                                                            <ul className='list-unstyled'>
+                                                                {
+                                                                    userFormInputSocialsProps.map((socialLink) => {
+                                                                        const Icon = iconsMap[socialLink.icon];
+
+                                                                        return (
+                                                                            <li key={socialLink.id} className={`d-flex align-items-center mb-2`}>
+                                                                                <Icon />
+                                                                                <Link 
+                                                                                    to={profileExtra.socials?.[socialLink.name]} 
+                                                                                    style={{fontSize: 14.5}}
+                                                                                    className='ms-2 text-decoration-none text-muted'
+                                                                                >
+                                                                                    {profileExtra.socials?.[socialLink.name]}
+                                                                                </Link>
+                                                                            </li>
+                                                                        );
+                                                                    })
+                                                                }
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                )}
                                             </div>
                                         </div>
                                         <div className='col-12 col-md-8 p-2 p-md-3'>
                                             <div className='d-flex flex-column p-3 bg-light rounded border'>
                                                 {
-                                                    userprivateInfoItems.map((privateInfo, index) => {
+                                                    userprivateInfoItems.map((privateInfo) => {
                                                         const Icon = iconsMap[privateInfo.icon];
 
                                                         return (
@@ -201,15 +204,19 @@ const User = () => {
                                                                 key={privateInfo.id}
                                                                 className='d-flex align-items-start text-muted'
                                                             >
-                                                                <Icon />
-                                                                <p className='ms-3'>{profileExtra?.[privateInfo.content]}</p>
+                                                                <div className='me-2'>
+                                                                    <Icon />
+                                                                </div>
+                                                                <p className='ms-1'>{profileExtra?.[privateInfo.content]}</p>
                                                             </div>
                                                         );
                                                     })
                                                 }
-                                                <div className='text-muted'>
-                                                    <Captions />
-                                                    <p className='ms-3'>{user.bio}</p>
+                                                <div className='d-flex align-items-start text-muted'>
+                                                    <div className='me-2'>
+                                                        <Captions />
+                                                    </div>
+                                                    <p className='ms-1 mb-0'>{user?.bio}</p>
                                                 </div>
                                             </div>
                                         </div>
