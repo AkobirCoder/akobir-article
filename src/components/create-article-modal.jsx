@@ -9,6 +9,10 @@ const CreateArticleModal = ({open, onClose, signInHandler}) => {
 
     const btnIcon = <ArrowInLeftSquareHalf />;
 
+    const handleSignIn = () => {
+        signInHandler();
+    }
+
     return (
         <Modal 
             title="Create Article"
@@ -16,7 +20,7 @@ const CreateArticleModal = ({open, onClose, signInHandler}) => {
             btnName={btnName}
             btnIcon={btnIcon}
             onClose={onClose}
-            signInHandler={signInHandler}
+            onConfirm={handleSignIn}
         />
     );
 }
