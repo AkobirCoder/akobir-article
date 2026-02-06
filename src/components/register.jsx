@@ -110,9 +110,9 @@ const Register = () => {
                     </button>
                     <p className='mt-3 mb-3 text-muted'>
                         If you have an account, You must login by one click
-                        <div className='ms-2'> 
+                        <span className='ms-2'> 
                             <Link to={'/login'}>Sign in</Link>
-                        </div>
+                        </span>
                     </p>
                     <p className='mt-3 mt-md-5 mb-3 text-muted'>© 2025-2026</p>
                 </form>
