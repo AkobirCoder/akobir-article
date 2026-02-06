@@ -5,9 +5,13 @@ import { ArrowOutRightSquareHalf } from '@boxicons/react';
 const UserLogout = ({open, onClose, logoutHandler}) => {
     if (!open) return null;
 
-    const btnName = 'Logout';
+    const btnName = 'Sign out';
 
     const btnIcon = <ArrowOutRightSquareHalf />
+
+    const handleLogout = () => {
+        logoutHandler();
+    }
 
     return (
         <Modal 
@@ -16,7 +20,7 @@ const UserLogout = ({open, onClose, logoutHandler}) => {
             btnName={btnName} 
             btnIcon={btnIcon}
             onClose={onClose} 
-            logoutHandler={logoutHandler} 
+            onConfirm={handleLogout}
         />
     );
 }
