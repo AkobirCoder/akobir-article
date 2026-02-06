@@ -1,8 +1,17 @@
-import { ArrowOutRightSquareHalf } from '@boxicons/react';
 import React from 'react';
 import {createPortal} from 'react-dom';
 
-const Modal = ({btnName, onClose, logoutHandler}) => {
+const Modal = ({title, description, btnName, btnIcon, onClose, logoutHandler, signInHandler}) => {
+    const modalClickHandler = () => {
+        onClose();
+
+        if (btnName === 'Logout') {
+            logoutHandler();
+        } else {
+            signInHandler();
+        }
+    }
+    
     return createPortal(
         <>
             <div className="modal-backdrop fade show"></div>
@@ -10,7 +19,7 @@ const Modal = ({btnName, onClose, logoutHandler}) => {
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Confirm logout</h5>
+                            <h5 className="modal-title">{title}</h5>
                             <button
                                 type="button"
                                 className="btn-close"
@@ -18,7 +27,7 @@ const Modal = ({btnName, onClose, logoutHandler}) => {
                             />
                         </div>
                         <div className="modal-body">
-                            Are you sure you want to logout?
+                            {description}
                         </div>
                         <div className="modal-footer">
                             <button
@@ -31,9 +40,9 @@ const Modal = ({btnName, onClose, logoutHandler}) => {
                             <button
                                 type="button"
                                 className="btn btn-outline-danger px-3"
-                                onClick={logoutHandler}
+                                onClick={modalClickHandler}
                             >
-                                <ArrowOutRightSquareHalf />
+                                {btnIcon}
                                 <span className='ms-2'>{btnName}</span>
                             </button>
                         </div>
