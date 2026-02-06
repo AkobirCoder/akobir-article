@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
+    BirthdayCake,
     Buildings, 
+    Captions, 
     Education, 
     Github, 
     Instagram, 
     Linkedin, 
     Location, 
+    Phone, 
     Telegram, 
     WorkflowAlt 
 } from '@boxicons/react';
@@ -15,7 +18,7 @@ import { Loader, userFormInputSocialsProps } from '../ui';
 import { userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
 import { getItem } from '../helpers/persistance-storage';
-import { userShortInfoItems } from '../constants';
+import { userprivateInfoItems, userShortInfoItems } from '../constants';
 
 const User = () => {
     const dispatch = useDispatch();
@@ -61,6 +64,9 @@ const User = () => {
         Instagram: Instagram,
         Linkedin: Linkedin,
         Github: Github,
+        Phone: Phone,
+        BirthdayCake: BirthdayCake,
+        Caption: Captions,
     }
 
     return (
@@ -162,11 +168,11 @@ const User = () => {
                                                     <div className='mt-2'>
                                                         <ul className='list-unstyled'>
                                                             {
-                                                                userFormInputSocialsProps.map((socialLink, index) => {
+                                                                userFormInputSocialsProps.map((socialLink) => {
                                                                     const Icon = iconsMap[socialLink.icon];
 
                                                                     return (
-                                                                        <li className={`d-flex align-items-center mb-2`}>
+                                                                        <li key={socialLink.id} className={`d-flex align-items-center mb-2`}>
                                                                             <Icon />
                                                                             <Link 
                                                                                 to={profileExtra.socials?.[socialLink.name]} 
@@ -185,8 +191,26 @@ const User = () => {
                                             </div>
                                         </div>
                                         <div className='col-12 col-md-8 p-2 p-md-3'>
-                                            <div className='d-flex flex-column'>
-                                                {/* Boshqa ma'lumot */}
+                                            <div className='d-flex flex-column p-3 bg-light rounded border'>
+                                                {
+                                                    userprivateInfoItems.map((privateInfo, index) => {
+                                                        const Icon = iconsMap[privateInfo.icon];
+
+                                                        return (
+                                                            <div 
+                                                                key={privateInfo.id}
+                                                                className='d-flex align-items-start text-muted'
+                                                            >
+                                                                <Icon />
+                                                                <p className='ms-3'>{profileExtra?.[privateInfo.content]}</p>
+                                                            </div>
+                                                        );
+                                                    })
+                                                }
+                                                <div className='text-muted'>
+                                                    <Captions />
+                                                    <p className='ms-3'>{user.bio}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
