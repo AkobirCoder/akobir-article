@@ -12,7 +12,7 @@ const Main = () => {
                     <p className='lead'>
                         Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.
                     </p>
-                    <div className='d-flex gap-5 mt-md-5'>
+                    <div className='d-flex gap-4 mt-md-5'>
                         <div className='p-0 mb-2 mb-md-0'>
                             <button className='btn btn-primary px-md-5 py-md-3 fs-4 w-100' type='button'>
                                 Get start
@@ -30,7 +30,7 @@ const Main = () => {
                 </div>
             </div>
             <div className='d-none d-md-block col-12 col-md-4 offset-md-1 shadow-lg overflow-hidden p-0 mt-3'>
-                <img style={{maxHeight: '550px'}} className='rounded' src={HomeImage} alt="Home" />
+                <img style={{maxHeight: '70vh'}} className='rounded' src={HomeImage} alt="Home" />
             </div>
         </div>
     );
