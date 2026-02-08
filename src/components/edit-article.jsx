@@ -11,9 +11,9 @@ import {
 } from '../slice/article';
 import ArticleService from '../service/article';
 import { ArticleForm } from '../ui';
+import { getItem } from '../helpers/persistance-storage';
 
 const EditArticle = () => {
-
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -55,8 +55,15 @@ const EditArticle = () => {
             }
         }
 
+        const token = getItem('token');
+        
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+
         getArticleDetail();
-    }, [slug, dispatch]);
+    }, [slug, dispatch, navigate]);
 
     const formSubmit = async (event) => {
         event.preventDefault();
