@@ -3,7 +3,7 @@ import { HomeImage } from './assets';
 
 const Main = () => {
     return (
-        <div className='row d-flex align-items-start m-md-3 p-md-3 border rounded'>
+        <div className='row d-flex align-items-start m-md-3 py-md-3 ps-md-3 border rounded'>
             <div className='col-12 col-md-7 p-3'>
                 <div className='p-3 p-md-4 shadow-lg rounded'>
                     <h1 className='display-4 fw-normal lh-1 text-body-secondary'>
@@ -12,7 +12,7 @@ const Main = () => {
                     <p className='lead'>
                         Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.
                     </p>
-                    <div className='d-flex gap-4 mt-md-5'>
+                    <div className='d-flex flex-column flex-md-row gap-md-4 mt-md-5'>
                         <div className='p-0 mb-2 mb-md-0'>
                             <button className='btn btn-primary px-md-5 py-md-3 fs-4 w-100' type='button'>
                                 Get start
