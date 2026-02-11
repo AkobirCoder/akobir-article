@@ -12,13 +12,13 @@ import {
     EditArticle, 
     Login, 
     Main, 
-    MyArticles, 
-    MyStars, 
     Navbar, 
     Register, 
     Sidebar,
     User,
-    UserEdit, 
+    UserArticles,
+    UserEdit,
+    UserStars, 
 } from './components';
 import AuthService from './service/auth';
 import { signUserFailure, signUserSuccess } from './slice/auth';
@@ -144,8 +144,8 @@ const App = () => {
                         <Route path='/register' element={<Register />} />
                         <Route path='/user' element={<User />} />
                         <Route path='/user-edit' element={<UserEdit />} />
-                        <Route path='/my-articles' element={<MyArticles />} />
-                        <Route path='/my-stars' element={<MyStars />} />
+                        <Route path='/my-articles' element={<UserArticles />} />
+                        <Route path='/my-stars' element={<UserStars />} />
                         <Route path='/appearance' element={<Appearance />} />
                     </Routes>
                 </div>
