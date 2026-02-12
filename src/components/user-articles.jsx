@@ -3,7 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getItem } from '../helpers/persistance-storage';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../ui';
-import { deleteArticleFailure, deleteArticleStart, deleteArticleSuccess, getArticleFailure, getArticlesStart, getArticleSuccess } from '../slice/article';
+import { 
+    deleteArticleFailure, 
+    deleteArticleStart, 
+    deleteArticleSuccess, 
+    getArticleFailure, 
+    getArticlesStart, 
+    getArticleSuccess 
+} from '../slice/article';
 import ArticleService from '../service/article';
 import ArticleCard from './article-card';
 
@@ -31,7 +38,7 @@ const UserArticles = () => {
             const response = await ArticleService.getArticles();
 
             const userArticles = response.articles.filter((article) => {
-                return article.author.username === user.username
+                return article.author.username === user.username;
             });
 
             dispatch(getArticleSuccess(userArticles));
