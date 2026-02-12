@@ -129,7 +129,7 @@ export const dropdownItems = [
     {
         id: '3',
         path: '/my-stars',
-        name: 'Starts',
+        name: 'Stars',
         icon: <Star />,
     },
     {
