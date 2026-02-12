@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { 
     getArticleDetailFailure, 
@@ -32,6 +32,8 @@ const EditArticle = () => {
 
     const dispatch = useDispatch();
 
+    const {user} = useSelector((state) => state.auth);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -41,29 +43,36 @@ const EditArticle = () => {
             try {
                 const response = await ArticleService.getArticleDetail(slug); // bunday qilishdan asosiy maqsad articleDetaildagi ma'lumotlarni olib formaga qiymat sifatida berish va bu ma'lumotlar har bir article slugi orqali bo'ladi.
 
-                setFormData(() => {
-                    return {
-                        title: response.article.title,
-                        description: response.article.description,
-                        body: response.article.body,
-                    }
-                });
+                if (response.article.author.username === user.username) {
+                    setFormData(() => {
+                        return {
+                            title: response.article.title,
+                            description: response.article.description,
+                            body: response.article.body,
+                        }
+                    });
 
-                dispatch(getArticleDetailSuccess(response.article))
+                    dispatch(getArticleDetailSuccess(response.article));
+                } else {
+                    navigate('/');
+                }
             } catch (error) {
                 dispatch(getArticleDetailFailure());
             }
         }
 
+        if (!user?.username) return;
+
         const token = getItem('token');
         
         if (!token) {
             navigate('/login');
+            
             return;
         }
 
         getArticleDetail();
-    }, [slug, dispatch, navigate]);
+    }, [slug, dispatch, user, navigate]);
 
     const formSubmit = async (event) => {
         event.preventDefault();
