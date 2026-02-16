@@ -10,7 +10,11 @@ const SidebarMenu = () => {
                 {
                     sidebarMenuItems.map((item, index) => {
                         return (
-                            <SidebarMenuItem key={item.id} title={item.title} index={index} />
+                            <SidebarMenuItem  
+                                key={item.title} 
+                                title={item.title} 
+                                index={index} 
+                            />
                         );
                     })
                 }
