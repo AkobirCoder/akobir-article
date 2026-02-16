@@ -18,7 +18,7 @@ import { Loader, userFormInputSocialsProps } from '../ui';
 import { userDetailFailure, userDetailStart, userDetailSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
 import { getItem } from '../helpers/persistance-storage';
-import { userprivateInfoItems, userShortInfoItems } from '../constants';
+import { userPrivateInfoItems, userShortInfoItems } from '../constants';
 
 const User = () => {
     const dispatch = useDispatch();
@@ -85,7 +85,7 @@ const User = () => {
                                 <div className='col-12'>
                                     <div className='row g-0 bg-light-subtle rounded border border-light-subtle'>
                                         <div 
-                                            className='col-12 bg-primary rounded-top border-bottom-0 p-4 p-md-5' 
+                                            className='col-12 d-flex d-md-block justify-content-center bg-primary rounded-top border-bottom-0 p-4 p-md-5' 
                                             style={{backgroundImage: 'var(--bs-gradient)'}}
                                         >
                                             <h1 className='text-white fw-normal fs-4 fs-md-1'>
@@ -200,7 +200,7 @@ const User = () => {
                                         <div className='col-12 col-md-8 p-2 p-md-3'>
                                             <div className='d-flex flex-column p-3 mb-3 bg-light rounded border'>
                                                 {
-                                                    userprivateInfoItems.map((privateInfo) => {
+                                                    userPrivateInfoItems.map((privateInfo) => {
                                                         const Icon = iconsMap[privateInfo.icon];
 
                                                         return (
