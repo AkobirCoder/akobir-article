@@ -1,6 +1,7 @@
 export {default as Main} from './main';
 export {default as Sidebar} from './sidebar';
-export {default as SidebarItem} from './sidebar-item';
+export {default as SidebarMenu} from './sidebar-menu';
+export {default as SidebarMenuItem} from './sidebar-menu-item';
 export {default as Navbar} from './navbar';
 export {default as NavbarLink} from './navbar-link';
 export {default as Articles} from './articles';
