@@ -73,21 +73,20 @@ const Login = () => {
                     {
                         loginInputProps.map((inputProp) => {
                             return (
-                                <div key={inputProp.id} className='mb-2'>
-                                    <Input
-                                        key={inputProp.id}
-                                        {...inputProp}
-                                        value={formData[inputProp.name]}
-                                        changeHandlerInput={changeHandlerInput}
-                                    />
-                                </div>
+                                <Input
+                                    mark={'sign-up-form-input'}
+                                    key={inputProp.id}
+                                    {...inputProp}
+                                    value={formData[inputProp.name]}
+                                    changeHandlerInput={changeHandlerInput}
+                                />
                             );
                         })
                     }
 
                     <button 
                         type='submit' 
-                        className='w-100 btn btn-lg btn-primary' 
+                        className='w-100 btn btn-lg btn-primary mt-2 mt-md-3' 
                         // disabled={!isFormValid || isLoading}
                         disabled={isLoading}
                     >
