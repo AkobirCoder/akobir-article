@@ -37,13 +37,13 @@ const UserForm = ({formData, changeHandlerInput, formSubmit}) => {
                 {
                     userFormInputProps.map((inputProp) => {
                         return (
-                            <div className='col-12 col-md-6 mb-2 mb-md-0' key={inputProp.id}>
-                                <Input
-                                    {...inputProp}
-                                    value={formData[inputProp.name]}
-                                    changeHandlerInput={changeHandlerInput}
-                                />
-                            </div>
+                            <Input
+                                mark={'user-form-input'}
+                                key={inputProp.id}
+                                {...inputProp}
+                                value={formData[inputProp.name]}
+                                changeHandlerInput={changeHandlerInput}
+                            />
                         );
                     })
                 }
