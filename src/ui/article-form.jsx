@@ -8,7 +8,7 @@ const ArticleForm = ({formData, changeHandlerInput, formSubmit, btnName}) => {
     return (
         <form onSubmit={formSubmit}>
             <Input 
-                margin={'mb-2'}
+                mark={'article-form-input'}
                 label={'Title'} 
                 placeholder={'Title'} 
                 name={'title'} 
