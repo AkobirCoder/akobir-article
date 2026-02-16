@@ -112,7 +112,7 @@ export const userShortInfoItems = [
     },
 ];
 
-export const userprivateInfoItems = [
+export const userPrivateInfoItems = [
     {
         id: 1,
         content: 'phone',
