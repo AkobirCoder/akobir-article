@@ -26,7 +26,7 @@ export const navigationLinks = [
     },
 ];
 
-export const sidebarItems = [
+export const sidebarMenuItems = [
     {
         id: 1,
         title: 'item1',
