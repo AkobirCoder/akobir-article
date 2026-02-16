@@ -10,13 +10,7 @@ const Modal = ({title, description, btnName, btnIcon, onClose, onConfirm}) => {
     
     return createPortal(
         <>
-            <div 
-                style={{
-                    backdropFilter: 'blur(3px)',
-                    backgroundColor: 'rgba(0, 0, 0, 0.25)'
-                }}
-                className="modal-backdrop fade show"
-            ></div>
+            <div className="modal-backdrop fade show"></div>
             <div className="modal fade show d-block" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
