@@ -26,7 +26,7 @@ const UserEdit = () => {
         fullname: '',
         pronoun: '',
         birthDate: '',
-        phone: '',
+        phone: '+998',
         field: '',
         description: '',
         bio: '',
