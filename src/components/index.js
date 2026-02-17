@@ -23,3 +23,4 @@ export {default as UserArticles} from './user/user-articles';
 export {default as UserStars} from './user/user-stars';
 export {default as Appearance} from './appearance';
 export {default as ValidationError} from './validation-error';
+export {default as Profile} from './profile/profile';
