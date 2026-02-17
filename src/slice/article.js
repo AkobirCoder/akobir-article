@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     isLoading: false,
@@ -88,4 +88,4 @@ export const {
     putArticleFailure,
 } = articleSlice.actions;
 
-export default articleSlice.reducer
+export default articleSlice.reducer;
