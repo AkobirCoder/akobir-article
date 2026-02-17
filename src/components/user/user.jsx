@@ -36,7 +36,7 @@ const User = () => {
             navigate('/login');
         }
 
-        const getUserProfile = async () => {
+        const getUserProfile = async () => { // mana shuni customhook qilish kerak
             dispatch(userDetailStart());
 
             try {
