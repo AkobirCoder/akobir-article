@@ -67,7 +67,7 @@ const Navbar = () => {
     
     return (
         <div className='container-fluid'>
-            <div className='row d-flex flex-md-row align-items-center py-3 py-md-2'>
+            <div className='row g-0 d-flex flex-md-row align-items-center py-3 py-md-2'>
                 <div className='d-flex col-6 col-md-4 justify-content-start'>
                     <Link className='px-2' to={'/'}>
                         <img
