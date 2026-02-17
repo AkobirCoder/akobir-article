@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input, Textarea} from './index';
+import { Input, Textarea } from './index';
 import { useSelector } from 'react-redux';
 
 const ArticleForm = ({formData, changeHandlerInput, formSubmit, btnName}) => {
