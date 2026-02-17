@@ -13,6 +13,7 @@ import {
     Login, 
     Main, 
     Navbar, 
+    Profile, 
     Register,
     Sidebar,
     User,
@@ -109,6 +110,7 @@ const App = () => {
                         <Route path='/my-articles' element={<UserArticles />} />
                         <Route path='/my-stars' element={<UserStars />} />
                         <Route path='/appearance' element={<Appearance />} />
+                        <Route path='/profiles/:username' element={<Profile />} />
                     </Routes>
                 </div>
             </div>
