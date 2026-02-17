@@ -29,8 +29,6 @@ import { clearProfileExtra, putProfileExtraSuccess } from './slice/profileExtra'
 const App = () => {
     const [toggleSidebar, setTogglesidebar] = useState(false);
 
-    const {user} = useSelector((state) => state.auth);
-
     const sidebarHandler = () => {
         setTogglesidebar((prevState) => {
             return !prevState;
@@ -38,6 +36,8 @@ const App = () => {
     }
 
     const dispatch = useDispatch();
+
+    const {user} = useSelector((state) => state.auth);
 
     const getUser = async () => {
         try {
