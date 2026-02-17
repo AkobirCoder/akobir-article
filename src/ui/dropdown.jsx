@@ -1,13 +1,28 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {ArrowOutRightSquareHalf, ClipboardPlus, Edit} from '@boxicons/react';
-import { dropdownItems } from '.';
 import { useSelector } from 'react-redux';
+import { 
+    ArrowOutRightSquareHalf, 
+    Article, 
+    Brush, 
+    ClipboardPlus, 
+    Edit, 
+    Star, 
+    User 
+} from '@boxicons/react';
+import { dropdownItems } from './index';
 
 const Dropdown = ({user, onLogoutClick}) => {
     const dropdownItemStyle = 'd-block text-muted text-decoration-none rounded';
 
     const {profileExtra} = useSelector((state) => state.profileExtra);
+
+    const iconsMap = {
+        User: User,
+        Article: Article,
+        Star: Star,
+        Brush: Brush,
+    }
 
     return (
         <div className="dropdown dropstart">
@@ -83,6 +98,8 @@ const Dropdown = ({user, onLogoutClick}) => {
                 <li><hr className="dropdown-divider" /></li>
                 {
                     dropdownItems.map((dropdownItem, index) => {
+                        const Icon = iconsMap[dropdownItem.icon];
+
                         return (
                             <NavLink 
                                 to={dropdownItem.path}
@@ -95,7 +112,7 @@ const Dropdown = ({user, onLogoutClick}) => {
                                     ${isActive ? 'custom-dropdown-link' : ''}
                                 `}
                             >  
-                                {dropdownItem.icon}
+                                <Icon />
                                 <span className='ms-2'>{dropdownItem.name}</span>
                             </NavLink>
                         );
