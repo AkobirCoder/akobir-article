@@ -9,8 +9,6 @@ import {
     getProfileSuccess 
 } from '../../slice/profile';
 import ProfileService from '../../service/profile';
-import { userDetailStart, userDetailSuccess } from '../../slice/auth';
-import AuthService from '../../service/auth';
 
 const Profile = () => {
     const {username} = useParams();
@@ -18,8 +16,6 @@ const Profile = () => {
     const dispatch = useDispatch();
 
     const {profile, isLoading} = useSelector((state) => state.profile);
-    
-    const {user} = useSelector((state) => state.auth);
 
     const {profileExtra} = useSelector((state) => state.profileExtra); 
 
@@ -38,22 +34,6 @@ const Profile = () => {
 
         getProfile();
     }, [username, dispatch]);
-
-    // useEffect(() => {
-    //     const getUserProfile = async () => { // mana shuni customhook qilish kerak
-    //         dispatch(userDetailStart());
-
-    //         try {
-    //             const response = await AuthService.getUser();
-
-    //             dispatch(userDetailSuccess(response.user));
-    //         } catch (error) {
-    //             dispatch(getProfileFailure(error.response.data.errors));
-    //         }
-    //     }
-
-    //     getUserProfile();
-    // }, [user, dispatch]);
 
     return (
         <>
