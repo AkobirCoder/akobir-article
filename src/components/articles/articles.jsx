@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ArticleCard } from '../index';
 import { Loader } from '../../ui/index';
 import { 
@@ -19,6 +19,12 @@ const Articles = () => {
 
     const navigate = useNavigate();
 
+    const location = useLocation();
+
+    const searchParams = new URLSearchParams(location.search);
+
+    const author = searchParams.get('author');
+
     const navigateArticleViewHandler = (item) => {
         navigate(`/view-article/${item}`);
     }
@@ -31,7 +37,7 @@ const Articles = () => {
         dispatch(getArticlesStart());
 
         try {
-            const response = await ArticleService.getArticles();
+            const response = await ArticleService.getArticles(author);
 
             dispatch(getArticleSuccess(response.articles));
         } catch (error) {
@@ -76,7 +82,11 @@ const Articles = () => {
                                     style={{backgroundImage: 'var(--bs-gradient)'}}
                                     className='d-flex d-md-block justify-content-center bg-primary rounded border-bottom-0 p-4 p-md-5 mb-3'
                                 >
-                                    <h1 className='text-white fw-normal'>Our latest articles</h1>
+                                    <h1 className='text-white fw-normal'>
+                                        {
+                                            author ? `${author.charAt().toUpperCase()}${author.slice(1, author.length)}'s articles` : 'Our latest articles'
+                                        }
+                                    </h1>
                                 </div>
                                 <div className='row row-cols-1 row-cols-md-3 g-3'>
                                     {
