@@ -83,7 +83,7 @@ const ArticleDetail = () => {
                                             <p><span className='fw-semibold'>Author: </span>{articleDetail.author.username}</p>
                                         </div>
                                     </div>
-                                    <div className='col col-md-8 d-flex'>
+                                    <div className='col col-md-10 d-flex'>
                                         <div className='row g-0 border rounded overflow-hidden flex-column-reverse flex-md-row mb-4 shadow-lg h-md-250 position-relative'>
                                             <div className='col-12 col-sm-8 p-3 p-md-4 d-flex flex-column position-static'>
                                                 <strong className='d-inline-block mb-2 text-primary text-uppercase'>
