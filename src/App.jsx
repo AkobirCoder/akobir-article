@@ -19,7 +19,7 @@ import {
     User,
     UserArticles,
     UserEdit,
-    UserStars, 
+    UserFollowers,
 } from './components';
 import AuthService from './service/auth';
 import { signUserFailure, signUserSuccess } from './slice/auth';
@@ -107,8 +107,8 @@ const App = () => {
                         <Route path='/register' element={<Register />} />
                         <Route path='/user' element={<User />} />
                         <Route path='/user-edit' element={<UserEdit />} />
-                        <Route path='/my-articles' element={<UserArticles />} />
-                        <Route path='/my-stars' element={<UserStars />} />
+                        <Route path='/user-articles' element={<UserArticles />} />
+                        <Route path='/user-followers' element={<UserFollowers />} />
                         <Route path='/appearance' element={<Appearance />} />
                         <Route path='/profiles/:username' element={<Profile />} />
                     </Routes>
