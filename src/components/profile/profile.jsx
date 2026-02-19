@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Bell } from '@boxicons/react';
 import { Loader } from '../../ui/index';
 import { 
     getProfileFailure, 
     getProfileStart, 
-    getProfileSuccess 
+    getProfileSuccess, 
+    postFollowProfileFailure, 
+    postFollowProfileStart,
+    postFollowProfileSuccess
 } from '../../slice/profile';
 import ProfileService from '../../service/profile';
 
@@ -15,9 +18,11 @@ const Profile = () => {
 
     const dispatch = useDispatch();
 
+    const {user} = useSelector((state) => state.auth);
+
     const {profile, isLoading} = useSelector((state) => state.profile);
 
-    const {profileExtra} = useSelector((state) => state.profileExtra); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getProfile = async () => {
@@ -34,6 +39,24 @@ const Profile = () => {
 
         getProfile();
     }, [username, dispatch]);
+
+    const followUnfollowProfile = async () => {
+        dispatch(postFollowProfileStart());
+
+        try {
+            const response = profile.following 
+            ? await ProfileService.unfollowProfile(username)
+            : await ProfileService.followProfile(username);
+
+            dispatch(postFollowProfileSuccess(response.profile));
+        } catch (error) {
+            dispatch(postFollowProfileFailure(error.response.data.errors));
+        }
+    }
+
+    const navigateUserArticles = () => {
+        navigate(`/articles?author=${username}`);
+    }
 
     return (
         <>
@@ -73,7 +96,7 @@ const Profile = () => {
                                                                         style={{borderRadius: '50%'}}
                                                                     >
                                                                         <title>Placeholder</title>
-                                                                        <rect width={'100%'} height={'100%'} fill='#0091ff'></rect>
+                                                                        <rect width={'100%'} height={'100%'} fill='#55595C'></rect>
                                                                         <text
                                                                             x={'50%'} y={'50%'}
                                                                             fill='#fff'
@@ -88,20 +111,30 @@ const Profile = () => {
                                                         }
                                                     )()}
                                                 </div>
-                                                <div className='row'>
+                                                <div className='row d-flex justify-content-center'>
+                                                    {
+                                                        user?.username === profile.username
+                                                        ? ''
+                                                        : (
+                                                            <div className='col-6'>
+                                                                <button 
+                                                                    style={{backgroundImage: 'var(--bs-gradient)'}}
+                                                                    className='btn btn-primary w-100'
+                                                                    onClick={followUnfollowProfile}
+                                                                >
+                                                                    <span className='me-2'>
+                                                                        {profile.following ? 'Unfollow' : 'Follow'}
+                                                                    </span>
+                                                                    <Bell />
+                                                                </button>
+                                                            </div>
+                                                        )
+                                                    }
                                                     <div className='col-6'>
                                                         <button 
                                                             style={{backgroundImage: 'var(--bs-gradient)'}}
                                                             className='btn btn-primary w-100'
-                                                        >
-                                                            <span className='me-2'>Follow</span>
-                                                            <Bell />
-                                                        </button>
-                                                    </div>
-                                                    <div className='col-6'>
-                                                        <button 
-                                                            style={{backgroundImage: 'var(--bs-gradient)'}}
-                                                            className='btn btn-primary w-100'
+                                                            onClick={navigateUserArticles}
                                                         >
                                                             Go to articles
                                                         </button>
@@ -111,16 +144,27 @@ const Profile = () => {
                                         </div>
                                         <div className='col-12 col-md-8 p-3 p-md-4'>
                                             <div className='row g-0 bg-white border rounded p-2 p-md-3 h-100 shadow-lg'>
-                                                <div className='col-12 col-md-6 p-2 p-md-3'>{profileExtra?.field}</div>
-                                                <div className='col-12 col-md-6 p-2 p-md-3'>sa</div>
+                                                <div className='col-12 col-md-6 p-2 p-md-3'>
+                                                    {
+                                                        profile ? (profile.username) : 'No data'
+                                                    }
+                                                </div>
+                                                <div className='col-12 col-md-6 p-2 p-md-3'>
+                                                    sa
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className='col-12 mt-3'>
                                     <div className='row g-0 bg-light border rounded'>
-                                        <div className='py-2 px-4 p-md-5'>
-                                            <p style={{textAlign: 'justify'}}>{profile.bio}</p>
+                                        <div className='p-2 p-md-4'>
+                                            <p className='m-0 p-3 text-muted bg-white rounded shadow-lg' style={{textAlign: 'justify'}}>
+                                                {
+                                                    profile.bio ? (profile.bio) : 'No data'
+                                                }
+                                                
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
