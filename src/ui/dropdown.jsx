@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import { 
     ArrowOutRightSquareHalf, 
     Article, 
+    Bell, 
     Brush, 
     ClipboardPlus, 
     Edit, 
-    Star, 
     User 
 } from '@boxicons/react';
 import { dropdownItems } from './index';
@@ -20,7 +20,7 @@ const Dropdown = ({user, onLogoutClick}) => {
     const iconsMap = {
         User: User,
         Article: Article,
-        Star: Star,
+        Bell: Bell,
         Brush: Brush,
     }
 
