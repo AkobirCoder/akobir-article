@@ -7,9 +7,9 @@ import {
     deleteArticleFailure, 
     deleteArticleStart, 
     deleteArticleSuccess, 
-    getArticleFailure, 
+    getArticlesFailure, 
     getArticlesStart, 
-    getArticleSuccess 
+    getArticlesSuccess 
 } from '../../slice/article';
 import ArticleService from '../../service/article';
 import { ArticleCard } from '../index';
@@ -41,9 +41,9 @@ const UserArticles = () => {
                 return article.author.username === user.username;
             });
 
-            dispatch(getArticleSuccess(userArticles));
+            dispatch(getArticlesSuccess(userArticles));
         } catch (error) {
-            dispatch(getArticleFailure());
+            dispatch(getArticlesFailure());
         }
     }
 
