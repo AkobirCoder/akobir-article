@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { HomeImage } from '../assets/index';
+import { CreateArticleModal } from '../index';
 
 const Main = () => {
+    const [showCreateArticleModal, setShowCreateArticleModal] = useState(false);
+
+    const showCreateArticleModalHandler = () => {
+        setShowCreateArticleModal((prevState) => {
+            return !prevState;
+        });
+    }
+
+    const {loggedIn} = useSelector((state) => state.auth);
+
+    const navigate = useNavigate();
+
+    const navigateCreateArticleHandler = () => {
+        navigate('/create-article');
+    }
+
+    const navigateArticlesHandler = () => {
+        navigate('/articles');
+    }
+
+    const loginHandler = () => {
+        navigate('/login');
+    }
+
     return (
         <div className='row d-flex align-items-start m-md-3 py-md-3 ps-md-3 border rounded'>
             <div className='col-12 col-md-7 p-3'>
@@ -14,12 +41,45 @@ const Main = () => {
                     </p>
                     <div className='d-flex flex-column flex-md-row gap-md-4 mt-md-5'>
                         <div className='p-0 mb-2 mb-md-0'>
-                            <button className='btn btn-primary px-md-5 py-md-3 fs-4 w-100' type='button'>
-                                Get start
-                            </button>
+                            {(
+                                () => {
+                                    if (loggedIn) {
+                                        return (
+                                            <button 
+                                                className='btn btn-primary px-md-5 py-md-3 fs-4 w-100' 
+                                                type='button'
+                                                onClick={navigateCreateArticleHandler}
+                                            >
+                                                Get start
+                                            </button>
+                                        );
+                                    } else {
+                                        return (
+                                            <>
+                                                <button 
+                                                    className='btn btn-primary px-md-5 py-md-3 fs-4 w-100' 
+                                                    type='button'
+                                                    onClick={showCreateArticleModalHandler}
+                                                >
+                                                    Get start
+                                                </button>
+                                                <CreateArticleModal 
+                                                    open={showCreateArticleModal}
+                                                    onClose={showCreateArticleModalHandler}
+                                                    loginHandler={loginHandler}
+                                                />
+                                            </>
+                                        );
+                                    }
+                                }
+                            )()}
                         </div>
                         <div className='p-0'>
-                            <button className='btn btn-outline-secondary px-md-5 py-md-3 fs-4 w-100' type='button'>
+                            <button 
+                                className='btn btn-outline-secondary px-md-5 py-md-3 fs-4 w-100' 
+                                type='button'
+                                onClick={navigateArticlesHandler}
+                            >
                                 See articles
                             </button>
                         </div>
