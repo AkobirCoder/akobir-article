@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logoutUser } from './auth';
 
 const initialState = {
     isLoading: false,
@@ -14,11 +15,11 @@ export const articleSlice = createSlice({
         getArticlesStart: (state) => {
             state.isLoading = true;
         },
-        getArticleSuccess: (state, action) => {
+        getArticlesSuccess: (state, action) => {
             state.isLoading = false;
             state.articles = action.payload;
         },
-        getArticleFailure: (state, action) => {
+        getArticlesFailure: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
         },
@@ -67,13 +68,20 @@ export const articleSlice = createSlice({
             state.isLoading = false;
             state.error = 'Putting error';
         },
-    } 
+    },
+
+    extraReducers: (builder) => {
+        builder.addCase(logoutUser, (state) => {
+            state.articles = [];
+            state.articleDetail = null;
+        });
+    },
 });
 
 export const {
     getArticlesStart, 
-    getArticleSuccess, 
-    getArticleFailure, 
+    getArticlesSuccess, 
+    getArticlesFailure, 
     getArticleDetailStart, 
     getArticleDetailSuccess, 
     getArticleDetailFailure, 
