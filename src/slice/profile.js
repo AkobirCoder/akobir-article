@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logoutUser } from './auth';
 
 const initialState = {
     isLoading: false,
@@ -51,8 +52,14 @@ export const profileSlice = createSlice({
             state.isLoading = false;
             state.followLoading = false;
             state.error = action.payload;
-        }
-    }
+        },
+    },
+
+    extraReducers: (builder) => {
+        builder.addCase(logoutUser, (state) => {
+            state.profile = null;
+        });
+    },
 });
 
 export const {
