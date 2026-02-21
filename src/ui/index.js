@@ -127,8 +127,8 @@ export const dropdownItems = [
     },
     {
         id: '3',
-        path: '/user-followers',
-        name: 'Followers',
+        path: '/user-following',
+        name: 'Subsciptions',
         icon: 'Bell',
     },
     {
