@@ -8,7 +8,7 @@ import {
     deleteArticleStart, 
     deleteArticleSuccess, 
     getArticlesStart, 
-    getArticleSuccess 
+    getArticlesSuccess 
 } from '../../slice/article';
 import ArticleService from '../../service/article';
 
@@ -39,7 +39,7 @@ const Articles = () => {
         try {
             const response = await ArticleService.getArticles(author);
 
-            dispatch(getArticleSuccess(response.articles));
+            dispatch(getArticlesSuccess(response.articles));
         } catch (error) {
             console.log(error);
         }
@@ -84,7 +84,9 @@ const Articles = () => {
                                 >
                                     <h1 className='text-white fw-normal'>
                                         {
-                                            author ? `${author.charAt().toUpperCase()}${author.slice(1, author.length)}'s articles` : 'Our latest articles'
+                                            author 
+                                            ? `${author.charAt().toUpperCase()}${author.slice(1, author.length)}'s articles` 
+                                            : 'Our latest articles'
                                         }
                                     </h1>
                                 </div>
