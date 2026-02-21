@@ -27,7 +27,22 @@ const ArticleService = {
         const response = await axios.put(`/articles/${slug}`, {article});
 
         return response.data;
-    } 
+    },
+    async getFollowingArticles() {
+        const response = await axios.get('/articles?limit=100');
+
+        const map = new Map();
+
+        response.data.articles.forEach((articleItem) => {
+            if (articleItem.author.following) {
+                return map.set(articleItem.author.username, articleItem.author);
+            }
+        });
+
+        const uniqueFollowing = Array.from(map.values());
+
+        return uniqueFollowing;
+    }
 }
 
 export default ArticleService;
