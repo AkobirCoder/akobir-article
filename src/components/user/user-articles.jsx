@@ -66,14 +66,12 @@ const UserArticles = () => {
 
         if (!token) {
             navigate('/login');
-
-            return;
         }
 
         if (user) {
             getUserArticles();
         }
-    }, [user]);
+    }, [navigate, user]);
 
     return (
         <>
