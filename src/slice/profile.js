@@ -25,31 +25,25 @@ export const profileSlice = createSlice({
         },
 
         postFollowProfileStart: (state) => {
-            // state.isLoading = true;
             state.followLoading = true;
         },
         postFollowProfileSuccess: (state, action) => {
-            // state.isLoading = false;
             state.followLoading = false;
             state.profile = action.payload;
         },
         postFollowProfileFailure: (state, action) => {
-            // state.isLoading = false;
             state.followLoading = false;
             state.error = action.payload;
         },
 
         deleteFollowProfileStart: (state) => {
-            // state.isLoading = true;
             state.followLoading = true;
         },
         deleteFollowProfileSuccess: (state, action) => {
-            // state.isLoading = false;
             state.followLoading = false;
             state.profile = action.payload;
         },
         deleteFollowProfileFailure: (state, action) => {
-            // state.isLoading = false;
             state.followLoading = false;
             state.error = action.payload;
         },
