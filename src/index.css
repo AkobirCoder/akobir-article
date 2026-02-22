@@ -83,6 +83,15 @@ html {
     height: 0;
 }
 
+.bio-toggle {
+    user-select: none;
+}
+
+.bio-toggle:hover {
+    offset: 2;
+    text-decoration: underline;
+}
+
 @media only screen and (max-width: 400px) {
     .signin-signup-mobile-link {
         margin-top: 225px;
