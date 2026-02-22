@@ -119,7 +119,7 @@ const ArticleDetail = () => {
                                         </div>
                                     </div>
                                     <div style={{textAlign: 'justify'}}>{articleDetail.body}</div>
-                                    <div className='row mt-4 mt-md-5'>
+                                    <div className='row g-0 mt-4 mt-md-5'>
                                         <div className='col-12 col-md-3 mb-2 mb-md-0'>
                                             <button 
                                                 style={{backgroundImage: 'var(--bs-gradient)'}}
