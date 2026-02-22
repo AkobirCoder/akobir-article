@@ -66,10 +66,10 @@ const Navbar = () => {
     }
     
     return (
-        <div className='container-fluid'>
+        <div className='container-fluid px-3'>
             <div className='row g-0 d-flex flex-md-row align-items-center py-3 py-md-2'>
                 <div className='d-flex col-6 col-md-4 justify-content-start'>
-                    <Link className='px-2' to={'/'}>
+                    <Link to={'/'}>
                         <img
                             src={Logo} 
                             className='w-75' 
@@ -79,7 +79,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <nav className='d-none d-md-block col-6 col-md-8 py-2'>
-                    <div className='row'>
+                    <div className='row g-0'>
                         <div className='col-12 col-md-6 d-flex align-items-center justify-content-between'>
                             {
                                 navigationLinks.map((navLink, index) => {
@@ -100,7 +100,7 @@ const Navbar = () => {
                                 () => {
                                     if (loggedIn) {
                                         return (
-                                            <div className='d-flex align-items-center me-3'>
+                                            <div className='d-flex align-items-center me-2'>
                                                 <Dropdown 
                                                     user={user}
                                                     onLogoutClick={showLogoutModalHandler}
@@ -180,7 +180,7 @@ const Navbar = () => {
                             }
                         })()
                     } d-md-none d-block w-100 z-3 bg-body-secondary`}
-                    style={{height: 'calc(100vh - 72px)', position: 'absolute', top: 72}}
+                    style={{height: 'calc(100vh - 72px)', position: 'absolute', top: 72, left: 0}}
                 >
                     <div className='mt-3'>
                         <div className='d-flex flex-column gap-2'>
