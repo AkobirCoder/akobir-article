@@ -81,7 +81,7 @@ const User = () => {
                         );
                     } else {
                         return (
-                            <div className='row d-flex' style={{minHeight: '100%'}}>
+                            <div className='row g-0 d-flex' style={{minHeight: '100%'}}>
                                 <div className='col-12'>
                                     <div className='row g-0 bg-light-subtle rounded border border-light-subtle'>
                                         <div 
@@ -92,7 +92,7 @@ const User = () => {
                                                 Profile header background
                                             </h1>
                                         </div>
-                                        <div className='col-12 col-md-4 p-2 p-md-3 border-end'>
+                                        <div className='col-12 col-md-4 p-3 border-end'>
                                             <div className='d-flex flex-column pt-3 pt-md-5'>
                                                 <div className='d-flex align-items-center justify-content-center'>
                                                     {(
@@ -132,13 +132,38 @@ const User = () => {
                                                 </div>
                                                 {(profileExtra && user) && (
                                                     <div className='pt-2 pt-md-3 px-md-3'>
-                                                        <h4 className='fs-3 fw-semibold m-0'>{profileExtra.fullname}</h4>
+                                                        <h4 className='fs-3 fw-semibold m-0'>
+                                                            {profileExtra.fullname 
+                                                                ? (profileExtra.fullname) 
+                                                                : (<span className='text-muted'>No data</span>)
+                                                            }
+                                                        </h4>
                                                         <div className='d-flex text-muted fw-normal'>
-                                                            <p className='fs-4 m-0'>{user.username}</p>
-                                                            <p style={{width: 20, height: 20}} className='d-flex align-items-center justify-content-center fs-4 mx-1 my-0'>.</p>
-                                                            <p className='fs-4 m-0'>{profileExtra.pronoun}</p>
+                                                            <p className='fs-4 m-0'>
+                                                                {user.username
+                                                                    ? (user.username)
+                                                                    : (<span className='text-muted'>No data</span>)
+                                                                }
+                                                            </p>
+                                                            <p 
+                                                                style={{width: 20, height: 20}} 
+                                                                className='d-flex align-items-center justify-content-center fs-4 mx-1 my-0'
+                                                            >
+                                                                .
+                                                            </p>
+                                                            <p className='fs-4 m-0'>
+                                                                {profileExtra.pronoun
+                                                                    ? (profileExtra.pronoun)
+                                                                    : (<span className='text-muted'>No data</span>)
+                                                                }
+                                                            </p>
                                                         </div>
-                                                        <p className='my-2'>{profileExtra.description}</p>
+                                                        <p className='my-2'>
+                                                            {profileExtra.description
+                                                                ? (profileExtra.description)
+                                                                : (<span className='text-muted'>No data</span>)
+                                                            }
+                                                        </p>
                                                         <button type='button' className='btn btn-secondary w-100 my-3' onClick={navigateHandler}>
                                                             Edit profile
                                                         </button>
@@ -161,7 +186,12 @@ const User = () => {
                                                                                 <div className='me-1'>
                                                                                     <Icon />
                                                                                 </div>
-                                                                                <span className='ms-2'>{profileExtra?.[userShortInfoItem.content]}</span>
+                                                                                <span className='ms-2'>
+                                                                                    {profileExtra?.[userShortInfoItem.content]
+                                                                                        ? (profileExtra?.[userShortInfoItem.content])
+                                                                                        : (<span className='text-muted'>No data</span>)
+                                                                                    }
+                                                                                </span>
                                                                             </li>
                                                                         );
                                                                     })
@@ -185,7 +215,10 @@ const User = () => {
                                                                                     style={{fontSize: 14.5}}
                                                                                     className='ms-2 text-decoration-none text-muted'
                                                                                 >
-                                                                                    {profileExtra.socials?.[socialLink.name]}
+                                                                                    {profileExtra.socials?.[socialLink.name]
+                                                                                        ? (profileExtra.socials?.[socialLink.name])
+                                                                                        : (<span className='text-muted'>No data</span>)
+                                                                                    }
                                                                                 </Link>
                                                                             </li>
                                                                         );
@@ -197,7 +230,7 @@ const User = () => {
                                                 )}
                                             </div>
                                         </div>
-                                        <div className='col-12 col-md-8 p-2 p-md-3'>
+                                        <div className='col-12 col-md-8 p-3'>
                                             <div className='d-flex flex-column p-3 mb-3 bg-light rounded border'>
                                                 {
                                                     userPrivateInfoItems.map((privateInfo) => {
@@ -211,7 +244,12 @@ const User = () => {
                                                                 <div className='me-2'>
                                                                     <Icon />
                                                                 </div>
-                                                                <p className='ms-1'>{profileExtra?.[privateInfo.content]}</p>
+                                                                <p className='ms-1'>
+                                                                    {profileExtra?.[privateInfo.content]
+                                                                        ? (profileExtra?.[privateInfo.content])
+                                                                        : (<span className='text-muted'>No data</span>)
+                                                                    }
+                                                                </p>
                                                             </div>
                                                         );
                                                     })
@@ -220,7 +258,12 @@ const User = () => {
                                                     <div className='me-2'>
                                                         <Captions />
                                                     </div>
-                                                    <p className='ms-1 mb-0'>{user?.bio}</p>
+                                                    <p className='ms-1 mb-0'>
+                                                        {user?.bio
+                                                            ? (user?.bio)
+                                                            : (<span className='text-muted'>No data</span>)
+                                                        }
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div className='row g-3'>
