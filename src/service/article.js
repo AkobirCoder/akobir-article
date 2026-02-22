@@ -28,20 +28,20 @@ const ArticleService = {
 
         return response.data;
     },
-    async getFollowingArticles() {
+    async getFollowingUsers() {
         const response = await axios.get('/articles?limit=100');
 
         const map = new Map();
 
         response.data.articles.forEach((articleItem) => {
-            if (articleItem.author.following) {
-                return map.set(articleItem.author.username, articleItem.author);
+            const author = articleItem.author;
+
+            if (author?.following) {
+                map.set(author.username, author);
             }
         });
 
-        const uniqueFollowing = Array.from(map.values());
-
-        return uniqueFollowing;
+        return Array.from(map.values());
     }
 }
 
