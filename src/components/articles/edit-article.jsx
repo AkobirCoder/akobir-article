@@ -97,7 +97,7 @@ const EditArticle = () => {
     const btnName = 'Edit';
  
     return (
-        <div className='row d-flex align-items-center justify-content-center' style={{minHeight: '100%'}}>
+        <div className='row g-0 d-flex align-items-center justify-content-center' style={{minHeight: '100%'}}>
             <div className='col-11 col-md-8'>
                 <h1 className='fs-2 text-center'>Edit article</h1>
                 <ArticleForm
