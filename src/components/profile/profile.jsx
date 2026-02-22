@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Bell } from '@boxicons/react';
+import { Bell, BellSlash } from '@boxicons/react';
 import { Loader } from '../../ui/index';
 import { 
     getProfileFailure, 
@@ -20,7 +20,7 @@ const Profile = () => {
 
     const {user} = useSelector((state) => state.auth);
 
-    const {profile, isLoading} = useSelector((state) => state.profile);
+    const {profile, isLoading, followLoading} = useSelector((state) => state.profile);
 
     const navigate = useNavigate();
 
@@ -70,7 +70,7 @@ const Profile = () => {
                         );
                     } else {
                         return (
-                            <div className='row'>
+                            <div className='row g-0'>
                                 <div className='col-12'>
                                     <div className='row g-0 bg-light border rounded'>
                                         <div className='col-12 col-md-4 d-flex justify-content-center pt-4 ps-4 pe-4 pb-2 p-md-4'>
@@ -119,13 +119,39 @@ const Profile = () => {
                                                             <div className='col-6'>
                                                                 <button 
                                                                     style={{backgroundImage: 'var(--bs-gradient)'}}
-                                                                    className='btn btn-primary w-100'
+                                                                    className='btn btn-primary w-100 h-100'
+                                                                    disabled={followLoading}
                                                                     onClick={followUnfollowProfile}
                                                                 >
-                                                                    <span className='me-2'>
-                                                                        {profile.following ? 'Unfollow' : 'Follow'}
-                                                                    </span>
-                                                                    <Bell />
+                                                                    {
+                                                                        followLoading
+                                                                        ? (
+                                                                            profile.following ? 'Unfollowing...' : 'Following...'
+                                                                        )
+                                                                        : (
+                                                                            <>
+                                                                                {
+                                                                                    profile.following 
+                                                                                    ? (
+                                                                                        <>
+                                                                                            <span className='me-2'>
+                                                                                                Unfollow
+                                                                                            </span>
+                                                                                            <BellSlash />
+                                                                                        </>
+                                                                                    )
+                                                                                    : (
+                                                                                        <>
+                                                                                            <span className='me-2'>
+                                                                                                Follow
+                                                                                            </span>
+                                                                                            <Bell />
+                                                                                        </>
+                                                                                    )
+                                                                                }
+                                                                            </>
+                                                                        )
+                                                                    }
                                                                 </button>
                                                             </div>
                                                         )
@@ -133,7 +159,7 @@ const Profile = () => {
                                                     <div className='col-6'>
                                                         <button 
                                                             style={{backgroundImage: 'var(--bs-gradient)'}}
-                                                            className='btn btn-primary w-100'
+                                                            className='btn btn-primary w-100 h-100'
                                                             onClick={navigateUserArticles}
                                                         >
                                                             Go to articles
@@ -158,7 +184,7 @@ const Profile = () => {
                                 </div>
                                 <div className='col-12 mt-3'>
                                     <div className='row g-0 bg-light border rounded'>
-                                        <div className='p-2 p-md-4'>
+                                        <div className='p-3 p-md-4'>
                                             <p className='m-0 p-3 text-muted bg-white rounded shadow-lg' style={{textAlign: 'justify'}}>
                                                 {
                                                     profile.bio ? (profile.bio) : 'No data'
