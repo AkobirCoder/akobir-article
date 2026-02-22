@@ -30,7 +30,7 @@ const Main = () => {
     }
 
     return (
-        <div className='row d-flex align-items-start m-md-3 py-md-3 ps-md-3 border rounded'>
+        <div className='row g-0 d-flex align-items-start m-md-3 py-md-3 ps-md-3 border rounded'>
             <div className='col-12 col-md-7 p-3'>
                 <div className='p-3 p-md-4 shadow-lg rounded'>
                     <h1 className='display-4 fw-normal lh-1 text-body-secondary'>
