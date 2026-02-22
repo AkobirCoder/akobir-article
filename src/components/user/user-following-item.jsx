@@ -1,9 +1,9 @@
 import React from 'react';
 
-const UserFollowingItem = ({username}) => {
+const UserFollowingItem = ({username, bio}) => {
     return (
         <div className='col-12 col-md-7'>
-            {username}
+            
         </div>
     );
 }
