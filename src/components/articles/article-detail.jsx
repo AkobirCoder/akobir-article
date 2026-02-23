@@ -18,7 +18,7 @@ const ArticleDetail = () => {
 
     const {loggedIn} = useSelector((state) => state.auth);
 
-    const {articleDetail} = useSelector((state) => state.article);
+    const {articleDetail, isLoading} = useSelector((state) => state.article);
 
     const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ const ArticleDetail = () => {
 
     const navigateUserArticles = () => {
         if (loggedIn) {
-            navigate('/my-articles');
+            navigate(`/articles?author=${articleDetail.author.username}`);
         } else {
             navigate('/login');
         }
@@ -56,7 +56,7 @@ const ArticleDetail = () => {
         <>
             {(
                 () => {
-                    if (!articleDetail) {
+                    if (isLoading || !articleDetail) {
                         return (
                             <div className='d-flex align-items-center justify-content-center h-100'>
                                 <Loader />
@@ -64,7 +64,7 @@ const ArticleDetail = () => {
                         );
                     }  else {
                         return (
-                            <div className="p-3 p-md-5 bg-body-tertiary rounded-3"> 
+                            <div className="p-3 p-md-5 bg-body-tertiary border rounded"> 
                                 <div className="container-fluid py-3 py-md-4"> 
                                     <h1 className="display-md-5 fw-semibold">{articleDetail.title}</h1> 
                                     <p className="col-md-8 fs-md-5 mb-0 mb-md-3">{articleDetail.description}</p>
@@ -119,7 +119,7 @@ const ArticleDetail = () => {
                                         </div>
                                     </div>
                                     <div style={{textAlign: 'justify'}}>{articleDetail.body}</div>
-                                    <div className='row g-0 mt-4 mt-md-5'>
+                                    <div className='row mt-4 mt-md-5'>
                                         <div className='col-12 col-md-3 mb-2 mb-md-0'>
                                             <button 
                                                 style={{backgroundImage: 'var(--bs-gradient)'}}
@@ -136,7 +136,7 @@ const ArticleDetail = () => {
                                                 className='btn btn-secondary w-100' 
                                                 onClick={navigateUserArticles}
                                             >
-                                                <span className='me-2'>Back to my articles</span>
+                                                <span className='me-2'>Go to articles</span>
                                                 <ArrowToRight />
                                             </button>
                                         </div>
