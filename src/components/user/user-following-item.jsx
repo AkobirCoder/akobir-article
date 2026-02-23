@@ -25,9 +25,10 @@ const UserFollowingItem = ({image, username, bio, index, users}) => {
             <div className='row g-0'>
                 <div className='col-12 col-md-1 d-flex align-items-start justify-content-start'>
                     {
-                        image ? (
-                            <img src={image} alt="User" />
-                        ) : (
+                        // image ? (
+                        //     <img src={image} alt="User" />
+                        // ) : 
+                        (
                             <svg
                                 className='bg-placeholder-img'
                                 width={'50'}
