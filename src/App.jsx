@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { 
     AboutUs, 
     Appearance, 
+    ArticleComment, 
     ArticleDetail, 
+    ArticleFeed, 
     Articles, 
     Blogs, 
     ContactUs, 
@@ -100,6 +102,8 @@ const App = () => {
                         <Route path='/view-article/:slug' element={<ArticleDetail />} />
                         <Route path='/create-article' element={<CreateArticle />} />
                         <Route path='/edit-article/:slug' element={<EditArticle />} />
+                        {/* <Route path='/articles/:slug/comments' element={<ArticleComment />} /> */}
+                        <Route path='/articles/feed' element={<ArticleFeed />} />
                         <Route path='/about-us' element={<AboutUs />} />
                         <Route path='/blogs' element={<Blogs />} />
                         <Route path='/contact-us' element={<ContactUs />} />
