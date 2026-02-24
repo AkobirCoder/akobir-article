@@ -8,7 +8,10 @@ import {
     deleteArticleStart, 
     deleteArticleSuccess, 
     getArticlesStart, 
-    getArticlesSuccess 
+    getArticlesSuccess, 
+    postArticleFavoriteFailure, 
+    postArticleFavoriteStart,
+    postArticleFavoriteSuccess
 } from '../../slice/article';
 import ArticleService from '../../service/article';
 
@@ -63,6 +66,20 @@ const Articles = () => {
         }
     }
 
+    const favoriteArticle = async (slug) => {
+        dispatch(postArticleFavoriteStart());
+
+        try {
+            const response = await ArticleService.postArticleFavorite(slug);
+
+            dispatch(postArticleFavoriteSuccess(response));
+
+            getArticles();
+        } catch (error) {
+            dispatch(postArticleFavoriteFailure());
+        }
+    }
+
     useEffect(() => {
         getArticles();
     }, []);
@@ -107,6 +124,7 @@ const Articles = () => {
                                                     navigateArticleViewHandler={navigateArticleViewHandler} 
                                                     navigateArticleEditHandler={navigateArticleEditHandler}
                                                     deleteArticle={deleteArticle} 
+                                                    favoriteArticle={favoriteArticle}
                                                 />
                                             );
                                         })
