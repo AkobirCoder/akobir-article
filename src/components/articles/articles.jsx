@@ -66,11 +66,13 @@ const Articles = () => {
         }
     }
 
-    const favoriteArticle = async (slug) => {
+    const favoriteArticle = async (slug, isFavorited) => {
         dispatch(postArticleFavoriteStart());
 
         try {
-            const response = await ArticleService.postArticleFavorite(slug);
+            const response = isFavorited
+            ? await ArticleService.deleteArticleFavorite(slug)
+            : await ArticleService.postArticleFavorite(slug);
 
             dispatch(postArticleFavoriteSuccess(response));
 
