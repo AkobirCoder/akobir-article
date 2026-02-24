@@ -19,7 +19,11 @@ const ArticleCard = ({slug, title, description, favoritesCount, author, favorite
             return !prevState;
         });
 
-        alert(`You've favorited ${author.username.charAt(0).toUpperCase()}${author.username.slice(1)}'s article`);
+        if (favorite) {
+            alert(`You've unfavorited ${author.username.charAt(0).toUpperCase()}${author.username.slice(1)}'s article`);
+        } else {
+            alert(`You've favorited ${author.username.charAt(0).toUpperCase()}${author.username.slice(1)}'s article`);
+        }
     }
 
     return (
@@ -113,7 +117,7 @@ const ArticleCard = ({slug, title, description, favoritesCount, author, favorite
                                 type='button'
                                 className='btn btn-sm btn-info'
                                 onClick={() => {
-                                    favoriteArticle(slug)
+                                    favoriteArticle(slug, favorited)
                                     favoriteHandler()
                                 }}
                             >
@@ -127,7 +131,7 @@ const ArticleCard = ({slug, title, description, favoritesCount, author, favorite
                             </button>
                         </div>
                         {
-                            favorite ? (
+                            favorited ? (
                                 <div className='d-flex align-items-center justify-content-between'>
                                     <i className="bi bi-star-fill text-warning"></i>
                                     <span>{favoritesCount}</span>
