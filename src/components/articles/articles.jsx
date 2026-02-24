@@ -15,6 +15,8 @@ import ArticleService from '../../service/article';
 const Articles = () => {
     const dispatch = useDispatch();
 
+    const {loggedIn} = useSelector((state) => state.auth);
+
     const {articles, isLoading} = useSelector((state) => state.article);
 
     const navigate = useNavigate();
@@ -90,7 +92,12 @@ const Articles = () => {
                                         }
                                     </h1>
                                 </div>
-                                <div className='row row-cols-1 row-cols-md-3 g-3'>
+                                <div className={`
+                                    row ${loggedIn 
+                                    ? 'row-cols-1 row-cols-md-3' 
+                                    : 'row-cols-1 row-cols-md-4'} 
+                                    g-3`}
+                                >
                                     {
                                         articles.map((item) => {
                                             return (
