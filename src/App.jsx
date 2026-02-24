@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { 
     AboutUs, 
     Appearance, 
-    ArticleComment, 
+    // ArticleComment, 
     ArticleDetail, 
     ArticleFeed, 
     Articles, 
