@@ -42,7 +42,9 @@ const Articles = () => {
         dispatch(getArticlesStart());
 
         try {
-            const response = await ArticleService.getArticles(author);
+            const response = author
+            ? await ArticleService.getArticlesByAuthor(author)
+            : await ArticleService.getArticles();
 
             dispatch(getArticlesSuccess(response.articles));
         } catch (error) {
@@ -106,10 +108,17 @@ const Articles = () => {
                                     <h1 className='text-white fw-normal'>
                                         {
                                             author 
-                                            ? `${author.charAt().toUpperCase()}${author.slice(1, author.length)}'s articles` 
+                                            ? `${author.charAt(0).toUpperCase()}${author.slice(1)}'s articles` 
                                             : 'Our latest articles'
                                         }
                                     </h1>
+                                    <p className='text-white lh-5'>
+                                        {
+                                            author
+                                            ? ''
+                                            : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi vero iste natus maxime delectus tempora sapiente explicabo facilis nostrum eius. Voluptatum dignissimos cupiditate aut alias ullam, blanditiis magni dolores optio?   '
+                                        }
+                                    </p>
                                 </div>
                                 <div className={`
                                     row ${loggedIn 
