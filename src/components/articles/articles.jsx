@@ -84,7 +84,7 @@ const Articles = () => {
 
     useEffect(() => {
         getArticles();
-    }, []);
+    }, [author]);
 
     return (
         <>
