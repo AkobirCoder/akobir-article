@@ -55,7 +55,7 @@ export const articleSlice = createSlice({
         },
         deleteArticleFailure: (state) => {
             state.isLoading = false;
-            state.error = 'Deleting error'
+            state.error = 'Deleting error';
         },
 
         putArticleStart: (state) => {
@@ -74,11 +74,9 @@ export const articleSlice = createSlice({
         },
         postArticleFavoriteSuccess: (state) => {
             state.isLoading = false;
-            // state.articles = action.payload;
         },
         postArticleFavoriteFailure: (state) => {
             state.isLoading = false;
-            // state.error = action.payload;
             state.error = 'Favoriting error';
         },
     },
