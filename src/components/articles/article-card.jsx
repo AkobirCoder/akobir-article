@@ -132,12 +132,12 @@ const ArticleCard = ({slug, title, description, favoritesCount, author, favorite
                         </div>
                         {
                             favorited ? (
-                                <div className='d-flex align-items-center justify-content-between'>
+                                <div className='d-flex align-items-center justify-content-between gap-2 bg-white border rounded px-2 py-1'>
                                     <i className="bi bi-star-fill text-warning"></i>
                                     <span>{favoritesCount}</span>
                                 </div>
                             ) : (
-                                <div className='d-flex align-items-center justify-content-between'>
+                                <div className='d-flex align-items-center justify-content-between gap-2 bg-white border rounded px-2 py-1'>
                                     <i className="bi bi-star"></i>
                                     <span>{favoritesCount}</span>
                                 </div>
