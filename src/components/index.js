@@ -20,7 +20,7 @@ export {default as Register} from './main/register';
 export {default as User} from './user/user';
 export {default as UserEdit} from './user/user-edit';
 export {default as UserForm} from './user/user-form';
-export {default as UserLogout} from './user/user-logout';
+export {default as UserLogoutModal} from './user/user-logout-modal';
 export {default as UserArticles} from './user/user-articles';
 export {default as UserFollowing} from './user/user-following';
 export {default as UserFollowingItem} from './user/user-following-item';
