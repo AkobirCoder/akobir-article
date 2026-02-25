@@ -2,7 +2,17 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../../ui/index';
-import { deleteArticleFailure, deleteArticleStart, deleteArticleSuccess, getArticlesFeedFailure, getArticlesFeedStart, getArticlesFeedSuccess, postArticleFavoriteFailure, postArticleFavoriteStart, postArticleFavoriteSuccess } from '../../slice/article';
+import { 
+    deleteArticleFailure, 
+    deleteArticleStart, 
+    deleteArticleSuccess, 
+    getArticlesFeedFailure, 
+    getArticlesFeedStart, 
+    getArticlesFeedSuccess, 
+    postArticleFavoriteFailure, 
+    postArticleFavoriteStart, 
+    postArticleFavoriteSuccess 
+} from '../../slice/article';
 import ArticleService from '../../service/article';
 import { getItem } from '../../helpers/persistance-storage';
 import { ArticleCard } from '../index';
