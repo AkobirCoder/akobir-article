@@ -4,6 +4,7 @@ import { logoutUser } from './auth';
 const initialState = {
     isLoading: false,
     articles: [],
+    feedArticles: [],
     articleDetail: null,
     error: null,
 }
@@ -79,6 +80,18 @@ export const articleSlice = createSlice({
             state.isLoading = false;
             state.error = 'Favoriting error';
         },
+
+        getArticlesFeedStart: (state) => {
+            state.isLoading = true;
+        },
+        getArticlesFeedSuccess: (state, action) => {
+            state.isLoading = false;
+            state.feedArticles = action.payload;
+        },
+        getArticlesFeedFailure: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
     },
 
     extraReducers: (builder) => {
@@ -108,6 +121,9 @@ export const {
     postArticleFavoriteStart,
     postArticleFavoriteSuccess,
     postArticleFavoriteFailure,
+    getArticlesFeedStart,
+    getArticlesFeedSuccess,
+    getArticlesFeedFailure,
 } = articleSlice.actions;
 
 export default articleSlice.reducer;
