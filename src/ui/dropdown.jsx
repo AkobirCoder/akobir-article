@@ -5,6 +5,7 @@ import {
     ArrowOutRightSquareHalf, 
     Article, 
     Bell, 
+    BookmarkAlt, 
     Brush, 
     ClipboardPlus, 
     Edit, 
@@ -22,6 +23,7 @@ const Dropdown = ({user, onLogoutClick}) => {
         Article: Article,
         Bell: Bell,
         Brush: Brush,
+        BookmarkAlt: BookmarkAlt,
     }
 
     return (
