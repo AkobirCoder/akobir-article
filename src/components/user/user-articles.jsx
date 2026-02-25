@@ -9,7 +9,10 @@ import {
     deleteArticleSuccess, 
     getArticlesFailure, 
     getArticlesStart, 
-    getArticlesSuccess 
+    getArticlesSuccess, 
+    postArticleFavoriteFailure, 
+    postArticleFavoriteStart, 
+    postArticleFavoriteSuccess
 } from '../../slice/article';
 import ArticleService from '../../service/article';
 import { ArticleCard } from '../index';
@@ -61,6 +64,22 @@ const UserArticles = () => {
         }
     } 
 
+    const favoriteArticle = async (slug, isFavorited) => {
+        dispatch(postArticleFavoriteStart());
+
+        try {
+            const response = isFavorited
+            ? await ArticleService.deleteArticleFavorite(slug)
+            : await ArticleService.postArticleFavorite(slug);
+
+            dispatch(postArticleFavoriteSuccess(response));
+
+            getUserArticles();
+        } catch (error) {
+            dispatch(postArticleFavoriteFailure());
+        }
+    }
+
     useEffect(() => {
         const token = getItem('token');
 
@@ -102,6 +121,7 @@ const UserArticles = () => {
                                                     navigateArticleViewHandler={navigateArticleViewHandler}
                                                     navigateArticleEditHandler={navigateArticleEditHandler}
                                                     deleteArticle={deleteUserArticle}
+                                                    favoriteArticle={favoriteArticle}
                                                 />
                                             );
                                         })
