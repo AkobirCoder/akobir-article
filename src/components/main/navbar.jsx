@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Logo } from '../assets/index';
 import { navigationLinks } from '../../constants/index';
-import { CreateArticleModal, NavbarLink, UserLogout } from '../index';
+import { CreateArticleModal, NavbarLink, UserLogoutModal } from '../index';
 import { removeItem } from '../../helpers/persistance-storage';
 import { logoutUser } from '../../slice/auth';
 import { Dropdown } from '../../ui/index';
@@ -105,7 +105,7 @@ const Navbar = () => {
                                                     user={user}
                                                     onLogoutClick={showLogoutModalHandler}
                                                 />
-                                                <UserLogout 
+                                                <UserLogoutModal
                                                     open={showLogoutModal}
                                                     onClose={showLogoutModalHandler}
                                                     logoutHandler={logoutHandler} 
