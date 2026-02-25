@@ -89,7 +89,7 @@ const User = () => {
                                             style={{backgroundImage: 'var(--bs-gradient)'}}
                                         >
                                             <h1 className='text-white fw-normal fs-4 fs-md-1'>
-                                                Profile header background
+                                                My profile
                                             </h1>
                                         </div>
                                         <div className='col-12 col-md-4 p-3 border-end'>
