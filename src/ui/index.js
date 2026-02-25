@@ -137,6 +137,12 @@ export const dropdownItems = [
         name: 'Appearance',
         icon: 'Brush',
     },
+    {
+        id: '4',
+        path: '/articles/feed',
+        name: 'Feeds',
+        icon: 'BookmarkAlt',
+    },
 ];
 
 export {default as Loader} from './loader';
