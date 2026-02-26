@@ -1,24 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment';
 import { ArrowToRight } from '@boxicons/react';
 import { 
+    getArticleCommentsFailure,
+    getArticleCommentsStart,
+    getArticleCommentsSuccess,
     getArticleDetailFailure, 
     getArticleDetailStart, 
-    getArticleDetailSuccess 
+    getArticleDetailSuccess, 
+    postArticleCommentsFailure, 
+    postArticleCommentsStart,
+    postArticleCommentsSuccess
 } from '../../slice/article';
 import ArticleService from '../../service/article';
 import { Loader } from '../../ui/index';
+import { ArticleComment, ArticleCommentForm } from '../index';
 
 const ArticleDetail = () => {
+    const [formData, setFormData] = useState({
+        body: '',
+    });
+
+    const changeHandlerInput = (event) => {
+        const {name, value} = event.target;
+
+        setFormData((prevState) => {
+            return {
+                ...prevState, [name]: value
+            }
+        });
+    }
+    
     const {slug} = useParams();
 
     const dispatch = useDispatch();
 
     const {loggedIn} = useSelector((state) => state.auth);
 
-    const {articleDetail, isLoading} = useSelector((state) => state.article);
+    const {articleDetail, isLoading, articleComments} = useSelector((state) => state.article);
 
     const navigate = useNavigate();
 
@@ -38,7 +59,53 @@ const ArticleDetail = () => {
         }
 
         getArticleDetail();
+
+        const getArticleComment = async () => {
+            dispatch(getArticleCommentsStart());
+
+            try {
+                const response = await ArticleService.getArticleComment(slug);
+
+                dispatch(getArticleCommentsSuccess(response.comments));
+            } catch (error) {
+                dispatch(getArticleCommentsFailure(error.response.data.errors));
+            }
+        }
+
+        getArticleComment();
     }, [slug, dispatch]);
+
+    const formSubmit = async (event) => {
+        event.preventDefault();
+
+        dispatch(postArticleCommentsStart());
+
+        const {body} = formData;
+
+        const comment = {body}
+
+        try {
+            const response = await ArticleService.postArticleComment(slug, comment);
+
+            dispatch(postArticleCommentsSuccess(response));
+
+            const commentsRes = await ArticleService.getArticleComment(slug);
+
+            dispatch(getArticleCommentsSuccess(commentsRes.comments));
+        } catch (error) {
+            dispatch(postArticleCommentsFailure(error.response.data.errors));
+        }
+
+        setFormData(() => {
+            return {
+                body: '',
+            }
+        });
+    }
+
+    const deleteArticleComment = async () => {
+        dispatch();
+    }
 
     const navigateArticles = () => {
         navigate('/articles');
@@ -83,7 +150,7 @@ const ArticleDetail = () => {
                                             <p><span className='fw-semibold'>Author: </span>{articleDetail.author.username}</p>
                                         </div>
                                     </div>
-                                    <div className='col col-md-10 d-flex'>
+                                    <div className='col-12 col-md-10 d-flex'>
                                         <div className='row g-0 border rounded overflow-hidden flex-column-reverse flex-md-row mb-4 shadow-lg h-md-250 position-relative'>
                                             <div className='col-12 col-sm-8 p-3 p-md-4 d-flex flex-column position-static'>
                                                 <strong className='d-inline-block mb-2 text-primary text-uppercase'>
@@ -140,6 +207,27 @@ const ArticleDetail = () => {
                                                 <ArrowToRight />
                                             </button>
                                         </div>
+                                    </div>
+                                    <div className='row g-0 mt-4 mt-md-5'>
+                                        <div className='col-12 col-md-10'>
+                                            <ArticleCommentForm
+                                                formData={formData}
+                                                changeHandlerInput={changeHandlerInput}
+                                                formSubmit={formSubmit}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        {
+                                            articleComments.map((articleComment) => {
+                                                return (
+                                                    <ArticleComment 
+                                                        key={articleComment.id} 
+                                                        {...articleComment}
+                                                    />
+                                                );
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>
