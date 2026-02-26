@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ArticleComment = () => {
+const ArticleComment = ({body, author}) => {
     return (
-        <div>ArticleComment</div>
+        <div>{body}{author.username}</div>
     );
 }
 
