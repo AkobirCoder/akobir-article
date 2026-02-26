@@ -6,7 +6,7 @@ const ArticleService = {
 
         // const response = await axios.get(`/articles/${query}`);
 
-        const response = await axios.get('articles');
+        const response = await axios.get('/articles');
 
         return response.data;
     },
