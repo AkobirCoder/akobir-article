@@ -29,7 +29,7 @@ const ArticleForm = ({formData, changeHandlerInput, formSubmit, btnName}) => {
                 value={formData.body} 
                 changeHandlerInput={changeHandlerInput} 
                 height={'250px'} 
-                />
+            />
             <button type='submit' className='w-100 btn btn-lg btn-primary' disabled={isLoading}>
                 {(
                     () => {
