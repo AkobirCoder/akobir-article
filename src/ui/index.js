@@ -114,31 +114,31 @@ export const userFormInputSocialsProps = [
 
 export const dropdownItems = [
     {
-        id: '1',
+        id: 'profile',
         path: '/user',
         name: 'Profile',
         icon: 'User',
     },
     {
-        id: '2',
+        id: 'my-articles',
         path: '/user-articles',
         name: 'My articles',
         icon: 'Article',
     },
     {
-        id: '3',
+        id: 'subscriptions',
         path: '/user-following',
         name: 'Subsciptions',
         icon: 'Bell',
     },
     {
-        id: '4',
+        id: 'appearance',
         path: '/appearance',
         name: 'Appearance',
         icon: 'Brush',
     },
     {
-        id: '4',
+        id: 'feeds',
         path: '/articles/feed',
         name: 'Feeds',
         icon: 'BookmarkAlt',
