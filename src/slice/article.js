@@ -5,6 +5,7 @@ const initialState = {
     isLoading: false,
     articles: [],
     feedArticles: [],
+    articleComments: [],
     articleDetail: null,
     error: null,
 }
@@ -81,6 +82,28 @@ export const articleSlice = createSlice({
             state.error = 'Favoriting error';
         },
 
+        getArticleCommentsStart: (state) => {
+            state.isLoading = true;
+        },
+        getArticleCommentsSuccess: (state, action) => {
+            state.isLoading = false;
+            state.articleComments = action.payload;
+        },
+        getArticleCommentsFailure: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
+
+        postArticleCommentsStart: (state) => {
+            state.isLoading = true;
+        },
+        postArticleCommentsSuccess: (state) => {
+            state.isLoading = false;
+        },
+        postArticleCommentsFailure: (state) => {
+            state.isLoading = false;
+        },
+
         getArticlesFeedStart: (state) => {
             state.isLoading = true;
         },
@@ -124,6 +147,12 @@ export const {
     getArticlesFeedStart,
     getArticlesFeedSuccess,
     getArticlesFeedFailure,
+    getArticleCommentsStart,
+    getArticleCommentsSuccess,
+    getArticleCommentsFailure,
+    postArticleCommentsStart,
+    postArticleCommentsSuccess,
+    postArticleCommentsFailure,
 } = articleSlice.actions;
 
 export default articleSlice.reducer;
