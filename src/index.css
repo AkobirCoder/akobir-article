@@ -83,6 +83,31 @@ html {
     height: 0;
 }
 
+.user-following {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.4) transparent;
+    scrollbar-gutter: stable overlay;
+}
+
+.user-following::-webkit-scrollbar {
+    width: 6px;
+}
+
+.user-following::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.user-following::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 0;
+}
+
+.user-following::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
 .bio-toggle {
     user-select: none;
 }
