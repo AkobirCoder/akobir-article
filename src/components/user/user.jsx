@@ -135,14 +135,14 @@ const User = () => {
                                                         <h4 className='fs-3 fw-semibold m-0'>
                                                             {profileExtra.fullname 
                                                                 ? (profileExtra.fullname) 
-                                                                : (<span className='text-muted'>No data</span>)
+                                                                : (<span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>)
                                                             }
                                                         </h4>
                                                         <div className='d-flex text-muted fw-normal'>
                                                             <p className='fs-4 m-0'>
                                                                 {user.username
                                                                     ? (user.username)
-                                                                    : (<span className='text-muted'>No data</span>)
+                                                                    : (<span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>)
                                                                 }
                                                             </p>
                                                             <p 
@@ -154,14 +154,14 @@ const User = () => {
                                                             <p className='fs-4 m-0'>
                                                                 {profileExtra.pronoun
                                                                     ? (profileExtra.pronoun)
-                                                                    : (<span className='text-muted'>No data</span>)
+                                                                    : (<span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>)
                                                                 }
                                                             </p>
                                                         </div>
                                                         <p className='my-2'>
                                                             {profileExtra.description
                                                                 ? (profileExtra.description)
-                                                                : (<span className='text-muted'>No data</span>)
+                                                                : (<span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>)
                                                             }
                                                         </p>
                                                         <button type='button' className='btn btn-secondary w-100 my-3' onClick={navigateHandler}>
@@ -189,7 +189,7 @@ const User = () => {
                                                                                 <span className='ms-2'>
                                                                                     {profileExtra?.[userShortInfoItem.content]
                                                                                         ? (profileExtra?.[userShortInfoItem.content])
-                                                                                        : (<span className='text-muted'>No data</span>)
+                                                                                        : (<span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>)
                                                                                     }
                                                                                 </span>
                                                                             </li>
@@ -217,7 +217,7 @@ const User = () => {
                                                                                 >
                                                                                     {profileExtra.socials?.[socialLink.name]
                                                                                         ? (profileExtra.socials?.[socialLink.name])
-                                                                                        : (<span className='text-muted'>No data</span>)
+                                                                                        : (<span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>)
                                                                                     }
                                                                                 </Link>
                                                                             </li>
@@ -247,7 +247,7 @@ const User = () => {
                                                                 <p className='ms-1'>
                                                                     {profileExtra?.[privateInfo.content]
                                                                         ? (profileExtra?.[privateInfo.content])
-                                                                        : (<span className='text-muted'>No data</span>)
+                                                                        : (<span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>)
                                                                     }
                                                                 </p>
                                                             </div>
@@ -261,7 +261,7 @@ const User = () => {
                                                     <p className='ms-1 mb-0'>
                                                         {user?.bio
                                                             ? (user?.bio)
-                                                            : (<span className='text-muted'>No data</span>)
+                                                            : (<span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>)
                                                         }
                                                     </p>
                                                 </div>
