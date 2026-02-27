@@ -8,16 +8,16 @@ const ArticleCommentForm = ({formData, changeHandlerInput, formSubmit}) => {
     return (
         <form onSubmit={formSubmit}>
             <Textarea
-                label={'Comment body'}
-                placeholder={'Comment body'}
-                name={'body'}
-                value={formData.body}
+                label={'Comment'}
+                placeholder={'Comment'}
+                name={'commentBody'}
+                value={formData.commentBody}
                 changeHandlerInput={changeHandlerInput}
                 height={'150px'}
             />
             <button
                 type='submit'
-                className='btn btn-success w-100'
+                className='btn btn-success w-25'
                 disabled={isLoading}
             >
                 {isLoading ? 'Submitting...' : 'Submit'}
