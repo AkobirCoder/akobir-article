@@ -104,6 +104,16 @@ export const articleSlice = createSlice({
             state.isLoading = false;
         },
 
+        deleteArticleCommentsStart: (state) => {
+            state.isLoading = true
+        },
+        deleteArticleCommentsSuccess: (state) => {
+            state.isLoading = false;
+        },
+        deleteArticleCommentsFailure: (state) => {
+            state.isLoading = false;
+        },
+
         getArticlesFeedStart: (state) => {
             state.isLoading = true;
         },
@@ -153,6 +163,9 @@ export const {
     postArticleCommentsStart,
     postArticleCommentsSuccess,
     postArticleCommentsFailure,
+    deleteArticleCommentsStart,
+    deleteArticleCommentsSuccess,
+    deleteArticleCommentsFailure,
 } = articleSlice.actions;
 
 export default articleSlice.reducer;
