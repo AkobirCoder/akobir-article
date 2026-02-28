@@ -44,7 +44,10 @@ const UserArticles = () => {
                 return article.author.username === user.username;
             });
 
-            dispatch(getArticlesSuccess(userArticles));
+            dispatch(getArticlesSuccess({
+                articles: userArticles,
+                articlesCount: userArticles.length,
+            }));
         } catch (error) {
             dispatch(getArticlesFailure());
         }
