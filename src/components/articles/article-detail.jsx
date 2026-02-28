@@ -246,7 +246,7 @@
                                         </div>
                                         <div 
                                             style={{textAlign: 'justify'}} 
-                                            className='col-12 col-md-10 bg-white p-3 offset-md-1 rounded shadow-lg'
+                                            className='col-12 col-md-10 bg-body p-3 offset-md-1 rounded shadow-lg'
                                         >
                                             {articleDetail.body}
                                         </div>
