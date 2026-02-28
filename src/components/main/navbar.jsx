@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Logo } from '../assets/index';
 import { navigationLinks } from '../../constants/index';
-import { CreateArticleModal, NavbarLink, UserLogoutModal } from '../index';
+import { Appearance, CreateArticleModal, NavbarLink, UserLogoutModal } from '../index';
 import { removeItem } from '../../helpers/persistance-storage';
 import { logoutUser } from '../../slice/auth';
 import { Dropdown } from '../../ui/index';
@@ -95,7 +95,8 @@ const Navbar = () => {
                                 })
                             }
                         </div>
-                        <div className='col-12 col-md-6 d-flex align-items-center justify-content-end'>
+                        <div className='col-12 col-md-6 d-flex align-items-center justify-content-end gap-2'>
+                            <Appearance />
                             {(
                                 () => {
                                     if (loggedIn) {
@@ -117,7 +118,7 @@ const Navbar = () => {
                                             <>
                                                 <button 
                                                     type='button'
-                                                    className='me-3 ps-1 pe-2 text-dark text-decoration-none border-0 bg-transparent' 
+                                                    className='px-2 text-body text-decoration-none border-0 bg-transparent' 
                                                     onClick={showCreateArticleModalHandler}
                                                 >
                                                     Create
@@ -129,14 +130,14 @@ const Navbar = () => {
                                                 />
                                                 <Link 
                                                     to={'/login'} 
-                                                    className='me-3 px-2 text-dark text-decoration-none' 
+                                                    className='px-2 text-body text-decoration-none' 
                                                     onClick={() => activeNavHandler('')}
                                                 >
                                                     Sign in
                                                 </Link>
                                                 <Link 
                                                     to={'/register'} 
-                                                    className='px-2 text-dark text-decoration-none' 
+                                                    className='px-2 text-body text-decoration-none' 
                                                     onClick={() => activeNavHandler('')}
                                                 >
                                                     Sign up
@@ -202,7 +203,7 @@ const Navbar = () => {
                             <Link 
                                 to={'/login'} 
                                 className={`
-                                    text-dark 
+                                    text-body 
                                     text-decoration-none 
                                     fw-semibold 
                                     py-2 px-3 
@@ -217,7 +218,7 @@ const Navbar = () => {
                             <Link 
                                 to={'/register'} 
                                 className={`
-                                    text-dark 
+                                    text-body 
                                     text-decoration-none 
                                     fw-semibold 
                                     py-2 px-3 
