@@ -60,14 +60,14 @@ const UserFollowingItem = ({image, username, bio, index, users}) => {
                         {
                             safeBio
                             ? (
-                                    !showMoreBio ? (
+                                !showMoreBio ? (
                                     shortBio
                                 ) : (
                                     safeBio
                                 )
                             )
                             : (
-                                <span className='text-muted'>No data</span>
+                                <span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>
                             )
                         }
                         {
