@@ -1,19 +1,21 @@
 import axios from './api';
 
 const ArticleService = {
-    async getArticles(author) {
+    async getArticles(limit = 20, offset = 0) {
         // const query = author ? `?author=${author}` : '';
 
         // const response = await axios.get(`/articles/${query}`);
 
-        const response = await axios.get('/articles');
+        const response = await axios.get('/articles', {
+            params: {limit, offset}
+        });
 
         return response.data;
     },
 
-    async getArticlesByAuthor(username) {
+    async getArticlesByAuthor(username, limit = 20, offset = 0) {
         const response = await axios.get('/articles/', {
-            params: {author: username}
+            params: {author: username, limit, offset}
         });
 
         return response.data;
