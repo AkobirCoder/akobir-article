@@ -82,12 +82,12 @@ const Dropdown = ({user, onLogoutClick}) => {
                             }
                         </div>
                         <div>
-                            <p style={{fontWeight: 600}} className='mb-0 text-dark'>{user.username}</p>
+                            <p style={{fontWeight: 600}} className='mb-0 text-body'>{user.username}</p>
                             {
                                 profileExtra.fullname
                                 ? (
                                     <>
-                                        <p style={{fontSize: 13}} className='mb-0 text-dark'>
+                                        <p style={{fontSize: 13}} className='mb-0 text-body'>
                                             {profileExtra.fullname}
                                         </p>
                                     </>
