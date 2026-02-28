@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArticleCard } from '../index';
 import { Loader } from '../../ui/index';
-import { 
-    articleSlice,
+import {
     deleteArticleFailure, 
     deleteArticleStart, 
     deleteArticleSuccess, 
