@@ -7,7 +7,7 @@ const NavbarLink = ({activeNav, title, path, handleClick}) => {
             <NavLink
                 to={path}
                 className={({isActive}) => `
-                    text-dark 
+                    text-body 
                     text-decoration-none 
                     py-2 px-3 
                     rounded-top 
