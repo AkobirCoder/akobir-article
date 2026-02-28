@@ -25,7 +25,7 @@ const ArticleCard = ({slug, title, description, favoritesCount, author, favorite
             return !prevState;
         });
 
-        if (!user && loggedIn) {
+        if (user && loggedIn) {
             if (favorite) {
                 alert(`You've unfavorited ${author.username.charAt(0).toUpperCase()}${author.username.slice(1)}'s article`);
             } else {
@@ -161,12 +161,12 @@ const ArticleCard = ({slug, title, description, favoritesCount, author, favorite
                         </div>
                         {
                             favorited ? (
-                                <div className='d-flex align-items-center justify-content-between gap-2 bg-white border rounded px-2 py-1'>
+                                <div className='d-flex align-items-center justify-content-between gap-2 bg-body border rounded px-2 py-1'>
                                     <i className="bi bi-star-fill text-warning"></i>
                                     <span>{favoritesCount}</span>
                                 </div>
                             ) : (
-                                <div className='d-flex align-items-center justify-content-between gap-2 bg-white border rounded px-2 py-1'>
+                                <div className='d-flex align-items-center justify-content-between gap-2 bg-body border rounded px-2 py-1'>
                                     <i className="bi bi-star"></i>
                                     <span>{favoritesCount}</span>
                                 </div>
