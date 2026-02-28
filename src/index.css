@@ -163,3 +163,9 @@ html {
         margin-top: 100px;
     }
 } 
+
+@media only screen and (min-width: 700px) {
+    .article-detail-info {
+        flex-direction: row !important;
+    }
+}
