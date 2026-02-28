@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const ArticleCard = ({slug, title, description, favoritesCount, author, favorited, navigateArticleViewHandler, navigateArticleEditHandler, deleteArticle, favoriteArticle}) => {
     const [favorite, setFavorite] = useState(favorited);
@@ -152,7 +153,7 @@ const ArticleCard = ({slug, title, description, favoritesCount, author, favorite
                         >
                             {author.username[0].toUpperCase()}
                         </div>
-                        <small className='text-muted fw-semibold text-capitalize'>{author.username}</small>
+                        <Link to={`/profiles/${author.username}`} className='text-muted text-decoration-none fw-semibold text-capitalize'>{author.username}</Link>
                     </div>
                 </div>
             </div>
