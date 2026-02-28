@@ -169,7 +169,7 @@ const Profile = () => {
                                             </div>
                                         </div>
                                         <div className='col-12 col-md-8 p-3 p-md-4'>
-                                            <div className='row g-0 bg-white border rounded p-2 p-md-3 h-100 shadow-lg'>
+                                            <div className='row g-0 bg-body border rounded p-2 p-md-3 h-100 shadow-lg'>
                                                 <div className='col-12 col-md-6 p-2 p-md-3'>
                                                     {
                                                         profile ? (profile.username) : 'No data'
@@ -185,7 +185,7 @@ const Profile = () => {
                                 <div className='col-12 mt-3'>
                                     <div className='row g-0 bg-light border rounded'>
                                         <div className='p-3 p-md-4'>
-                                            <p className='m-0 p-3 text-muted bg-white rounded shadow-lg' style={{textAlign: 'justify'}}>
+                                            <p className='m-0 p-3 text-muted bg-body rounded shadow-lg' style={{textAlign: 'justify'}}>
                                                 {
                                                     profile.bio ? (profile.bio) : 'No data'
                                                 }
