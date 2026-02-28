@@ -1,6 +1,6 @@
     import React, { useEffect, useState } from 'react';
     import { useDispatch, useSelector } from 'react-redux';
-    import { useNavigate, useParams } from 'react-router-dom';
+    import { Link, useNavigate, useParams } from 'react-router-dom';
     import moment from 'moment';
     import { ArrowToRight } from '@boxicons/react';
     import { 
@@ -26,6 +26,8 @@
             commentBody: '',
         });
 
+        const [showMoreBio, setShowMoreBio] = useState(false);
+
         const changeHandlerInput = (event) => {
             const {name, value} = event.target;
 
@@ -45,6 +47,18 @@
         const {articleDetail, isLoading, articleComments} = useSelector((state) => state.article);
 
         const navigate = useNavigate();
+
+        const safeBio = articleDetail?.author?.bio || '';
+
+        const isLongBio = safeBio.length > 100;
+
+        const shortBio = isLongBio ? `${safeBio.slice(0, 100)}...` : safeBio;
+
+        const displayBioHandler = () => {
+            setShowMoreBio((prevState) => {
+                return !prevState;
+            });
+        }
 
         useEffect(() => {
             const getArticleDetail = async () => {
@@ -147,7 +161,7 @@
                         }  else {
                             return (
                                 <div className="p-3 p-md-5 bg-body-tertiary border rounded"> 
-                                    <div className="container-fluid"> 
+                                    <div className="container-fluid px-0"> 
                                         <div className='offset-md-1'>
                                             <h1 className="display-md-5 fw-semibold">{articleDetail.title}</h1>
                                             <p className="col-md-8 fs-md-5 mb-0 mb-md-3">{articleDetail.description}</p>
@@ -167,38 +181,66 @@
                                                 <p><span className='fw-semibold'>Author: </span>{articleDetail.author.username}</p>
                                             </div>
                                         </div>
-                                        <div className='col-12 col-md-10 d-flex offset-md-1'>
-                                            <div className='row g-0 border rounded overflow-hidden flex-column-reverse flex-md-row mb-4 shadow-lg h-md-250 position-relative'>
-                                                <div className='col-12 col-sm-8 p-3 p-md-4 d-flex flex-column position-static'>
-                                                    <strong className='d-inline-block mb-2 text-primary text-uppercase'>
-                                                        {articleDetail.author.username}
-                                                    </strong>
-                                                    <p className='card-text mb-auto'>
-                                                        {articleDetail.author.bio}
-                                                    </p>
-                                                </div>
-                                                <div className='col-12 col-sm-4'>
-                                                    <svg
-                                                        className='bg-placeholder-img'
-                                                        width={'100%'}
-                                                        height={'100%'}
-                                                        xmlns='http://www.w3.org/2000/svg'
-                                                        role='img'
-                                                        aria-label='Placeholder: Thumbnail'
-                                                        preserveAspectRatio='xMidYMid slice'
-                                                        focusable='false'
-                                                    >
-                                                        <title>Placeholder</title>
-                                                        <rect width={'100%'} height={'100%'} fill='#55595c'></rect>
-                                                        <text 
-                                                            x={'50%'} y={'50%'} 
-                                                            fill='#fff' 
-                                                            className='fs-2 text-uppercase p-0 m-0'
-                                                            textAnchor="middle" dominantBaseline="middle"
+                                        <div className='row g-0'>
+                                            <div className='col-12 col-md-10 d-flex offset-md-1'>
+                                                <div className='row g-0 border rounded overflow-hidden flex-column-reverse mb-4 shadow-lg h-md-250 position-relative article-detail-info'>
+                                                    <div className='col-12 col-sm-8 p-3 p-md-4 d-flex flex-column position-static'>
+                                                        <Link 
+                                                            to={`/profiles/${articleDetail.author.username}`} 
+                                                            className='d-inline-block mb-2 text-primary fw-bold text-decoration-none text-uppercase'
                                                         >
-                                                            {articleDetail.author.username[0]}
-                                                        </text>
-                                                    </svg>
+                                                            {articleDetail.author.username}
+                                                        </Link>
+                                                        <p className='card-text mb-0'>
+                                                            {
+                                                                safeBio
+                                                                ? (
+                                                                    !showMoreBio ? (
+                                                                        shortBio
+                                                                    ) : (
+                                                                        safeBio
+                                                                    )
+                                                                )
+                                                                : (
+                                                                    <span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>
+                                                                )
+                                                            }
+                                                            {
+                                                                safeBio.length > 100 && (
+                                                                    <span
+                                                                        style={{cursor: 'pointer'}}
+                                                                        className='text-primary bio-toggle ms-2'
+                                                                        onClick={displayBioHandler}
+                                                                    >
+                                                                        {showMoreBio ? 'Less' : 'More'}
+                                                                    </span>
+                                                                )
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                    <div className='col-12 col-sm-4'>
+                                                        <svg
+                                                            className='bg-placeholder-img'
+                                                            width={'100%'}
+                                                            height={'100%'}
+                                                            xmlns='http://www.w3.org/2000/svg'
+                                                            role='img'
+                                                            aria-label='Placeholder: Thumbnail'
+                                                            preserveAspectRatio='xMidYMid slice'
+                                                            focusable='false'
+                                                        >
+                                                            <title>Placeholder</title>
+                                                            <rect width={'100%'} height={'100%'} fill='#55595c'></rect>
+                                                            <text
+                                                                x={'50%'} y={'50%'}
+                                                                fill='#fff'
+                                                                className='fs-2 text-uppercase p-0 m-0'
+                                                                textAnchor="middle" dominantBaseline="middle"
+                                                            >
+                                                                {articleDetail.author.username[0]}
+                                                            </text>
+                                                        </svg>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -249,37 +291,44 @@
                                             </div>
                                         </div>
                                         <div className='row g-0 mt-3 d-flex justify-content-center'>
+                                            <div className='col-12 col-md-7 mt-4 mb-3'>
+                                                <h4 style={{textAlign: 'center'}}>Last comments</h4>
+                                            </div>
                                             <div 
-                                                style={{maxHeight: '100vh'}}
+                                                style={{maxHeight: '150vh'}}
                                                 className={`
                                                     col-12 col-md-10 
-                                                    bg-secondary-subtle rounded 
+                                                    bg-secondary-subtle border border-secondary-subtle rounded 
                                                     p-3 py-md-4 px-md-5 
                                                     overflow-auto comments
                                                 `}
                                             >
-                                                {
-                                                    articleComments.length === 0
-                                                    ? (
-                                                        <p style={{fontStyle: 'italic'}} className='text-muted m-0'>
-                                                            No comment haven't posted yet
-                                                        </p>
-                                                    )
-                                                    : (
-                                                        articleComments.slice().reverse().map((articleComment, index) => {
-                                                            return (
-                                                                <ArticleComment
-                                                                    key={articleComment.id}
-                                                                    {...articleComment}
-                                                                    index={index}
-                                                                    deleteArticleComment={deleteArticleComment}
-                                                                    user={user}
-                                                                    articleComments={articleComments}
-                                                                />
-                                                            );
-                                                        })
-                                                    )
-                                                }
+                                                <div className='row g-0 d-flex justify-content-center'>
+                                                    <div className='col-12 col-md-9'>
+                                                        {
+                                                            articleComments.length === 0
+                                                            ? (
+                                                                <p style={{fontStyle: 'italic', textAlign: 'center'}} className='text-muted m-0'>
+                                                                    No comment haven't posted yet
+                                                                </p>
+                                                            )
+                                                            : (
+                                                                articleComments.slice().reverse().map((articleComment, index) => {
+                                                                    return (
+                                                                        <ArticleComment
+                                                                            key={articleComment.id}
+                                                                            {...articleComment}
+                                                                            index={index}
+                                                                            deleteArticleComment={deleteArticleComment}
+                                                                            user={user}
+                                                                            articleComments={articleComments}
+                                                                        />
+                                                                    );
+                                                                })
+                                                            )
+                                                        }
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
