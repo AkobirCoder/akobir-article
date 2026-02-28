@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ArticleCard } from '../index';
 import { Loader } from '../../ui/index';
 import { 
+    articleSlice,
     deleteArticleFailure, 
     deleteArticleStart, 
     deleteArticleSuccess, 
@@ -20,7 +21,7 @@ const Articles = () => {
 
     const {loggedIn} = useSelector((state) => state.auth);
 
-    const {articles, isLoading} = useSelector((state) => state.article);
+    const {articles, isLoading, articlesCount} = useSelector((state) => state.article);
 
     const navigate = useNavigate();
 
@@ -28,7 +29,11 @@ const Articles = () => {
 
     const searchParams = new URLSearchParams(location.search);
 
+    const currentPage = Number(searchParams.get('page')) || 1;
+
     const author = searchParams.get('author');
+
+    const pageSize = loggedIn ? 18 : 20;
 
     const navigateArticleViewHandler = (item) => {
         navigate(`/view-article/${item}`);
@@ -38,18 +43,39 @@ const Articles = () => {
         navigate(`/edit-article/${item}`);
     }
 
-    const getArticles = async () => {
+    const getArticles = async (page) => {
         dispatch(getArticlesStart());
 
         try {
-            const response = author
-            ? await ArticleService.getArticlesByAuthor(author)
-            : await ArticleService.getArticles();
+            const offset = (page - 1) * pageSize;
 
-            dispatch(getArticlesSuccess(response.articles));
+            const response = author
+            ? await ArticleService.getArticlesByAuthor(author, pageSize, offset)
+            : await ArticleService.getArticles(pageSize, offset);
+
+            dispatch(getArticlesSuccess(response));
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const totalPages = Math.ceil(articlesCount / pageSize);
+
+    const maxVisible = 5;
+
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+
+    let endPage = startPage + maxVisible - 1;
+
+    if (endPage > totalPages) {
+        endPage = totalPages;
+        startPage = Math.max(1, endPage - maxVisible + 1);
+    }
+
+    const visiblePages = [];
+
+    for (let i = startPage; i <= endPage; i++) {
+        visiblePages.push(i);
     }
 
     const deleteArticle = async (slug) => {
@@ -85,8 +111,8 @@ const Articles = () => {
     }
 
     useEffect(() => {
-        getArticles();
-    }, [author]);
+        getArticles(currentPage);
+    }, [author, currentPage, pageSize]);
 
     return (
         <>
@@ -141,6 +167,61 @@ const Articles = () => {
                                         })
                                     }
                                 </div>
+                                <ul className="pagination justify-content-center mt-4">
+
+                                    {/* ← Previous */}
+                                    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                                        <button
+                                            className="page-link"
+                                            onClick={() => {
+                                                if (currentPage === 1) return;
+                                                const params = new URLSearchParams(location.search);
+                                                params.set('page', currentPage - 1);
+                                                navigate(`?${params.toString()}`);
+                                            }}
+                                        >
+                                            &laquo;
+                                        </button>
+                                    </li>
+
+                                    {/* numbers */}
+                                    {visiblePages.map((pageNum) => (
+                                        <li
+                                            key={pageNum}
+                                            className={`page-item ${currentPage === pageNum ? 'active' : ''}`}
+                                        >
+                                            <button
+                                                className="page-link"
+                                                onClick={() => {
+                                                    const params = new URLSearchParams(location.search);
+                                                    params.set('page', pageNum);
+                                                    navigate(`?${params.toString()}`);
+                                                }}
+                                            >
+                                                {pageNum}
+                                            </button>
+                                        </li>
+                                    ))}
+
+                                    {/* → Next */}
+                                    <li
+                                        className={`page-item ${
+                                            currentPage === totalPages ? 'disabled' : ''
+                                        }`}
+                                    >
+                                        <button
+                                            className="page-link"
+                                            onClick={() => {
+                                                if (currentPage === totalPages) return;
+                                                const params = new URLSearchParams(location.search);
+                                                params.set('page', currentPage + 1);
+                                                navigate(`?${params.toString()}`);
+                                            }}
+                                        >
+                                            &raquo;
+                                        </button>
+                                    </li>
+                                </ul>
                             </div>
                         );
                     }
