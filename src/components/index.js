@@ -10,6 +10,7 @@ export {default as ArticleDetail} from './articles/article-detail';
 export {default as CreateArticle} from './articles/create-article';
 export {default as CreateArticleModal} from './articles/create-article-modal';
 export {default as EditArticle} from './articles/edit-article';
+export {default as ArticleFavoriteModal} from './articles/article-favorite-modal';
 export {default as ArticleComment} from './articles/article-comment';
 export {default as ArticleCommentForm} from './articles/article-comment-form';
 export {default as ArticleFeed} from './articles/article-feed';
