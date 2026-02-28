@@ -19,7 +19,7 @@ const Sidebar = ({user, toggleSidebar, sidebarHandler}) => {
                                     : 'translateX(0)', 
                                     transition: 'transform 0.3s ease'
                                 }} 
-                                className='position-fixed top-0 bottom-0 z-3 d-none d-md-block p-3 col-md-2 bg-light border-end'
+                                className='position-fixed top-0 bottom-0 z-3 d-none d-md-block p-3 col-md-2 bg-body-tertiary border-end'
                             >
                                 <div className='row g-0 d-flex align-items-start'>
                                     <div className={`${toggleSidebar ? 'col-9' : 'col-10'}`}>
