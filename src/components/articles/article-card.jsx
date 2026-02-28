@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArticleFavoriteModal } from '../index';
 
 const ArticleCard = ({slug, title, description, favoritesCount, author, favorited, navigateArticleViewHandler, navigateArticleEditHandler, deleteArticle, favoriteArticle}) => {
     const [favorite, setFavorite] = useState(favorited);
+
+    const [showFavoriteArticle, setShowFavoriteArticle] = useState(false); 
 
     const safeDescription = description || '';
     
@@ -15,16 +18,30 @@ const ArticleCard = ({slug, title, description, favoritesCount, author, favorite
 
     const {loggedIn, user} = useSelector((state) => state.auth);
 
+    const navigate = useNavigate();
+
     const favoriteHandler = () => {
         setFavorite((prevState) => {
             return !prevState;
         });
 
-        if (favorite) {
-            alert(`You've unfavorited ${author.username.charAt(0).toUpperCase()}${author.username.slice(1)}'s article`);
-        } else {
-            alert(`You've favorited ${author.username.charAt(0).toUpperCase()}${author.username.slice(1)}'s article`);
+        if (!user && loggedIn) {
+            if (favorite) {
+                alert(`You've unfavorited ${author.username.charAt(0).toUpperCase()}${author.username.slice(1)}'s article`);
+            } else {
+                alert(`You've favorited ${author.username.charAt(0).toUpperCase()}${author.username.slice(1)}'s article`);
+            }
         }
+    }
+
+    const showFavoriteArticleHandler = () => {
+        setShowFavoriteArticle((prevState) => {
+            return !prevState;
+        });
+    }
+
+    const loginHandler = () => {
+        navigate('/login');
     }
 
     return (
@@ -118,6 +135,12 @@ const ArticleCard = ({slug, title, description, favoritesCount, author, favorite
                                 type='button'
                                 className='btn btn-sm btn-info'
                                 onClick={() => {
+                                    if (!loggedIn) {
+                                        showFavoriteArticleHandler();
+
+                                        return;
+                                    }
+
                                     favoriteArticle(slug, favorited)
                                     favoriteHandler()
                                 }}
@@ -130,6 +153,11 @@ const ArticleCard = ({slug, title, description, favoritesCount, author, favorite
                                     </svg>
                                 </div>
                             </button>
+                            <ArticleFavoriteModal 
+                                open={showFavoriteArticle}
+                                onClose={showFavoriteArticleHandler}
+                                loginHandler={loginHandler}
+                            />
                         </div>
                         {
                             favorited ? (
