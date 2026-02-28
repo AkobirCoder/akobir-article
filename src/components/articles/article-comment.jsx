@@ -8,12 +8,12 @@ const ArticleComment = ({index, id, body, author, deleteArticleComment, articleC
     return (
         <div 
             className={`
-                bg-white border rounded shadow-lg p-3 
+                bg-body border rounded shadow-lg p-3 
                 ${index === articleComments.length - 1 ? 'mb-0' : 'mb-3'}
             `}
         >
             <div className='d-flex flex-column gap-3'>
-                <div className='d-flex justify-content-between p-3 bg-light border rounded'>
+                <div className='d-flex justify-content-between p-3 bg-body-tertiary border rounded'>
                     <div className='d-flex align-items-center gap-2'>
                         <svg
                             className='bg-placeholder-img'
