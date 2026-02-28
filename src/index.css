@@ -1,8 +1,8 @@
 :root {
-    --link: #f1f5ff;
-    --dropdown: #ececec;
-    --link-border: #946aff;
-    --dropdown-border: #6a80ff;
+    --link: var(--bs-tertiary-bg);
+    --dropdown: var(--bs-secondary-bg);
+    --link-border: var(--bs-primary);
+    --dropdown-border: var(--bs-primary);
 }
 
 * {
@@ -20,17 +20,18 @@ html {
 
 .nav-link-item {
     border-bottom: 2px solid transparent;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color .25s ease, border-color .25s ease;
 }
 
 .nav-link-item:hover {
-    background-color: var(--link);
-    border-bottom-color: var(--link-border);
+    background-color: color-mix(in srgb, var(--bs-primary) 12%, transparent);
+    border-bottom-color: var(--bs-primary);
 }
 
 .custom-nav-link {
-    background-color: var(--link);
-    border-bottom-color: var(--link-border);
+    background-color: color-mix(in srgb, var(--bs-primary) 16%, transparent);
+    border-bottom: 2px solid var(--bs-primary);
+    font-weight: 500;
 }
 
 .custom-dropdown-menu {
@@ -60,7 +61,7 @@ html {
 
 .main-content {
     scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.4) transparent;
+    scrollbar-color: var(--bs-secondary-color) transparent;
     scrollbar-gutter: stable overlay;
 }
 
@@ -73,7 +74,7 @@ html {
 }
 
 .main-content::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.4);
+    background-color: var(--bs-secondary-color);
     border-radius: 0;
 }
 
@@ -85,7 +86,7 @@ html {
 
 .user-following {
     scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.4) transparent;
+    scrollbar-color: var(--bs-secondary-color) transparent;
     scrollbar-gutter: stable overlay;
 }
 
@@ -98,7 +99,7 @@ html {
 }
 
 .user-following::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.4);
+    background-color: var(--bs-secondary-color);
     border-radius: 0;
 }
 
@@ -110,7 +111,7 @@ html {
 
 .comments {
     scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.4) transparent;
+    scrollbar-color: var(--bs-secondary-color) transparent;
     scrollbar-gutter: stable overlay;
 }
 
@@ -123,7 +124,7 @@ html {
 }
 
 .comments::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.4);
+    background-color: var(--bs-secondary-color);
     border-radius: 0;
 }
 
