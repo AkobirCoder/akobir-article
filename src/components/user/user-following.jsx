@@ -52,7 +52,7 @@ const UserFollowing = () => {
                         );
                     } else {
                         return (
-                            <div className='overflow-auto bg-light border rounded p-3 user-following' style={{maxHeight: '100%'}}>
+                            <div className='overflow-auto bg-body-tertiary border rounded p-3 user-following' style={{maxHeight: '100%'}}>
                                 <div className='row g-0 d-flex justify-content-center'>
                                     {
                                         users.map((userItem, index) => {
