@@ -85,7 +85,7 @@ const Articles = () => {
 
             dispatch(deleteArticleSuccess(response));
 
-            getArticles();
+            getArticles(currentPage);
         } catch (error) {
             dispatch(deleteArticleFailure());
 
@@ -103,7 +103,7 @@ const Articles = () => {
 
             dispatch(postArticleFavoriteSuccess(response));
 
-            getArticles();
+            getArticles(currentPage);
         } catch (error) {
             dispatch(postArticleFavoriteFailure());
         }
