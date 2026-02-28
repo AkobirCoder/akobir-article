@@ -18,7 +18,7 @@ const UserFollowingItem = ({image, username, bio, index, users}) => {
     return (
         <div 
             className={`
-                col-12 col-md-7 p-3 bg-white border rounded shadow-lg 
+                col-12 col-md-7 p-3 bg-body border rounded shadow-lg 
                 ${index === users.length - 1 ? 'mb-0' : 'mb-3'}
             `}
         >
