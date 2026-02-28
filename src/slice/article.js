@@ -6,6 +6,7 @@ const initialState = {
     articles: [],
     feedArticles: [],
     articleComments: [],
+    articlesCount: 0,
     articleDetail: null,
     error: null,
 }
@@ -19,7 +20,8 @@ export const articleSlice = createSlice({
         },
         getArticlesSuccess: (state, action) => {
             state.isLoading = false;
-            state.articles = action.payload;
+            state.articles = action.payload.articles;
+            state.articlesCount = action.payload.articlesCount;
         },
         getArticlesFailure: (state, action) => {
             state.isLoading = false;
