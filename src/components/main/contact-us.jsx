@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FormLogo } from '../assets/index';
 import { contactUsInputProps, Input, Textarea } from '../../ui/index';
-import { useDispatch } from 'react-redux';
-import { contactMessageFailure, contactMessageStart, contactMessageSuccess } from '../../slice/contact';
+import { 
+    contactMessageFailure, 
+    contactMessageStart, 
+    contactMessageSuccess 
+} from '../../slice/contact';
 import ContactService from '../../service/contact';
 
 const ContactUs = () => {
@@ -35,6 +39,8 @@ const ContactUs = () => {
 
     const formSubmit = async (event) => {
         event.preventDefault();
+
+        setStatus(null);
 
         dispatch(contactMessageStart());
 
@@ -88,7 +94,7 @@ const ContactUs = () => {
                 setStatus('success');
             }, 500);
         } catch (error) {
-            dispatch(contactMessageFailure(error.response.data.errors));
+            dispatch(contactMessageFailure(error?.response?.data?.errors || 'Request failed'));
 
             setTimeout(() => {
                 setStatus('failure');
@@ -107,9 +113,9 @@ const ContactUs = () => {
                         {messages.success}
                         <button 
                             type="button" 
-                            className="btn-close" 
-                            data-bs-dismiss="alert" 
+                            className="btn-close"
                             aria-label="Close"
+                            onClick={() => setStatus(null)}
                         ></button>
                     </div>
                 )}
@@ -121,9 +127,9 @@ const ContactUs = () => {
                         {messages.failure}
                         <button 
                             type="button" 
-                            className="btn-close" 
-                            data-bs-dismiss="alert" 
+                            className="btn-close"
                             aria-label="Close"
+                            onClick={() => setStatus(null)}
                         ></button>
                     </div>
                 )}
