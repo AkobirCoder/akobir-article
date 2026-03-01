@@ -19,6 +19,7 @@ import { userDetailFailure, userDetailStart, userDetailSuccess } from '../../sli
 import AuthService from '../../service/auth';
 import { getItem } from '../../helpers/persistance-storage';
 import { userPrivateInfoItems, userShortInfoItems } from '../../constants/index';
+import moment from 'moment';
 
 const User = () => {
     const dispatch = useDispatch();
@@ -88,7 +89,7 @@ const User = () => {
                                             className='col-12 d-flex d-md-block justify-content-center bg-primary rounded-top border-bottom-0 p-4 p-md-5' 
                                             style={{backgroundImage: 'var(--bs-gradient)'}}
                                         >
-                                            <h1 className='text-white fw-normal fs-4 fs-md-1'>
+                                            <h1 className='text-white fw-semibold fs-3 m-0'>
                                                 My profile
                                             </h1>
                                         </div>
@@ -163,6 +164,7 @@ const User = () => {
                                                                 ? (profileExtra.description)
                                                                 : (<span style={{fontStyle: 'italic'}} className='text-muted'>No data</span>)
                                                             }
+                                                            <span className='text-muted'> | {moment().diff(moment(profileExtra.birthDate), 'years')} years old</span>
                                                         </p>
                                                         <button type='button' className='btn btn-secondary w-100 my-3' onClick={navigateHandler}>
                                                             Edit profile
@@ -253,7 +255,7 @@ const User = () => {
                                                             </div>
                                                         );
                                                     })
-                                                }
+                                                } 
                                                 <div className='d-flex align-items-start text-muted'>
                                                     <div className='me-2'>
                                                         <Captions />
