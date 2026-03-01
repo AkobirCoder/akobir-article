@@ -26,7 +26,7 @@ const UserEdit = () => {
         fullname: '',
         pronoun: '',
         birthDate: '',
-        phone: '+998',
+        phone: '',
         field: '',
         description: '',
         bio: '',
@@ -99,6 +99,7 @@ const UserEdit = () => {
             return {
                 ...prevState,
                 ...profileExtra,
+                phone: profileExtra.phone || '+998',
                 username: user.username || '',
                 image: user.image || '',
                 bio: user.bio || '',
