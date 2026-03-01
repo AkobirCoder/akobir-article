@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Logo } from '../assets/index';
+import { FormLogo } from '../assets/index';
 import { navigationLinks } from '../../constants/index';
 import { Appearance, CreateArticleModal, NavbarLink, UserLogoutModal } from '../index';
 import { removeItem } from '../../helpers/persistance-storage';
@@ -66,16 +66,18 @@ const Navbar = () => {
     }
     
     return (
-        <div className='container-fluid px-3'>
-            <div className='row g-0 d-flex flex-md-row align-items-center py-3 py-md-2'>
+        <div className='container-fluid px-3 py-2'>
+            <div className='row g-0 d-flex flex-md-row align-items-center'>
                 <div className='d-flex col-6 col-md-4 justify-content-start'>
-                    <Link to={'/'}>
+                    <Link 
+                        className='d-flex align-items-center text-decoration-none' 
+                        to={'/'}>
                         <img
-                            src={Logo} 
-                            className='w-75' 
+                            src={FormLogo}  
                             alt="Logo" 
                             onClick={() => activeNavHandler('Home')} 
                         />
+                        <span className='text-body fw-bold fs-3 ms-1'>Article</span>
                     </Link>
                 </div>
                 <nav className='d-none d-md-block col-6 col-md-8 py-2'>
@@ -153,7 +155,7 @@ const Navbar = () => {
                 <div className='d-md-none d-flex col-6 justify-content-end position-relative'>
                     <button 
                         type='button' 
-                        className='btn btn-outline-primary fs-2 py-0 px-2' 
+                        className='btn btn-outline-primary fs-4 py-0 px-2' 
                         onClick={toggleNavigationHandler}
                     >
                         {(
@@ -170,6 +172,21 @@ const Navbar = () => {
                             }
                         )()}
                     </button>
+                    {
+                        loggedIn ? (
+                            <div className='d-flex align-items-center ms-2'>
+                                <Dropdown 
+                                    user={user}
+                                    onLogoutClick={showLogoutModalHandler}
+                                />
+                                <UserLogoutModal
+                                    open={showLogoutModal}
+                                    onClose={showLogoutModalHandler}
+                                    logoutHandler={logoutHandler} 
+                                />
+                            </div>
+                        ) : ('')
+                    }
                 </div>
                 <div 
                     className={`${
@@ -180,10 +197,10 @@ const Navbar = () => {
                                 return 'd-none'
                             }
                         })()
-                    } d-md-none d-block w-100 z-3 bg-body-secondary`}
-                    style={{height: 'calc(100vh - 72px)', position: 'absolute', top: 72, left: 0}}
+                    } d-md-none d-block w-100 z-3 bg-body-secondary p-3`}
+                    style={{height: 'calc(100vh - 68px)', position: 'absolute', top: 68, left: 0}}
                 >
-                    <div className='mt-3'>
+                    <div className=''>
                         <div className='d-flex flex-column gap-2'>
                             {
                                 navigationLinks.map((navLink, index) => {
@@ -198,38 +215,55 @@ const Navbar = () => {
                                     );
                                 })
                             }
+                            <Appearance />
                         </div>
                         <div className='d-flex justify-content-center gap-3 signin-signup-mobile-link'>
-                            <Link 
-                                to={'/login'} 
-                                className={`
-                                    text-body 
-                                    text-decoration-none 
-                                    fw-semibold 
-                                    py-2 px-3 
-                                    rounded 
-                                    bg-dark-subtle
-                                `}
-                                // onClick={() => activeNavHandler('')}
-                                onClick={handleClick}
-                            >
-                                Sign in
-                            </Link>
-                            <Link 
-                                to={'/register'} 
-                                className={`
-                                    text-body 
-                                    text-decoration-none 
-                                    fw-semibold 
-                                    py-2 px-3 
-                                    rounded 
-                                    bg-dark-subtle
-                                `}
-                                // onClick={() => activeNavHandler('')}
-                                onClick={handleClick}
-                            >
-                                Sign up
-                            </Link>
+                            {(
+                                () => {
+                                    if (loggedIn) {
+                                        return (
+                                            <>
+                                                
+                                            </>
+                                        );
+                                    } else {
+                                        return (
+                                            <>
+                                                <Link 
+                                                    to={'/login'} 
+                                                    className={`
+                                                        text-body 
+                                                        text-decoration-none 
+                                                        fw-semibold 
+                                                        py-2 px-3 
+                                                        rounded 
+                                                        bg-dark-subtle
+                                                    `}
+                                                    // onClick={() => activeNavHandler('')}
+                                                    onClick={handleClick}
+                                                >
+                                                    Sign in
+                                                </Link>
+                                                <Link 
+                                                    to={'/register'} 
+                                                    className={`
+                                                        text-body 
+                                                        text-decoration-none 
+                                                        fw-semibold 
+                                                        py-2 px-3 
+                                                        rounded 
+                                                        bg-dark-subtle
+                                                    `}
+                                                    // onClick={() => activeNavHandler('')}
+                                                    onClick={handleClick}
+                                                >
+                                                    Sign up
+                                                </Link>
+                                            </>
+                                        );
+                                    }
+                                }
+                            )()}
                         </div>
                     </div>
                 </div>
