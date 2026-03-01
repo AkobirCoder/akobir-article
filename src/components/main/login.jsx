@@ -39,6 +39,7 @@ const Login = () => {
         dispatch(signUserStart());
 
         const {email, password} = formData;
+        
         const user = {email, password}
 
         try {
