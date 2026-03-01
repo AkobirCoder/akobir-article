@@ -14,6 +14,10 @@ const Input = ({mark, id, type, name, completeName, placeholder, margin, label, 
 
                         case 'sign-up-form-input':
                             return 'mb-2';
+
+                        case 'contact-us-form-input':
+                            return 'mb-3';
+
                         default:
                             return;
                     }
@@ -28,6 +32,7 @@ const Input = ({mark, id, type, name, completeName, placeholder, margin, label, 
                 id={id}
                 placeholder={placeholder}
                 value={value}
+                required
                 onChange={changeHandlerInput}    
             />
             <label htmlFor={id}>{label}</label>
