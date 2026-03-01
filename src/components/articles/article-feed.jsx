@@ -105,7 +105,7 @@ const ArticleFeed = () => {
                                     style={{backgroundImage: 'var(--bs-gradient)'}}
                                     className='d-flex d-md-block justify-content-center bg-primary rounded border-bottom-0 p-4 p-md-5 mb-3'
                                 >
-                                    <h1 className='text-white fw-normal'>My subscriptions articles</h1>
+                                    <h1 className='text-white fw-semibold fs-3 m-0'>My subscriptions articles</h1>
                                 </div>
                                 <div className='row row-cols-1 row-cols-md-3 g-3'>
                                     {
