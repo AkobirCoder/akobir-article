@@ -102,7 +102,6 @@ const App = () => {
                         <Route path='/view-article/:slug' element={<ArticleDetail />} />
                         <Route path='/create-article' element={<CreateArticle />} />
                         <Route path='/edit-article/:slug' element={<EditArticle />} />
-                        {/* <Route path='/articles/:slug/comments' element={<ArticleComment />} /> */}
                         <Route path='/articles/feed' element={<ArticleFeed />} />
                         <Route path='/about-us' element={<AboutUs />} />
                         <Route path='/blogs' element={<Blogs />} />
