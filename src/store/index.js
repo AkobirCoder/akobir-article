@@ -4,6 +4,7 @@ import ArticleReducer from '../slice/article';
 import ProfileReducer from '../slice/profile';
 import FollowingReducer from '../slice/following';
 import ProfileExtraReducer from '../slice/profileExtra';
+import ContactReducer from '../slice/contact';
 
 export default configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export default configureStore({
         profile: ProfileReducer,
         following: FollowingReducer,
         profileExtra: ProfileExtraReducer,
+        contact: ContactReducer,
     },
     devTools: process.env.NODE_ENV !== 'production',
 });
