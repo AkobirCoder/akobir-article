@@ -65,7 +65,7 @@ export const userFormInputProps = [
     },
     {
         id: 'floatingPhone',
-        type: 'number',
+        type: 'text',
         name: 'phone',
         completeName: 'phoneNumber',
         placeholder: 'Phone number',
@@ -142,6 +142,33 @@ export const dropdownItems = [
         path: '/articles/feed',
         name: 'Feeds',
         icon: 'BookmarkAlt',
+    },
+];
+
+export const contactUsInputProps = [
+    {
+        id: 'floatingFullName',
+        type: 'text',
+        name: 'fullname',
+        completeName: 'fullname',
+        placeholder: 'Jhon Doe',
+        label: 'Full name',
+    },
+    {
+        id: 'floatingEmail',
+        type: 'email',
+        name: 'email',
+        completeName: 'email',
+        placeholder: 'name@example.com',
+        label: 'Email address',
+    },
+    {
+        id: 'floatingPhone',
+        type: 'text',
+        name: 'phone',
+        completeName: 'phone',
+        placeholder: '+1234567890',
+        label: 'Phone number',
     },
 ];
 
