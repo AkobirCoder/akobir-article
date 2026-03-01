@@ -40,6 +40,7 @@ const Register = () => {
         dispatch(signUserStart());
         
         const {username, email, password} = formData;
+        
         const user = {username, email, password}
 
         try {
