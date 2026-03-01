@@ -72,7 +72,7 @@ const Profile = () => {
                         return (
                             <div className='row g-0'>
                                 <div className='col-12'>
-                                    <div className='row g-0 bg-light border rounded'>
+                                    <div className='row g-0 bg-body-tertiary border rounded'>
                                         <div className='col-12 col-md-4 d-flex justify-content-center pt-4 ps-4 pe-4 pb-2 p-md-4'>
                                             <div className='row g-0 d-flex justify-content-center'>
                                                 <div className='col-12 d-flex justify-content-center mb-3 mb-md-4'>
@@ -183,7 +183,7 @@ const Profile = () => {
                                     </div>
                                 </div>
                                 <div className='col-12 mt-3'>
-                                    <div className='row g-0 bg-light border rounded'>
+                                    <div className='row g-0 bg-body-tertiary border rounded'>
                                         <div className='p-3 p-md-4'>
                                             <p className='m-0 p-3 text-muted bg-body rounded shadow-lg' style={{textAlign: 'justify'}}>
                                                 {
