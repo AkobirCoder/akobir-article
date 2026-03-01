@@ -128,16 +128,18 @@ const Articles = () => {
                             <div className='album'>
                                 <div 
                                     style={{backgroundImage: 'var(--bs-gradient)'}}
-                                    className='d-flex d-md-block justify-content-center bg-primary rounded border-bottom-0 p-4 p-md-5 mb-3'
+                                    className='d-flex flex-column d-md-block justify-content-center bg-primary rounded border-bottom-0 p-4 p-md-5 mb-3'
                                 >
-                                    <h1 className='text-white fw-normal'>
+                                    <h1 className='text-white fw-semibold fs-3'>
                                         {
                                             author 
                                             ? `${author.charAt(0).toUpperCase()}${author.slice(1)}'s articles` 
                                             : 'Our latest articles'
                                         }
                                     </h1>
-                                    <p className='text-white lh-5'>
+                                    <p 
+                                        style={{textAlign: 'justify'}}
+                                        className='text-white lh-5 m-0'>
                                         {
                                             author
                                             ? ''
