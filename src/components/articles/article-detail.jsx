@@ -182,7 +182,7 @@
                                             </div>
                                         </div>
                                         <div className='row g-0'>
-                                            <div className='col-12 col-md-10 d-flex offset-md-1'>
+                                            <div className='col-12 col-md-10 offset-md-1'>
                                                 <div className='row g-0 border rounded overflow-hidden flex-column-reverse mb-4 shadow-lg h-md-250 position-relative article-detail-info'>
                                                     <div className='col-12 col-sm-8 p-3 p-md-4 d-flex flex-column position-static'>
                                                         <Link 
@@ -244,11 +244,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div 
-                                            style={{textAlign: 'justify'}} 
-                                            className='col-12 col-md-10 bg-body p-3 offset-md-1 rounded shadow-lg'
-                                        >
-                                            {articleDetail.body}
+                                        <div className='row g-0'>
+                                            <div
+                                                style={{textAlign: 'justify'}}
+                                                className='col-12 col-md-10 bg-body p-3 offset-md-1 rounded shadow-lg'
+                                            >
+                                                {articleDetail.body}
+                                            </div>
                                         </div>
                                         <div className='row g-0 my-4 offset-md-1'>
                                             <div className='col-12 col-md-3 mb-2 mb-md-0 me-md-3'>
