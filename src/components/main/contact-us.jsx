@@ -8,6 +8,7 @@ import {
     contactMessageSuccess 
 } from '../../slice/contact';
 import ContactService from '../../service/contact';
+import { ContactUsInfo } from '../index';
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
@@ -133,11 +134,13 @@ const ContactUs = () => {
                         ></button>
                     </div>
                 )}
-                <div className='row g-0 g-md-5 d-flex justify-content-center'>
-                    <div className='col-12 col-md-8'>
+                <div className='text-center mb-md-5'>
+                    <img className='mb-4' src={FormLogo} alt="Contact us logo" />
+                    <h1 className='h3 mb-3 fw-semibold'>Contact Us</h1>
+                </div>
+                <div className='row g-0 g-md-5 d-flex align-items-center justify-content-center flex-column-reverse flex-md-row'>
+                    <div className='col-12 col-md-6'>
                         <form className='text-center' onSubmit={formSubmit}>
-                            <img className='mb-4' src={FormLogo} alt="Contact us logo" />
-                            <h1 className='h3 mb-3 fw-semibold'>Contact Us</h1>
                             {
                                 contactUsInputProps.map((inputProp, index) => {
                                     return (
@@ -161,6 +164,11 @@ const ContactUs = () => {
                             />
                             <button type='submit' className='btn btn-success w-100'>Submit</button>
                         </form>
+                    </div>
+                    <div className='col-12 col-md-6 mt-4 mt-md-5'>
+                        <div className='d-flex justify-content-center flex-column'>
+                            <ContactUsInfo />
+                        </div>
                     </div>
                 </div>
             </div>
