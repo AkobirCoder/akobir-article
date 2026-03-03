@@ -5,22 +5,17 @@ export const navigationLinks = [
         path: '/',
     },
     {
-        id: 3,
+        id: 2,
         title: 'Articles',
         path: '/articles',
     },
     {
-        id: 2,
+        id: 3,
         title: 'About us',
         path: '/about-us',
     },
     {
         id: 4,
-        title: 'Blogs',
-        path: '/blogs',
-    },
-    {
-        id: 5,
         title: 'Contact us',
         path: '/contact-us',
     },
