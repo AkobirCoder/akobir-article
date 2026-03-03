@@ -82,7 +82,7 @@ const Navbar = () => {
                 </div>
                 <nav className='d-none d-md-block col-6 col-md-8 py-2'>
                     <div className='row g-0'>
-                        <div className='col-12 col-md-6 d-flex align-items-center justify-content-between'>
+                        <div className='col-12 col-md-6 d-flex align-items-center justify-content-evenly'>
                             {
                                 navigationLinks.map((navLink, index) => {
                                     return (
