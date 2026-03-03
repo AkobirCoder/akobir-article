@@ -104,7 +104,6 @@ const App = () => {
                         <Route path='/edit-article/:slug' element={<EditArticle />} />
                         <Route path='/articles/feed' element={<ArticleFeed />} />
                         <Route path='/about-us' element={<AboutUs />} />
-                        <Route path='/blogs' element={<Blogs />} />
                         <Route path='/contact-us' element={<ContactUs />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
