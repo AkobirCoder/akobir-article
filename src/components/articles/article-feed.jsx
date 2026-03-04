@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Loader } from '../../ui/index';
 import { 
     deleteArticleFailure, 
@@ -22,9 +22,19 @@ const ArticleFeed = () => {
 
     const {user} = useSelector((state) => state.auth);
 
-    const {isLoading, feedArticles} = useSelector((state) => state.article);
+    const {loggedIn} = useSelector((state) => state.auth);
+
+    const {isLoading, feedArticles, articlesCount} = useSelector((state) => state.article);
 
     const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const params = new URLSearchParams(location.search);
+
+    const currentPage = Number(params.get('page') || 1);
+
+    const pageSize = loggedIn ? 18 : 20;
 
     const navigateArticleViewHandler = (item) => {
         navigate(`/view-article/${item}`);
@@ -34,16 +44,38 @@ const ArticleFeed = () => {
         navigate(`/edit-article/${item}`);
     }
 
-    const getFeedArticles = async () => {
+    const getFeedArticles = async (page) => {
         dispatch(getArticlesFeedStart());
 
         try {
-            const response = await ArticleService.getFeedArticles();
+            const offset = (page - 1) * pageSize;
 
-            dispatch(getArticlesFeedSuccess(response.articles));
+            const response = await ArticleService.getFeedArticles(pageSize, offset);
+
+            dispatch(getArticlesFeedSuccess(response));
         } catch (error) {
             dispatch(getArticlesFeedFailure(error.response.data.errors));
         }
+    }
+
+    const totalPages = Math.ceil(articlesCount / pageSize);
+
+    const maxVisible = 5;
+
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+
+    let endPage = startPage + maxVisible - 1;
+
+    if (endPage > totalPages) {
+        endPage = totalPages;
+
+        startPage = Math.max(1, endPage - maxVisible + 1);
+    }
+
+    const visiblePages = [];
+
+    for (let i = startPage; i <= endPage; i++) {
+        visiblePages.push(i);
     }
 
     const deleteArticle = async (slug) => {
@@ -54,7 +86,7 @@ const ArticleFeed = () => {
 
             dispatch(deleteArticleSuccess(response));
 
-            getFeedArticles();
+            getFeedArticles(currentPage);
         } catch (error) {
             dispatch(deleteArticleFailure());
 
@@ -72,7 +104,7 @@ const ArticleFeed = () => {
 
             dispatch(postArticleFavoriteSuccess(response));
 
-            getFeedArticles();
+            getFeedArticles(currentPage);
         } catch (error) {
             dispatch(postArticleFavoriteFailure());
         }
@@ -85,8 +117,8 @@ const ArticleFeed = () => {
             navigate('/login');
         }
 
-        getFeedArticles();
-    }, [navigate]);
+        getFeedArticles(currentPage);
+    }, [navigate, currentPage, pageSize]);
 
     return (
         <>
@@ -123,6 +155,59 @@ const ArticleFeed = () => {
                                         })
                                     }
                                 </div>
+                                <ul className='pagination justify-content-center mt-4'>
+                                    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                                        <button
+                                            className='page-link'
+                                            onClick={() => {
+                                                if (currentPage === 1) return;
+
+                                                params.set('page', currentPage - 1);
+
+                                                navigate(`?${params.toString()}`);
+                                            }}
+                                        >
+                                            &laquo;
+                                        </button>
+                                    </li>
+                                    {
+                                        visiblePages.map((pageNum) => {
+                                            return (
+                                                <li
+                                                    key={pageNum} 
+                                                    className={`page-item ${currentPage === pageNum ? 'active' : ''}`}
+                                                >
+                                                    <button
+                                                        className='page-link'
+                                                        onClick={() => {
+                                                            params.set('page', pageNum);
+
+                                                            navigate(`?${params.toString()}`);
+                                                        }}
+                                                    >
+                                                        {pageNum}
+                                                    </button>
+                                                </li>
+                                            );
+                                        })
+                                    }
+                                    <li
+                                        className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}
+                                    >   
+                                        <button 
+                                            className='page-link'
+                                            onClick={() => {
+                                                if (currentPage === totalPages) return;
+
+                                                params.set('page', currentPage + 1);
+
+                                                navigate(`?${params.toString()}`);
+                                            }}
+                                        >
+                                            &raquo;
+                                        </button>
+                                    </li>
+                                </ul>
                             </div>
                         );
                     }
