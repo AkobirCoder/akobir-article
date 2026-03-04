@@ -42,7 +42,7 @@ const Modal = ({title, description, btnName, btnIcon, onClose, onConfirm}) => {
                             </button>
                             <button
                                 type="button"
-                                className="btn btn-outline-danger px-3"
+                                className="btn btn-danger px-3"
                                 onClick={modalClickHandler}
                             >
                                 {btnIcon}
