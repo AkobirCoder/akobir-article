@@ -86,8 +86,10 @@ const ArticleService = {
         return response.data;
     },
 
-    async getFeedArticles() {
-        const response = await axios.get('/articles/feed');
+    async getFeedArticles(limit = 20, offset = 0) {
+        const response = await axios.get('/articles/feed', {
+            params: {limit, offset}
+        });
 
         return response.data;
     }
