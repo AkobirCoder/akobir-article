@@ -223,7 +223,17 @@ const Navbar = () => {
                                     if (loggedIn) {
                                         return (
                                             <>
-                                                
+                                                <button
+                                                    className='btn btn-danger'
+                                                    onClick={showLogoutModalHandler}
+                                                >
+                                                    Sign out
+                                                </button>
+                                                <UserLogoutModal 
+                                                    open={showLogoutModal}
+                                                    onClose={showLogoutModalHandler}
+                                                    logoutHandler={logoutHandler} 
+                                                />
                                             </>
                                         );
                                     } else {
