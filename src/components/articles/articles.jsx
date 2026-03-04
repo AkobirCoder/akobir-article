@@ -28,7 +28,9 @@ const Articles = () => {
 
     const searchParams = new URLSearchParams(location.search);
 
-    const currentPage = Number(searchParams.get('page')) || 1;
+    const params = new URLSearchParams(location.search);
+
+    const currentPage = Number(params.get('page')) || 1;
 
     const author = searchParams.get('author');
 
@@ -68,6 +70,7 @@ const Articles = () => {
 
     if (endPage > totalPages) {
         endPage = totalPages;
+
         startPage = Math.max(1, endPage - maxVisible + 1);
     }
 
@@ -130,7 +133,7 @@ const Articles = () => {
                                     style={{backgroundImage: 'var(--bs-gradient)'}}
                                     className='d-flex flex-column d-md-block justify-content-center bg-primary rounded border-bottom-0 p-4 p-md-5 mb-3'
                                 >
-                                    <h1 className='text-white fw-semibold fs-3'>
+                                    <h1 className={`text-white fw-semibold fs-3 ${author ? 'mb-0': ''}`}>
                                         {
                                             author 
                                             ? `${author.charAt(0).toUpperCase()}${author.slice(1)}'s articles` 
@@ -176,8 +179,9 @@ const Articles = () => {
                                             className="page-link"
                                             onClick={() => {
                                                 if (currentPage === 1) return;
-                                                const params = new URLSearchParams(location.search);
+
                                                 params.set('page', currentPage - 1);
+
                                                 navigate(`?${params.toString()}`);
                                             }}
                                         >
@@ -194,8 +198,8 @@ const Articles = () => {
                                             <button
                                                 className="page-link"
                                                 onClick={() => {
-                                                    const params = new URLSearchParams(location.search);
                                                     params.set('page', pageNum);
+
                                                     navigate(`?${params.toString()}`);
                                                 }}
                                             >
@@ -214,8 +218,9 @@ const Articles = () => {
                                             className="page-link"
                                             onClick={() => {
                                                 if (currentPage === totalPages) return;
-                                                const params = new URLSearchParams(location.search);
+
                                                 params.set('page', currentPage + 1);
+
                                                 navigate(`?${params.toString()}`);
                                             }}
                                         >
