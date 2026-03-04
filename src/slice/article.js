@@ -121,7 +121,8 @@ export const articleSlice = createSlice({
         },
         getArticlesFeedSuccess: (state, action) => {
             state.isLoading = false;
-            state.feedArticles = action.payload;
+            state.feedArticles = action.payload.articles;
+            state.articlesCount = action.payload.articlesCount;
         },
         getArticlesFeedFailure: (state, action) => {
             state.isLoading = false;
